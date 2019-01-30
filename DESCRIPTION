@@ -1,0 +1,21 @@
+Package: QCAviz
+Type: Package
+Title: Vizualisation of QCA output (Title Case)
+Version: 0.1.0
+Author: Who wrote it
+Maintainer: The package maintainer <yourself@somewhere.net>
+Description: The package is created to vizualize QCA solutions of various models. The vizualisation is based on the intersections of either solutions, conditions or configurations using UpSetR package.
+License: MIT
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1
+Imports:
+        UpSetR, 
+        dplyr, 
+        pander, 
+        plyr, 
+        purrr, 
+        stringi
+Suggests: knitr,
+    rmarkdown
+VignetteBuilder: knitr
