@@ -15,7 +15,7 @@ package. Determines the number of sets to graph.}
 
 \item{type}{an argument to specify the panel dimension.
 One can specify either within, between or
-pooled types. Input is a string and there is 
+pooled types. Input is a string and there is
 no default option for this argument.}
 }
 \value{

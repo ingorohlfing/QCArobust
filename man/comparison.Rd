@@ -2,15 +2,17 @@
 % Please edit documentation in R/QCA_viz.R
 \name{comparison}
 \alias{comparison}
-\title{comparison()}
+\title{Main Functions
+comparison()}
 \usage{
 comparison(x = all_values, y, num = F)
 }
 \arguments{
 \item{x}{list of all the solutions or configurations
-which are obtained form the QCA solutions}
+which are obtained from multiple QCA solutions}
 
-\item{y}{QCA solutions in their raw form}
+\item{y}{QCA solutions in their raw form as produced
+by \pkg{QCA} package}
 
 \item{num}{is a default argument which checks
 whether the inputs are numeric or not. The default
@@ -19,10 +21,9 @@ is non-numeric, the function will read in the
 data in a numeric format.}
 }
 \value{
-The function counts the configurations
-and/or individual solutions depending on the plot
-funciton used later. The output is presented in
-the form of a data frame
+The function counts the individual solutions
+or configurations  depending on the plot
+function of this package. The output is a data frame.
 }
 \description{
 function compares matrices of solutions
