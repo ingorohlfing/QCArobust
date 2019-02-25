@@ -51,10 +51,9 @@ comparison <- function(x = all_values, y, num = F) {
 #'
 #' @export
 conds_upset <- function(df, nsets) {
-  temp1 <- purrr::map(df, function(x) stringi::stri_split_fixed(x, "*") %>% unlist())
+  temp1 <- purrr::map(unlist(df), function(x) stringi::stri_split_fixed(x, "*") %>% unlist())
   temp1 <- purrr::map(temp1, function(x) stringi::stri_split_fixed(x, "+") %>% unlist())
-  all_values <- lapply(temp1, stringi::stri_trim)
-  all_values <- stringi::stri_unique(unlist(all_values))
+  all_values <- stringi::stri_unique(unlist(temp1))
   final_matrix <- plyr::ldply(temp1, function(y) comparison(x = all_values, y = y, num = T))
   colnames(final_matrix) <- all_values
   UpSetR::upset(final_matrix, order.by = "freq", nsets = nsets)
