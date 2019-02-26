@@ -16,11 +16,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r}
-library(QCAviz)
-```
-
-
 QCA solutions that a researcher wants to aggregate can be created in different ways.
 
 ## Manual import of solutions
@@ -45,6 +40,10 @@ sols_upset(Skaaning_csanchors, nsets = 5)
 
 On the second, medium level of aggregation, the solutions are decomposed into their configurations. The `config_upset()` function serves this purpose.
 ```{r Skaaning csqca anchors configs}
-config_upset(Skaaning_csanchors, nsets = 10)
+config_upset(Skaaning_csanchors, nsets = 100)
+```
+
+```{r Skaaning csqca anchors conditions}
+conds_upset(Skaaning_csanchors, nsets = 100)
 ```
 
