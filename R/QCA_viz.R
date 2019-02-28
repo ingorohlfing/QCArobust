@@ -76,8 +76,10 @@ conds_upset <- function(df, nsets) {
 #' QCA solutions and their intersections across solutions.
 #' @export
 config_upset <- function(df, nsets) {
+  df <- unlist(df)
   temp1 <- purrr::map(df, function(x) stringi::stri_split_fixed(x, "+"))
   temp1 <- purrr::map(temp1, unlist)
+  temp1 <- purrr::map(temp1, function(x) stringi::stri_split_fixed(x, " "))
   temp1 <- purrr::map(temp1, function(x) stringi::stri_trim (x))
   all_values <- stringi::stri_unique(unlist(temp1))
   all_values <- purrr::map(all_values, function(x) stringi::stri_trim(x))
