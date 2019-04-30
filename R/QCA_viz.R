@@ -1,4 +1,6 @@
 #QCAviz
+
+#The core functions  -----
 #Libraries needed to be loaded
 library(dplyr)
 library(magrittr)
@@ -251,3 +253,44 @@ sols_upset_h <- function(df, nsets) {
   colnames(final_matrix) <- paste0("Sol", 1:length(all_values))
   UpSetR::upset(final_matrix, order.by = "freq", nsets = nsets)
 }
+
+
+#### QCAviz package April ----
+
+#' Creating a function to compare/detect the ambiguous solution
+#' within the QCA framework
+#' see below some basic examples of the solutions
+first <- c("A", "b", "c", "D")
+second <- c("A", "b", "c", "D", "a")
+
+#the logif was involved with looking at the length
+#of the solution and comparing them to the
+#maximum possible number of combinations (theoretically-feasable).
+
+is.equal(first, second)
+
+#get each individual length and then compare the
+#recurring solution length
+
+my_fn <- function(a, b){
+
+  length1 <- length(a)
+  length2 <- length(b)
+
+  out <- length1==length2
+}
+
+result <- my_fn(first, second)
+result
+
+
+#this should get into the matrix level
+
+
+
+
+
+
+
+
+
