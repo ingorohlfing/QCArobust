@@ -1,4 +1,6 @@
 #QCAviz
+
+#The core functions  -----
 #Libraries needed to be loaded
 library(dplyr)
 library(magrittr)
@@ -251,3 +253,9 @@ sols_upset_h <- function(df, nsets) {
   colnames(final_matrix) <- paste0("Sol", 1:length(all_values))
   UpSetR::upset(final_matrix, order.by = "freq", nsets = nsets)
 }
+
+
+
+
+
+
