@@ -26,10 +26,6 @@ conds_upset(model_2_ncut1_error$Configurations, nsets = 70)
 config_upset(model_2_ncut1_error$Configurations, nsets = 50)
 sols_upset(model_2_ncut1_error$Configurations, nsets = 9)
 
-#the fourth dataset
-conds_upset(model_2_sim$Configurations, nsets = 70)
-config_upset(model_2_sim$Configurations, nsets = 50)
-sols_upset(model_2_sim$Configurations, nsets = 9)
 
 
 
