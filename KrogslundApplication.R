@@ -17,9 +17,9 @@ config_upset(ka_model_1_ncut1_error$Configurations, nsets = 50)
 sols_upset(ka_model_1_ncut1_error$Configurations, nsets = 9)
 
 #the second dataset
-conds_upset(ka_model_1_sim$Configurations, nsets = 70)
-config_upset(ka_model_1_sim$Configurations, nsets = 50)
-sols_upset(ka_model_1_sim$Configurations, nsets = 9)
+conds_upset(ka_model_1_sim$Configurations, nsets = 55)
+config_upset(ka_model_1_sim$Configurations, nsets = 45)
+sols_upset(ka_model_1_sim$Configurations, nsets = 33)
 
 #the third dataset
 conds_upset(model_2_ncut1_error$Configurations, nsets = 70)
