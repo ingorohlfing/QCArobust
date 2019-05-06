@@ -260,8 +260,16 @@ config_upset_1 <- functions(x, y, nsets){
   UpSetR::upset(final_matrix, order.by = "freq", nsets = nsets)
 }
 
-
-
+#the hand-pooled config function
+config_upset_h1 <- function(x, y, nsents){
+  temp1 <- list.selector(x, con.thresh = y)
+  temp1 <- purrr::map(temp1$config, unlist)
+  temp1 <- purrr::map(temp1, function(x) stringi::stri_trim(x))
+  all_values <- stringi::stri_unique(unlist(temp1))
+  final_matrix <- plyr::ldply(temp1, function(y) comparison (x = all_values, y = y, num = T))
+  colnames(final_matrix) <- all_values
+  UpSetR::upset(final_matrix, order.by = "freq", nsets = nsets)
+}
 
 
 
