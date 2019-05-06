@@ -13,7 +13,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 > Tasks list
 
-1. Replace the UpSetR chart for full solutions with a simple barchart.
-2. Add the selection of consistency values also for non-panel solutions.
+1. Replace the UpSetR chart for full solutions with a simple barchart:DONE
+2. Add the selection of consistency values also for non-panel solutions: DONE
+2.1. Add the package documentation to the selector functions. 
 3. Add the Krogslund replication to the vignette.
 4. Add a clear differentiation between the upset_x() functions to the documentation. 
