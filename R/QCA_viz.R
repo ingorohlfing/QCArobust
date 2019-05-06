@@ -255,6 +255,24 @@ sols_upset_h <- function(df, nsets) {
 }
 
 
+#Rewriting the config_functions with the consistency
+#selector
 
+#a single solution
+dt.selector <- function(x, con.thresh = 0){
 
+  sol <- purrr::map(x$solution, function(x) stringi::stri_split_fixed(x, "+"))
+  cnst <- x$IC$incl.cov[["inclS"]]
+
+  output <- rlist::list.append(sol, cnst)
+  output <- rlist::list.cbind(output)
+  colnames(output) <- c("config", "consist")
+
+  output <- as.data.frame(output)
+  output <- output %>%
+    filter(consist > con.thresh) %>%
+    select(config)
+
+  return(output)
+}
 
