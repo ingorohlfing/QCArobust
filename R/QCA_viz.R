@@ -276,3 +276,26 @@ dt.selector <- function(x, con.thresh = 0){
   return(output)
 }
 
+
+#list selection ----
+list.selector <- function(x, con.thresh = 0){
+
+  solutions <- purrr::map((x), function(x) x[["solution"]])
+  solutions <- rlist::list.stack(solutions)
+  solutions <- as.data.frame(solutions)
+
+  cnst <- purrr::map(x, function(x) x$IC$incl.cov[["inclS"]])
+  cnst <- as.data.frame(rlist::list.cbind(cnst))
+  cnst <- reshape::melt(cnst)
+
+  output <- cbind(solutions$V1, cnst$value)
+  colnames(output) <- c("config", "consist")
+
+  output <- data.frame(output)
+  output$consist <- as.numeric(as.character(output$consist))
+  output <- output %>%
+    filter(consist > con.thresh) %>%
+    select(config)
+
+  return(output)
+}
