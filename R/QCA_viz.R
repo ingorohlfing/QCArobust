@@ -264,7 +264,12 @@ config_upset_h <- function(df, nsets) {
 #Rewriting the config_functions with the consistency ----
 #selector
 
-#a single solution
+#'
+#' the function for selecting consistency values
+#'
+#'
+#'
+
 dt.selector <- function(x, con.thresh = 0){
 
   sol <- purrr::map(x$solution, function(x) stringi::stri_split_fixed(x, "+"))
@@ -283,7 +288,12 @@ dt.selector <- function(x, con.thresh = 0){
 }
 
 
-#list selection ----
+
+#'
+#' the function for selecting consistency values (list)
+#'
+#'
+#'
 list.selector <- function(x, con.thresh = 0){
 
   solutions <- purrr::map((x), function(x) x[["solution"]])
@@ -306,7 +316,14 @@ list.selector <- function(x, con.thresh = 0){
   return(output)
 }
 
-#the config_functions
+
+
+#'
+#' the modified config_upset function
+#'
+#'
+#'
+
 config_upset_1 <- functions(x, y, nsets){
   temp1 <- dt.selector(x, con.thresh = y)
   temp1 <- purrr::map(temp1$config, unlist)
@@ -318,7 +335,12 @@ config_upset_1 <- functions(x, y, nsets){
   UpSetR::upset(final_matrix, order.by = "freq", nsets = nsets)
 }
 
-#the hand-pooled config function
+#'
+#' modified config_upset function
+#' for hand-pooled solutions
+#'
+#'
+#'
 config_upset_h1 <- function(x, y, nsents){
   temp1 <- list.selector(x, con.thresh = y)
   temp1 <- purrr::map(temp1$config, unlist)
