@@ -83,6 +83,15 @@ list.selector(solutionslist, con.thresh = 0.85)
 ```
 
 
+Usage of the selectors within the QCAViz functions
+```{r}
+solutionslist <- list(poscons, poscons)
+
+config_upset_1(poscons, y = 0.85, nsets = 10)
+config_upset_h1(solutionslist, y = 0, nsets = 5)
+```
+
+
 
 
 
