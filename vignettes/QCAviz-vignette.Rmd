@@ -74,32 +74,13 @@ poscons <- minimize(ttpos, details = T,
 
 
 Applying the selector function itself and then the function within the UpSetR wrap function.
+
 ```{r}
 dt.selector(poscons)
 dt.selector(poscons, con.thresh = 0.85)
 list.selector(solutionslist)
 list.selector(solutionslist, con.thresh = 0.85)
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
