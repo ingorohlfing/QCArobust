@@ -15,11 +15,15 @@ knitr::opts_chunk$set(echo = TRUE)
 
 1. Replace the UpSetR chart for full solutions with a simple barchart:DONE
 2. Add the selection of consistency values also for non-panel solutions: DONE
+3. Add the Krogslund replication to the vignette: DONE
+4. Edit, or create a second version, of the barplot for hand-pooled solutions: DONE
+
 
 > Tasks list
 
+0. Add the replication of the Böller study.
 1. Add the package documentation to the selector functions.
-2. Add the Krogslund replication to the vignette. 
-3. Add a clear differentiation between the upset_x() functions to the documentation. 
-4. Edit, or create a second version, of the barplot for hand-pooled solutions (**Note to the self: for repeating functions, in general, there sould be some short cuts. Think: you repeat config, barplots, conds. Can I create an argument for the repetitions and reduce the number of functions?**)
+2. Add a clear differentiation between the upset_x() functions to the documentation. 
+
+(**Note to the self: for repeating functions, in general, there sould be some short cuts. Think: you repeat config, barplots, conds. Can I create an argument for the repetitions and reduce the number of functions?**)
 
