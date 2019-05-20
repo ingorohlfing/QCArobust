@@ -128,6 +128,16 @@ conds_upset(model_6$Configurations, nsets = 500)
 ```
 
 
+Configurations applied
+```{r}
+config_upset(model_2$Configurations, nsets = 300)
+config_upset(model_3$Configurations, nsets = 300)
+config_upset(model_4$Configurations, nsets = 400)
+config_upset(model_5$Configurations, nsets = 500)
+config_upset(model_6$Configurations, nsets = 600)
+
+```
+
 
 
 
