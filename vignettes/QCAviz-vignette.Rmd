@@ -97,6 +97,13 @@ Initially on the naive model 1 (referred to as ka_model_1_sim)
 
 ```{r}
 ka_naive <- read.csv("ka_model_1_sim_csv")
+
+#conditions
+conds_upset(ka_naive$Configurations, nsets = 200)
+config_upset(ka_naive$Configurations, nsets = 100)
+
+conds_upset(ka_naive$Configurations, nsets = 162)
+config_upset(ka_naive$Configurations, nsets = 87)
 ```
 
 
