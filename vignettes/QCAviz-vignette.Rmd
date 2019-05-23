@@ -146,6 +146,7 @@ Important:
 1. the process first needs the derivation of solutions.
 2. The cases with a single condition do not work within the UpSetR environment.
 
+The conditions
 ```{r}
 
 conds_upset(negcons$solution, nsets = 15)
@@ -157,6 +158,17 @@ conds_upset(neginter$solution, nsets = 15)
 
 ```
 
+
+The configurations
+The same notes as above apply
+```{r}
+config_upset(posinter$solution, nsets = 14) #does not work bc there is a sngl condition
+config_upset(neginter$solution, nsets = 4)
+config_upset(poscons$solution, nsets = 13)
+config_upset(pospars$solution, nsets = 10) #does not work bc there is a sngl condition
+config_upset(negcons$solution, nsets = 13)
+config_upset(negpars$solution, nsets = 12)
+```
 
 
 
