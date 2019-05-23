@@ -139,5 +139,50 @@ config_upset(model_6$Configurations, nsets = 600)
 ```
 
 
+Applying the functions for Böller Study
+
+
+Important: 
+1. the process first needs the derivation of solutions.
+2. The cases with a single condition do not work within the UpSetR environment.
+
+```{r}
+
+conds_upset(negcons$solution, nsets = 15)
+conds_upset(negpars$solution, nsets = 13)
+conds_upset(pospars$solution, nsets = 5)  #does not work bc there is a single condition!
+conds_upset(poscons$solution, nsets = 5)
+conds_upset(posinter$solution, nsets = 5) #does not work bc there is a single condition!
+conds_upset(neginter$solution, nsets = 15)
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
