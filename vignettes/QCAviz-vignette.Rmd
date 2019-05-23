@@ -171,7 +171,21 @@ config_upset(negpars$solution, nsets = 12)
 ```
 
 
+Pulling solutions (will be taken out of the 
+final version of the vignette, I just want to check if 
+the functions for hand pulled solutions work)
 
+Pulling all of the solutions
+```{r}
+allsols <- rbind(posinter$solution, poscons$solution, pospars$solution, 
+                 neginter$solution, negcons$solution, negpars$solution)
+```
+
+Checking the main pooled solution functions
+```{r}
+conds_upset_h(allsols, nsets = 10)
+config_upset_h(allsols, nsets = 10)
+```
 
 
 
