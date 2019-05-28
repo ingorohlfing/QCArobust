@@ -105,10 +105,10 @@ model_1 <- read.csv("ka_model_1_sim.csv")
 
 #conditions
 conds_upset(model_1$Configurations, nsets = 200)
-config_upset_t(model_1$Configurations, nsets = 100)
+config_upset_t(model_1$Configurations, nsets = 378)
 
 conds_upset(model_1$Configurations, nsets = 162)
-config_upset_t(model_1$Configurations, nsets = 87)
+config_upset_t(model_1$Configurations, nsets = 387)
 ```
 
 
@@ -139,7 +139,7 @@ config_upset_t(model_2$Configurations, nsets = 300)
 config_upset_t(model_3$Configurations, nsets = 300)
 config_upset_t(model_4$Configurations, nsets = 400)
 config_upset_t(model_5$Configurations, nsets = 500)
-config_upset_t(model_6$Configurations, nsets = 600)
+config_upset_t(model_6$Configurations, nsets = 400)
 
 ```
 
@@ -167,12 +167,12 @@ conds_upset(neginter$solution, nsets = 15)
 The configurations
 The same notes as above apply
 ```{r}
-config_upset(posinter$solution, nsets = 14) #does not work bc there is a sngl condition
-config_upset(neginter$solution, nsets = 4)
-config_upset(poscons$solution, nsets = 13)
-config_upset(pospars$solution, nsets = 10) #does not work bc there is a sngl condition
-config_upset(negcons$solution, nsets = 13)
-config_upset(negpars$solution, nsets = 12)
+config_upset(posinter, nsets = 14) #does not work bc there is a sngl condition
+config_upset(neginter, nsets = 4)
+config_upset(poscons, nsets = 13)
+config_upset(pospars, nsets = 10) #does not work bc there is a sngl condition
+config_upset(negcons, nsets = 13)
+config_upset(negpars, nsets = 12)
 ```
 
 
@@ -182,7 +182,7 @@ the functions for hand pulled solutions work)
 
 Pulling all of the solutions
 ```{r}
-allsols <- rbind(posinter$solution, poscons$solution, pospars$solution, 
+allsols <- c(posinter$solution, poscons$solution, pospars$solution, 
                  neginter$solution, negcons$solution, negpars$solution)
 ```
 

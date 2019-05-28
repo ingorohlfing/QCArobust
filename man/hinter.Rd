@@ -3,7 +3,7 @@
 \docType{data}
 \name{hinter}
 \alias{hinter}
-\title{hinter
+\title{Hinter-Leitner dataset
 Data borrowed from Hinter and Leitner study
 A dataset containing informaiton about 20 countres
 used to understand the politic sof external
@@ -29,7 +29,7 @@ of austerity programmes in those countries.}
 hinter
 }
 \description{
-hinter
+Hinter-Leitner dataset
 Data borrowed from Hinter and Leitner study
 A dataset containing informaiton about 20 countres
 used to understand the politic sof external
