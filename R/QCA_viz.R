@@ -49,6 +49,8 @@ comparison <- function(x = all_values, y, num = F) {
 #' @return The function returns a subset of
 #' configurations that are larger than the selected
 #' threshold value.
+#'
+#' @export
 
 dt.selector <- function(x, con.thresh = 0){
 
@@ -198,7 +200,7 @@ config_upset <- function(df, const = FALSE, y, nsets) {
 #'
 #' @export
 config_upset_h <- function(df, nsets) {
-  temp1 <- purrr::map(df, function(x) stringi::stri_split_fixed(x, "+"))
+  temp1 <- purrr::map(df, function(x) stringi::stri_split_fixed(x, "+")) %>% unlist()
   all_values <- stringi::stri_unique(unlist(temp1))
   final_matrix <- plyr::ldply(temp1, function(y) comparison(x = all_values, y = y, num = T))
   colnames(final_matrix) <- all_values
