@@ -51,9 +51,7 @@ conds_upset(Skaaning_csanchors, nsets = 200)
 Adding (to be edited later) application of the functions that allow for selection of the consistenc values.
 
 ```{r}
-
 data("hinter")
-
 hinter <- hinter %>% 
   mutate(POScal = round(calibrate(pos, thresholds = "-2.4, -0.15, 1.4"), digits = 2)) %>% 
   mutate(AMBcal = round(calibrate(ambition, thresholds = "0.01, 0.1205, 0.2"), digits = 2)) %>% 
@@ -103,14 +101,14 @@ Applying the functions to Krogslund et al. (PA, 2015)
 Initially on the naive model 1 (referred to as ka_model_1_sim)
 
 ```{r}
-ka_naive <- read.csv("ka_model_1_sim.csv")
+model_1 <- read.csv("ka_model_1_sim.csv")
 
 #conditions
-conds_upset(ka_naive$Configurations, nsets = 200)
-config_upset_t(ka_naive$Configurations, nsets = 100)
+conds_upset(model_1$Configurations, nsets = 200)
+config_upset_t(model_1$Configurations, nsets = 100)
 
-conds_upset(ka_naive$Configurations, nsets = 162)
-config_upset_t(ka_naive$Configurations, nsets = 87)
+conds_upset(model_1$Configurations, nsets = 162)
+config_upset_t(model_1$Configurations, nsets = 87)
 ```
 
 

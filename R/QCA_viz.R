@@ -225,10 +225,6 @@ config_upset_h <- function(df, nsets) {
 #' used as an input to the present function.
 #' @param nsets an argument imported from the UpSetR
 #' package. Determines the number of sets to graph.
-#' @param type an argument to specify the panel dimension.
-#' One can specify either within, between or
-#' pooled types. Input is a string and there is
-#' no default option for this argument.
 #' @return The function returns an UpSetR-generated
 #' visual represenation of the interconnecteds
 #' between the conditions in a given dataset
