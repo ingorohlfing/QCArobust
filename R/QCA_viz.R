@@ -207,6 +207,47 @@ config_upset_h <- function(df, nsets) {
   UpSetR::upset(final_matrix, order.by = "freq", nsets = nsets)
 }
 
+
+#' config_upset_t()
+#'
+#' This is the third configurations function.
+#' The function is specially designed for the
+#' data which is presented in a tabular version,
+#' as opposed to how generally QCA outputs list style.
+#'
+#' @importFrom magrittr %>%
+#' @import stringi
+#' @param df the data frame which has the
+#' configurations extracted from the QCA solutions in
+#' a tabular version. The data can also have additional
+#' information. But only the configurations themselves
+#' and values, such as consistency values will be
+#' used as an input to the present function.
+#' @param nsets an argument imported from the UpSetR
+#' package. Determines the number of sets to graph.
+#' @param type an argument to specify the panel dimension.
+#' One can specify either within, between or
+#' pooled types. Input is a string and there is
+#' no default option for this argument.
+#' @return The function returns an UpSetR-generated
+#' visual represenation of the interconnecteds
+#' between the conditions in a given dataset
+#' @note the present version of config_upset
+#' does not allow for selection of thresholds
+#' as opposed to it's sibling function config_upset
+#'
+#' @export
+config_upset_h <- function(df, nsets) {
+  temp1 <- purrr::map(df, function(x) stringi::stri_split_fixed(x, "+")) %>% unlist()
+  all_values <- stringi::stri_unique(unlist(temp1))
+  final_matrix <- plyr::ldply(temp1, function(y) comparison(x = all_values, y = y, num = T))
+  colnames(final_matrix) <- all_values
+  UpSetR::upset(final_matrix, order.by = "freq", nsets = nsets)
+}
+
+
+
+
 #' solutions_table()
 #'
 #' Plot Function for the table version of solutions

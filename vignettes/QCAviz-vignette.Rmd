@@ -80,8 +80,10 @@ Applying the selector function itself and then the function within the UpSetR wr
 ```{r}
 dt.selector(poscons)
 dt.selector(poscons, con.thresh = 0.85)
-list.selector(solutionslist)
-list.selector(solutionslist, con.thresh = 0.85)
+
+#being re-written
+#list.selector(solutionslist)
+#list.selector(solutionslist, con.thresh = 0.85)
 ```
 
 
@@ -89,8 +91,11 @@ Usage of the selectors within the QCAViz functions
 ```{r}
 solutionslist <- list(poscons, poscons)
 
-config_upset_1(poscons, y = 0.85, nsets = 10)
-config_upset_h1(solutionslist, y = 0, nsets = 5)
+#the configurations that are subset
+config_upset(poscons, const = TRUE, y = 0.85, nsets = 10)
+
+#all of the configurations
+config_upset(poscons, nsets = 10)
 ```
 
 
@@ -98,14 +103,14 @@ Applying the functions to Krogslund et al. (PA, 2015)
 Initially on the naive model 1 (referred to as ka_model_1_sim)
 
 ```{r}
-ka_naive <- read.csv("ka_model_1_sim_csv")
+ka_naive <- read.csv("ka_model_1_sim.csv")
 
 #conditions
 conds_upset(ka_naive$Configurations, nsets = 200)
-config_upset(ka_naive$Configurations, nsets = 100)
+config_upset_t(ka_naive$Configurations, nsets = 100)
 
 conds_upset(ka_naive$Configurations, nsets = 162)
-config_upset(ka_naive$Configurations, nsets = 87)
+config_upset_t(ka_naive$Configurations, nsets = 87)
 ```
 
 
