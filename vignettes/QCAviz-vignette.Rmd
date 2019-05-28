@@ -39,9 +39,9 @@ The function does not exist anymore.
 sols_upset(Skaaning_csanchors, nsets = 5)
 ```
 
-On the second, medium level of aggregation, the solutions are decomposed into their configurations. The `config_upset()` function serves this purpose.
+On the second, medium level of aggregation, the solutions are decomposed into their configurations. The `config_upset()` function serves this purpose. This should be used now with the config_upset_h() version of the function.
 ```{r Skaaning csqca anchors configs}
-config_upset(Skaaning_csanchors, nsets = 100)
+config_upset_h(Skaaning_csanchors, nsets = 100)
 ```
 
 ```{r Skaaning csqca anchors conditions}
@@ -51,7 +51,7 @@ conds_upset(Skaaning_csanchors, nsets = 100)
 Adding (to be edited later) application of the functions that allow for selection of the consistenc values.
 
 ```{r}
-hinter <- read.csv("~hinterleitner2016.csv", sep = ";")
+hinter <- read.csv("~/data/hinterleitner2016.csv", sep = ";")
 
 hinter <- hinter %>% 
   mutate(POScal = round(calibrate(pos, thresholds = "-2.4, -0.15, 1.4"), digits = 2)) %>% 
