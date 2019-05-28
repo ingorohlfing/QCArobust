@@ -144,7 +144,7 @@ config_upset_t(model_6$Configurations, nsets = 400)
 ```
 
 
-Applying the functions for Böller Study
+Applying the functions to the Böller Study
 
 
 Important: 
@@ -153,26 +153,29 @@ Important:
 
 The conditions
 ```{r}
-
 conds_upset(negcons$solution, nsets = 15)
 conds_upset(negpars$solution, nsets = 13)
-conds_upset(pospars$solution, nsets = 5)  #does not work bc there is a single condition!
 conds_upset(poscons$solution, nsets = 5)
-conds_upset(posinter$solution, nsets = 5) #does not work bc there is a single condition!
 conds_upset(neginter$solution, nsets = 15)
 
+#the non-functioning cases
+conds_upset(posinter$solution, nsets = 5) #does not work bc there is a single condition!
+conds_upset(pospars$solution, nsets = 5)  #does not work bc there is a single condition!
 ```
 
 
 The configurations
 The same notes as above apply
 ```{r}
-config_upset(posinter, nsets = 14) #does not work bc there is a sngl condition
+
 config_upset(neginter, nsets = 4)
 config_upset(poscons, nsets = 13)
-config_upset(pospars, nsets = 10) #does not work bc there is a sngl condition
 config_upset(negcons, nsets = 13)
 config_upset(negpars, nsets = 12)
+
+#the non-functioning cases
+config_upset(pospars, nsets = 10) #does not work bc there is a sngl condition
+config_upset(posinter, nsets = 14) #does not work bc there is a sngl condition
 ```
 
 
