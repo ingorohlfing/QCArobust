@@ -36,6 +36,37 @@ comparison <- function(x = all_values, y, num = F) {
 }
 
 
+
+#'dt.selector()
+#'
+#' function that allows for selecting configurations
+#' bsaed on consistency values before plitting
+#'
+#' @param x output of the QCA in its entirety
+#' produced by \pkg{QCA} package
+#' @param con.thresh is the threshold set by a
+#' researcher. Te default value equals to zero
+#' @return The function returns a subset of
+#' configurations that are larger than the selected
+#' threshold value.
+
+dt.selector <- function(x, con.thresh = 0){
+
+  sol <- purrr::map(x$solution, function(x) stringi::stri_split_fixed(x, "+"))
+  cnst <- x$IC$incl.cov[["inclS"]]
+
+  output <- rlist::list.append(sol, cnst)
+  output <- rlist::list.cbind(output)
+  colnames(output) <- c("config", "consist")
+
+  output <- as.data.frame(output)
+  output <- output %>%
+    filter(consist > con.thresh) %>%
+    select(config)
+
+  return(output)
+}
+
 #' conds_upset()
 #'
 #' Function decomposes results into individual conditions
@@ -43,8 +74,8 @@ comparison <- function(x = all_values, y, num = F) {
 #'
 #' @importFrom magrittr %>%
 #' @import stringi
-#' @param df Dataframe with configurations extracted
-#' from the QCA solutions
+#' @param df Dataframe with solutions extracted
+#' from the solutions of the \pkg{QCA} package
 #' @param nsets An argument imported from the \pkg{UpSetR}
 #' package. Determines the number of sets to be plotted.
 #' @return An \pkg{UpSetR}-generated intersection plot
@@ -62,6 +93,38 @@ conds_upset <- function(df, nsets) {
 
 }
 
+#' conds_upset_h()
+#'
+#' Plot Function for the charting of conditions
+#' intersection of the panel QCA output in a solution.
+#'
+#' @importFrom magrittr %>%
+#' @import stringi
+#' @param df is an object that contains hand-pooled (concatenated)
+#' solutions produced by the \pkg{QCA} package.
+#' This object includes only the solutions.
+#' @param nsets an argument imported from the \pkg{UpSetR}
+#' package. Determines the number of sets to graph.
+#' @param type an argument to specify the panel dimension.
+#' One can specify either within, between or
+#' pooled types. Input is a string and there is
+#' no default option for this argument.
+#' @return The function returns an UpSetR-generated
+#' visual represenation of the interconnecteds
+#' between the conditions in a given dataset
+#'
+#' @export
+conds_upset_h <- function (df, nsets) {
+  temp1 <- unlist(df)
+  temp1 <- purrr::map(temp1, function(x) stringi::stri_split_fixed(x, "*") %>% unlist())
+  temp1 <- purrr::map(temp1, function(x) stringi::stri_split_fixed(x, "+") %>% unlist())
+  all_values <- stringi::stri_unique(unlist(temp1))
+  final_matrix <- plyr::ldply(temp1, function(y) comparison(x = all_values, y = y, num = T))
+  colnames(final_matrix) <- all_values
+  UpSetR::upset(final_matrix, order.by = "freq", nsets = nsets)
+
+}
+
 #' config_upset()
 #'
 #' Function decomposes results into individual configurations
@@ -69,27 +132,78 @@ conds_upset <- function(df, nsets) {
 #'
 #' @importFrom magrittr %>%
 #' @import stringi
-#' @param df Dataframe with configurations extracted
-#' from the QCA solutions
+#' @param df output extracted from the \pkg{QCA} package
+#' in their entirety.
+#' @param const is the argument of a function with binary
+#' input. The default option - FALSE - indicates that all
+#' of the QCA configurations will be plotted. If the argument
+#' is set to TRUE, the function will only plot those
+#' configurations which are above a chosen threshold: see
+#' the following argument for threshold.
+#' @param y is an argument with default value of zero. If
+#' any other number is set for the given argument, only
+#' those configurations which are above the set value for y
+#' will be plotted by the function
 #' @param nsets An argument imported from the \pkg{UpSetR}
 #' package. Determines the number of sets to be plotted.
 #' @return An \pkg{UpSetR}-generated intersection plot
 #' presenting the frequency of individual configurations across
 #' QCA solutions and their intersections across solutions.
 #' @export
-config_upset <- function(df, nsets) {
-  df <- unlist(df)
-  temp1 <- purrr::map(df, function(x) stringi::stri_split_fixed(x, "+"))
-  temp1 <- purrr::map(temp1, unlist)
-  temp1 <- purrr::map(temp1, function(x) stringi::stri_split_fixed(x, " "))
-  temp1 <- purrr::map(temp1, function(x) stringi::stri_trim (x))
+config_upset <- function(df, const = FALSE, y, nsets) {
+
+  if (!const) {
+    df <- unlist(df$solution)
+    temp1 <- purrr::map(df, function(x) stringi::stri_split_fixed(x,
+                                                                  "+"))
+    temp1 <- purrr::map(temp1, unlist)
+    temp1 <- purrr::map(temp1, function(x) stringi::stri_split_fixed(x,
+                                                                     " "))
+  }
+  else {
+    temp1 <- dt.selector(df, con.thresh = y)
+    temp1 <- purrr::map(temp1$config, unlist)
+  }
+  temp2 <- purrr::map(temp1, function(x) stringi::stri_trim(x))
   all_values <- stringi::stri_unique(unlist(temp1))
   all_values <- purrr::map(all_values, function(x) stringi::stri_trim(x))
-  final_matrix <- plyr::ldply(temp1, function(y) comparison(x = all_values, y = y, num = T))
+  final_matrix <- plyr::ldply(temp1, function(y) comparison(x = all_values,
+                                                            y = y, num = T))
   colnames(final_matrix) <- all_values
   UpSetR::upset(final_matrix, order.by = "freq", nsets = nsets)
 }
 
+
+#' config_upset_h()
+#'
+#' Plot Function for the charting of configuration
+#' intersection of the panel QCA output in a solution.
+#'
+#' @importFrom magrittr %>%
+#' @import stringi
+#' @param df the data frame which has the
+#' configurations extracted from the QCA solutions only
+#' @param nsets an argument imported from the UpSetR
+#' package. Determines the number of sets to graph.
+#' @param type an argument to specify the panel dimension.
+#' One can specify either within, between or
+#' pooled types. Input is a string and there is
+#' no default option for this argument.
+#' @return The function returns an UpSetR-generated
+#' visual represenation of the interconnecteds
+#' between the conditions in a given dataset
+#' @note the present version of config_upset
+#' does not allow for selection of thresholds
+#' as opposed to it's sibling function config_upset
+#'
+#' @export
+config_upset_h <- function(df, nsets) {
+  temp1 <- purrr::map(df, function(x) stringi::stri_split_fixed(x, "+"))
+  all_values <- stringi::stri_unique(unlist(temp1))
+  final_matrix <- plyr::ldply(temp1, function(y) comparison(x = all_values, y = y, num = T))
+  colnames(final_matrix) <- all_values
+  UpSetR::upset(final_matrix, order.by = "freq", nsets = nsets)
+}
 
 #' solutions_table()
 #'
@@ -138,207 +252,46 @@ solutions_table <- function(ls) {
 }
 
 
-#the solutions barchart
-# barplot <- function(ls){
-#
-#   #Working with the data
-#   temp3 <- purrr::map(ls, function(x) stringi::stri_split_fixed(x, " "))
-#   solutions1 <- Reduce(c, ls) %>% as.list()
-#   all_values3 <- unlist(unique(solutions1))
-#
-#   #new function to paste the strings
-#   p <- function(..., sep=' + ') {
-#     paste(..., sep=sep, collapse=sep)
-#   }
-#
-#   #applying the new function to my list
-#   j <- purrr::map(temp3, p)
-#
-#   #binding the solutions
-#   b <- suppressWarnings(purrr::map_df(j,
-#                                       ~ data.frame(Content = .x),
-#                                       .id = "Raw"
-#   ))
-#
-#   #putting into table and ordering
-#   tableX <- as.data.frame(table(b$Content))
-#   colnames(tableX) <- c("Raw", "Freq")
-#   newdf <- tableX %>%
-#     dplyr::arrange(desc(Freq)) %>%
-#     dplyr::mutate(solution = paste0("sol_", 1:length(tableX$Raw))) %>%
-#     dplyr::mutate(solution = as.factor(solution)) %>%
-#     dplyr::mutate(solution = forcats::fct_reorder(solution, Freq, .desc = TRUE))
-#
-#   #charting the plot
-#   plot2 <- ggplot2::ggplot(newdf, ggplot2::aes(x=solution, y = Freq, fill = Freq, order)) +
-#     ggplot2::geom_bar(stat="identity") +
-#     ggplot2::theme(axis.text.x= ggplot2::element_text(angle=90,hjust=1,vjust=0.5))+
-#     ggplot2::geom_text(ggplot2::aes(label = Freq, y = Freq), size = 3, position = ggplot2::position_stack(vjust = 1.1)) +
-#     ggplot2::ggtitle("Distribution of Solutions") +
-#     ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0))
-#
-#   return(plot2)
-# }
+#'the solutions barchart
+#'The documentation required
+barplot <- function(ls){
 
-#HAND - POOLED DATA VISUALS
+  #Working with the data
+  temp3 <- purrr::map(ls, function(x) stringi::stri_split_fixed(x, " "))
+  solutions1 <- Reduce(c, ls) %>% as.list()
+  all_values3 <- unlist(unique(solutions1))
 
-#' conds_upset_h()
-#'
-#' Plot Function for the charting of conditions
-#' intersection of the panel QCA output in a solution.
-#'
-#' @importFrom magrittr %>%
-#' @import stringi
-#' @param df the data frame which has the
-#' configurations extracted from the QCA solutions only
-#' @param nsets an argument imported from the UpSetR
-#' package. Determines the number of sets to graph.
-#' @param type an argument to specify the panel dimension.
-#' One can specify either within, between or
-#' pooled types. Input is a string and there is
-#' no default option for this argument.
-#' @return The function returns an UpSetR-generated
-#' visual represenation of the interconnecteds
-#' between the conditions in a given dataset
-#' @note the chart generated by this function is
-#' different from that generated by the sols_upset
-#'
-#' @export
-conds_upset_h <- function (df, nsets) {
-  temp1 <- purrr::map(df, function(x) stringi::stri_split_fixed(x, "*") %>% unlist())
-  temp1 <- purrr::map(temp1, function(x) stringi::stri_split_fixed(x, "+") %>% unlist())
-  all_values <- stringi::stri_unique(unlist(temp1))
-  final_matrix <- plyr::ldply(temp1, function(y) comparison(x = all_values, y = y, num = T))
-  colnames(final_matrix) <- all_values
-  UpSetR::upset(final_matrix, order.by = "freq", nsets = nsets)
+  #new function to paste the strings
+  p <- function(..., sep=' + ') {
+    paste(..., sep=sep, collapse=sep)
+  }
 
+  #applying the new function to my list
+  j <- purrr::map(temp3, p)
+
+  #binding the solutions
+  b <- suppressWarnings(purrr::map_df(j,
+                                      ~ data.frame(Content = .x),
+                                      .id = "Raw"
+  ))
+
+  #putting into table and ordering
+  tableX <- as.data.frame(table(b$Content))
+  colnames(tableX) <- c("Raw", "Freq")
+  newdf <- tableX %>%
+    dplyr::arrange(desc(Freq)) %>%
+    dplyr::mutate(solution = paste0("sol_", 1:length(tableX$Raw))) %>%
+    dplyr::mutate(solution = as.factor(solution)) %>%
+    dplyr::mutate(solution = forcats::fct_reorder(solution, Freq, .desc = TRUE))
+
+  #charting the plot
+  plot2 <- ggplot2::ggplot(newdf, ggplot2::aes(x=solution, y = Freq, fill = Freq, order)) +
+    ggplot2::geom_bar(stat="identity") +
+    ggplot2::theme(axis.text.x= ggplot2::element_text(angle=90,hjust=1,vjust=0.5))+
+    ggplot2::geom_text(ggplot2::aes(label = Freq, y = Freq), size = 3, position = ggplot2::position_stack(vjust = 1.1)) +
+    ggplot2::ggtitle("Distribution of Solutions") +
+    ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0))
+
+  return(plot2)
 }
-
-#' config_upset_h()
-#'
-#' Plot Function for the charting of configuration
-#' intersection of the panel QCA output in a solution.
-#'
-#' @importFrom magrittr %>%
-#' @import stringi
-#' @param df the data frame which has the
-#' configurations extracted from the QCA solutions only
-#' @param nsets an argument imported from the UpSetR
-#' package. Determines the number of sets to graph.
-#' @param type an argument to specify the panel dimension.
-#' One can specify either within, between or
-#' pooled types. Input is a string and there is
-#' no default option for this argument.
-#' @return The function returns an UpSetR-generated
-#' visual represenation of the interconnecteds
-#' between the conditions in a given dataset
-#' @note the chart generated by this function is
-#' different from that generated by the sols_upset
-#'
-#' @export
-config_upset_h <- function(df, nsets) {
-  temp1 <- purrr::map(df, function(x) stringi::stri_split_fixed(x, "+"))
-  all_values <- stringi::stri_unique(unlist(temp1))
-  final_matrix <- plyr::ldply(temp1, function(y) comparison(x = all_values, y = y, num = T))
-  colnames(final_matrix) <- all_values
-  UpSetR::upset(final_matrix, order.by = "freq", nsets = nsets)
-}
-
-
-
-#Rewriting the config_functions with the consistency ----
-#selector
-
-
-
-
-#'dt.selector()
-#'
-#' function that selects
-#'
-#'
-
-# dt.selector <- function(x, con.thresh = 0){
-#
-#   sol <- purrr::map(x$solution, function(x) stringi::stri_split_fixed(x, "+"))
-#   cnst <- x$IC$incl.cov[["inclS"]]
-#
-#   output <- rlist::list.append(sol, cnst)
-#   output <- rlist::list.cbind(output)
-#   colnames(output) <- c("config", "consist")
-#
-#   output <- as.data.frame(output)
-#   output <- output %>%
-#     filter(consist > con.thresh) %>%
-#     select(config)
-#
-#   return(output)
-# }
-
-
-
-#'
-#' the function for selecting consistency values (list)
-#'
-#'
-#'
-# list.selector <- function(x, con.thresh = 0){
-#
-#   solutions <- purrr::map((x), function(x) x[["solution"]])
-#   solutions <- rlist::list.stack(solutions)
-#   solutions <- as.data.frame(solutions)
-#
-#   cnst <- purrr::map(x, function(x) x$IC$incl.cov[["inclS"]])
-#   cnst <- as.data.frame(rlist::list.cbind(cnst))
-#   cnst <- reshape::melt(cnst)
-#
-#   output <- cbind(solutions$V1, cnst$value)
-#   colnames(output) <- c("config", "consist")
-#
-#   output <- data.frame(output)
-#   output$consist <- as.numeric(as.character(output$consist))
-#   output <- output %>%
-#     filter(consist > con.thresh) %>%
-#     select(config)
-#
-#   return(output)
-# }
-
-
-
-#'
-#' the modified config_upset function
-#'
-#'
-#'
-
-# config_upset1 <- functions(x, y, n){
-#
-#   temp1 <- dt.selector(x, con.thresh = y)
-#   temp1 <- purrr::map(temp1$config, unlist)
-#   temp1 <- purrr::map(temp1, function(x) stringi::stri_trim(x))
-#   all_values <- stringi::stri_unique(unlist(temp1))
-#   all_values <- purrr::map(all_values, function(x) stringi::stri_trim(x))
-#   final_matrix <- plyr::ldply(temp1, function(y) comparison(x = all_values, y = y, num = T))
-#   colnames(final_matrix) <- all_values
-#   UpSetR::upset(final_matrix, order.by = "freq", nsets = n)
-#
-# }
-
-#'
-#' modified config_upset function
-#' for hand-pooled solutions
-#'
-#'
-#'
-# config_upset_h1 <- function(x, y, nsets){    #the error was arising from here. there was a typo(nsents instead of nsets)
-#   temp1 <- list.selector(x, con.thresh = y)
-#   temp1 <- purrr::map(temp1$config, unlist)
-#   temp1 <- purrr::map(temp1, function(x) stringi::stri_trim(x))
-#   all_values <- stringi::stri_unique(unlist(temp1))
-#   final_matrix <- plyr::ldply(temp1, function(y) comparison (x = all_values, y = y, num = T))
-#   colnames(final_matrix) <- all_values
-#   UpSetR::upset(final_matrix, order.by = "freq", nsets = nsets)
-# }
-
 

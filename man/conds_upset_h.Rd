@@ -7,10 +7,11 @@
 conds_upset_h(df, nsets)
 }
 \arguments{
-\item{df}{the data frame which has the
-configurations extracted from the QCA solutions only}
+\item{df}{is an object that contains hand-pooled (concatenated)
+solutions produced by the \pkg{QCA} package.
+This object includes only the solutions.}
 
-\item{nsets}{an argument imported from the UpSetR
+\item{nsets}{an argument imported from the \pkg{UpSetR}
 package. Determines the number of sets to graph.}
 
 \item{type}{an argument to specify the panel dimension.

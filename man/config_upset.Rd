@@ -4,11 +4,23 @@
 \alias{config_upset}
 \title{config_upset()}
 \usage{
-config_upset(df, nsets)
+config_upset(df, const = FALSE, y, nsets)
 }
 \arguments{
-\item{df}{Dataframe with configurations extracted
-from the QCA solutions}
+\item{df}{output extracted from the \pkg{QCA} package
+in their entirety.}
+
+\item{const}{is the argument of a function with binary
+input. The default option - FALSE - indicates that all
+of the QCA configurations will be plotted. If the argument
+is set to TRUE, the function will only plot those
+configurations which are above a chosen threshold: see
+the following argument for threshold.}
+
+\item{y}{is an argument with default value of zero. If
+any other number is set for the given argument, only
+those configurations which are above the set value for y
+will be plotted by the function}
 
 \item{nsets}{An argument imported from the \pkg{UpSetR}
 package. Determines the number of sets to be plotted.}

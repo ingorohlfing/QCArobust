@@ -7,8 +7,8 @@
 conds_upset(df, nsets)
 }
 \arguments{
-\item{df}{Dataframe with configurations extracted
-from the QCA solutions}
+\item{df}{Dataframe with solutions extracted
+from the solutions of the \pkg{QCA} package}
 
 \item{nsets}{An argument imported from the \pkg{UpSetR}
 package. Determines the number of sets to be plotted.}
