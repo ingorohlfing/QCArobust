@@ -247,8 +247,6 @@ config_upset_t <- function(df, nsets) {
 }
 
 
-
-
 #' solutions_table()
 #'
 #' Plot Function for the table version of solutions
