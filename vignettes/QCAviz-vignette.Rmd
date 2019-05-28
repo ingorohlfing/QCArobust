@@ -34,6 +34,7 @@ Skaaning_csanchors <- list(one, two, three, four, five)
 ```
 
 On the highest level of aggregation, one simply looks at the frequencies of the solutions.
+The function does not exist anymore.
 ```{r Skaaning csqca anchors sols}
 sols_upset(Skaaning_csanchors, nsets = 5)
 ```

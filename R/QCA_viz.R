@@ -138,62 +138,47 @@ solutions_table <- function(ls) {
 }
 
 
-#the solutions bar chart
-
-#'
-#' the special plot function which allows to
-#' chart the solutions in their entirety
-#'
-#' @importFrom magrittr %>%
-#' @import ggplot2
-#' @param ls is a list of all solutions generated
-#' through the iterative process
-#' @return the function returns a chart which plots out
-#' the number of times a specific solution occurs in a
-#' given model. The solutions are checked against
-#' multiple amount of iterations
-#'
-#' @export
-barplot <- function(ls){
-
-  #Working with the data
-  temp3 <- purrr::map(ls, function(x) stringi::stri_split_fixed(x, " "))
-  solutions1 <- Reduce(c, ls) %>% as.list()
-  all_values3 <- unlist(unique(solutions1))
-
-  #new function to paste the strings
-  p <- function(..., sep=' + ') {
-    paste(..., sep=sep, collapse=sep)
-  }
-
-  #applying the new function to my list
-  j <- purrr::map(temp3, p)
-
-  #binding the solutions
-  b <- suppressWarnings(purrr::map_df(j,
-                                      ~ data.frame(Content = .x),
-                                      .id = "Raw"
-  ))
-
-  #putting into table and ordering
-  tableX <- as.data.frame(table(b$Content))
-  colnames(tableX) <- c("Raw", "Freq")
-  newdf <- tableX %>%
-    dplyr::arrange(desc(Freq)) %>%
-    dplyr::mutate(solution = paste0("sol_", 1:length(tableX$Raw))) %>%
-    dplyr::mutate(solution = as.factor(solution)) %>%
-    dplyr::mutate(solution = forcats::fct_reorder(solution, Freq, .desc = TRUE))
-
-  #charting the plot
-  plot2 <- ggplot2::ggplot(newdf, ggplot2::aes(x=solution, y = Freq, fill = Freq, order)) +
-    ggplot2::geom_bar(stat="identity") +
-    ggplot2::theme(axis.text.x= ggplot2::element_text(angle=90,hjust=1,vjust=0.5))+
-    ggplot2::geom_text(ggplot2::aes(label = Freq, y = Freq), size = 3, position = ggplot2::position_stack(vjust = 1.1)) +
-    ggplot2::ggtitle("Distribution of Solutions") +
-    ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0))
-
-  return(plot2)
-}
+#the solutions barchart
+# barplot <- function(ls){
+#
+#   #Working with the data
+#   temp3 <- purrr::map(ls, function(x) stringi::stri_split_fixed(x, " "))
+#   solutions1 <- Reduce(c, ls) %>% as.list()
+#   all_values3 <- unlist(unique(solutions1))
+#
+#   #new function to paste the strings
+#   p <- function(..., sep=' + ') {
+#     paste(..., sep=sep, collapse=sep)
+#   }
+#
+#   #applying the new function to my list
+#   j <- purrr::map(temp3, p)
+#
+#   #binding the solutions
+#   b <- suppressWarnings(purrr::map_df(j,
+#                                       ~ data.frame(Content = .x),
+#                                       .id = "Raw"
+#   ))
+#
+#   #putting into table and ordering
+#   tableX <- as.data.frame(table(b$Content))
+#   colnames(tableX) <- c("Raw", "Freq")
+#   newdf <- tableX %>%
+#     dplyr::arrange(desc(Freq)) %>%
+#     dplyr::mutate(solution = paste0("sol_", 1:length(tableX$Raw))) %>%
+#     dplyr::mutate(solution = as.factor(solution)) %>%
+#     dplyr::mutate(solution = forcats::fct_reorder(solution, Freq, .desc = TRUE))
+#
+#   #charting the plot
+#   plot2 <- ggplot2::ggplot(newdf, ggplot2::aes(x=solution, y = Freq, fill = Freq, order)) +
+#     ggplot2::geom_bar(stat="identity") +
+#     ggplot2::theme(axis.text.x= ggplot2::element_text(angle=90,hjust=1,vjust=0.5))+
+#     ggplot2::geom_text(ggplot2::aes(label = Freq, y = Freq), size = 3, position = ggplot2::position_stack(vjust = 1.1)) +
+#     ggplot2::ggtitle("Distribution of Solutions") +
+#     ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0))
+#
+#   return(plot2)
+# }
 
 #HAND - POOLED DATA VISUALS
 
@@ -266,26 +251,6 @@ config_upset_h <- function(df, nsets) {
 
 
 
-#' Main Functions
-#' comparison()
-#'
-#' function compares matrices of solutions
-#' to prepare the data for charting with the UpSetR
-#'
-#' @param x list of all the solutions or configurations
-#' which are obtained from multiple QCA solutions
-#' @param y QCA solutions in their raw form as produced
-#' by \pkg{QCA} package
-#' @param num is a default argument which checks
-#' whether the inputs are numeric or not. The default
-#' is set for false. This ensures that even if the input
-#' is non-numeric, the function will read in the
-#' data in a numeric format.
-#' @return The function counts the individual solutions
-#' or configurations  depending on the plot
-#' function of this package. The output is a data frame.
-#'
-#' @export
 
 #'dt.selector()
 #'
@@ -293,22 +258,22 @@ config_upset_h <- function(df, nsets) {
 #'
 #'
 
-dt.selector <- function(x, con.thresh = 0){
-
-  sol <- purrr::map(x$solution, function(x) stringi::stri_split_fixed(x, "+"))
-  cnst <- x$IC$incl.cov[["inclS"]]
-
-  output <- rlist::list.append(sol, cnst)
-  output <- rlist::list.cbind(output)
-  colnames(output) <- c("config", "consist")
-
-  output <- as.data.frame(output)
-  output <- output %>%
-    filter(consist > con.thresh) %>%
-    select(config)
-
-  return(output)
-}
+# dt.selector <- function(x, con.thresh = 0){
+#
+#   sol <- purrr::map(x$solution, function(x) stringi::stri_split_fixed(x, "+"))
+#   cnst <- x$IC$incl.cov[["inclS"]]
+#
+#   output <- rlist::list.append(sol, cnst)
+#   output <- rlist::list.cbind(output)
+#   colnames(output) <- c("config", "consist")
+#
+#   output <- as.data.frame(output)
+#   output <- output %>%
+#     filter(consist > con.thresh) %>%
+#     select(config)
+#
+#   return(output)
+# }
 
 
 
@@ -317,27 +282,27 @@ dt.selector <- function(x, con.thresh = 0){
 #'
 #'
 #'
-list.selector <- function(x, con.thresh = 0){
-
-  solutions <- purrr::map((x), function(x) x[["solution"]])
-  solutions <- rlist::list.stack(solutions)
-  solutions <- as.data.frame(solutions)
-
-  cnst <- purrr::map(x, function(x) x$IC$incl.cov[["inclS"]])
-  cnst <- as.data.frame(rlist::list.cbind(cnst))
-  cnst <- reshape::melt(cnst)
-
-  output <- cbind(solutions$V1, cnst$value)
-  colnames(output) <- c("config", "consist")
-
-  output <- data.frame(output)
-  output$consist <- as.numeric(as.character(output$consist))
-  output <- output %>%
-    filter(consist > con.thresh) %>%
-    select(config)
-
-  return(output)
-}
+# list.selector <- function(x, con.thresh = 0){
+#
+#   solutions <- purrr::map((x), function(x) x[["solution"]])
+#   solutions <- rlist::list.stack(solutions)
+#   solutions <- as.data.frame(solutions)
+#
+#   cnst <- purrr::map(x, function(x) x$IC$incl.cov[["inclS"]])
+#   cnst <- as.data.frame(rlist::list.cbind(cnst))
+#   cnst <- reshape::melt(cnst)
+#
+#   output <- cbind(solutions$V1, cnst$value)
+#   colnames(output) <- c("config", "consist")
+#
+#   output <- data.frame(output)
+#   output$consist <- as.numeric(as.character(output$consist))
+#   output <- output %>%
+#     filter(consist > con.thresh) %>%
+#     select(config)
+#
+#   return(output)
+# }
 
 
 
@@ -347,16 +312,18 @@ list.selector <- function(x, con.thresh = 0){
 #'
 #'
 
-config_upset_1 <- functions(x, y, nsets){
-  temp1 <- dt.selector(x, con.thresh = y)
-  temp1 <- purrr::map(temp1$config, unlist)
-  temp1 <- purrr::map(temp1, function(x) stringi::stri_trim(x))
-  all_values <- stringi::stri_unique(unlist(temp1))
-  all_values <- purrr::map(all_values, function(x) stringi::stri_trim(x))
-  final_matrix <- plyr::ldply(temp1, function(y) comparison(x = all_values, y = y, num = T))
-  colnames(final_matrix) <- all_values
-  UpSetR::upset(final_matrix, order.by = "freq", nsets = nsets)
-}
+# config_upset1 <- functions(x, y, n){
+#
+#   temp1 <- dt.selector(x, con.thresh = y)
+#   temp1 <- purrr::map(temp1$config, unlist)
+#   temp1 <- purrr::map(temp1, function(x) stringi::stri_trim(x))
+#   all_values <- stringi::stri_unique(unlist(temp1))
+#   all_values <- purrr::map(all_values, function(x) stringi::stri_trim(x))
+#   final_matrix <- plyr::ldply(temp1, function(y) comparison(x = all_values, y = y, num = T))
+#   colnames(final_matrix) <- all_values
+#   UpSetR::upset(final_matrix, order.by = "freq", nsets = n)
+#
+# }
 
 #'
 #' modified config_upset function
@@ -364,14 +331,14 @@ config_upset_1 <- functions(x, y, nsets){
 #'
 #'
 #'
-config_upset_h1 <- function(x, y, nsets){    #the error was arising from here. there was a typo(nsents instead of nsets)
-  temp1 <- list.selector(x, con.thresh = y)
-  temp1 <- purrr::map(temp1$config, unlist)
-  temp1 <- purrr::map(temp1, function(x) stringi::stri_trim(x))
-  all_values <- stringi::stri_unique(unlist(temp1))
-  final_matrix <- plyr::ldply(temp1, function(y) comparison (x = all_values, y = y, num = T))
-  colnames(final_matrix) <- all_values
-  UpSetR::upset(final_matrix, order.by = "freq", nsets = nsets)
-}
+# config_upset_h1 <- function(x, y, nsets){    #the error was arising from here. there was a typo(nsents instead of nsets)
+#   temp1 <- list.selector(x, con.thresh = y)
+#   temp1 <- purrr::map(temp1$config, unlist)
+#   temp1 <- purrr::map(temp1, function(x) stringi::stri_trim(x))
+#   all_values <- stringi::stri_unique(unlist(temp1))
+#   final_matrix <- plyr::ldply(temp1, function(y) comparison (x = all_values, y = y, num = T))
+#   colnames(final_matrix) <- all_values
+#   UpSetR::upset(final_matrix, order.by = "freq", nsets = nsets)
+# }
 
 
