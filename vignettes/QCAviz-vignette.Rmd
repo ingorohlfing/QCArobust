@@ -36,7 +36,7 @@ Skaaning_csanchors <- list(one, two, three, four, five)
 On the highest level of aggregation, one simply looks at the frequencies of the solutions.
 The function does not exist anymore.
 ```{r Skaaning csqca anchors sols}
-sols_upset(Skaaning_csanchors, nsets = 5)
+#sols_upset(Skaaning_csanchors, nsets = 5)
 ```
 
 On the second, medium level of aggregation, the solutions are decomposed into their configurations. The `config_upset()` function serves this purpose. This should be used now with the config_upset_h() version of the function.
@@ -45,13 +45,14 @@ config_upset_h(Skaaning_csanchors, nsets = 100)
 ```
 
 ```{r Skaaning csqca anchors conditions}
-conds_upset(Skaaning_csanchors, nsets = 100)
+conds_upset(Skaaning_csanchors, nsets = 200)
 ```
 
 Adding (to be edited later) application of the functions that allow for selection of the consistenc values.
 
 ```{r}
-hinter <- read.csv("~/data/hinterleitner2016.csv", sep = ";")
+
+data("hinter")
 
 hinter <- hinter %>% 
   mutate(POScal = round(calibrate(pos, thresholds = "-2.4, -0.15, 1.4"), digits = 2)) %>% 
