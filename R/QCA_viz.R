@@ -237,8 +237,9 @@ config_upset_h <- function(df, nsets) {
 #' as opposed to it's sibling function config_upset
 #'
 #' @export
-config_upset_h <- function(df, nsets) {
-  temp1 <- purrr::map(df, function(x) stringi::stri_split_fixed(x, "+")) %>% unlist()
+config_upset_t <- function(df, nsets) {
+  temp1 <- purrr::map(temp1, function(x) stringi::stri_split_fixed(x, "+") %>% unlist())
+  temp1 <- purrr::map(temp1, function(x) stringi::stri_trim(x))
   all_values <- stringi::stri_unique(unlist(temp1))
   final_matrix <- plyr::ldply(temp1, function(y) comparison(x = all_values, y = y, num = T))
   colnames(final_matrix) <- all_values
