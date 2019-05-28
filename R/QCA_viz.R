@@ -340,7 +340,7 @@ barplot <- function(ls){
 
 #Datasets Documentation ----
 
-#' hinter
+#' Hinter-Leitner dataset
 #' Data borrowed from Hinter and Leitner study
 #' A dataset containing informaiton about 20 countres
 #' used to understand the politic sof external
