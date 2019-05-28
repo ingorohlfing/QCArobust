@@ -264,9 +264,32 @@ config_upset_h <- function(df, nsets) {
 #Rewriting the config_functions with the consistency ----
 #selector
 
+
+
+#' Main Functions
+#' comparison()
 #'
-#' the function for selecting consistency values
+#' function compares matrices of solutions
+#' to prepare the data for charting with the UpSetR
 #'
+#' @param x list of all the solutions or configurations
+#' which are obtained from multiple QCA solutions
+#' @param y QCA solutions in their raw form as produced
+#' by \pkg{QCA} package
+#' @param num is a default argument which checks
+#' whether the inputs are numeric or not. The default
+#' is set for false. This ensures that even if the input
+#' is non-numeric, the function will read in the
+#' data in a numeric format.
+#' @return The function counts the individual solutions
+#' or configurations  depending on the plot
+#' function of this package. The output is a data frame.
+#'
+#' @export
+
+#'dt.selector()
+#'
+#' function that selects
 #'
 #'
 
@@ -341,7 +364,7 @@ config_upset_1 <- functions(x, y, nsets){
 #'
 #'
 #'
-config_upset_h1 <- function(x, y, nsents){
+config_upset_h1 <- function(x, y, nsets){    #the error was arising from here. there was a typo(nsents instead of nsets)
   temp1 <- list.selector(x, con.thresh = y)
   temp1 <- purrr::map(temp1$config, unlist)
   temp1 <- purrr::map(temp1, function(x) stringi::stri_trim(x))
