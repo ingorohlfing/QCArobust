@@ -225,7 +225,7 @@ config_upset <- function(df, const = FALSE, y, nsets) {
 #'
 #' @export
 
-config_upset_h1 <- function(df, nsets) {
+config_upset_h <- function(df, nsets) {
   #preparing the data
   temp1 <- purrr::map(df, function(x) stringi::stri_trim(x))
   temp1 <- unlist(temp1)
