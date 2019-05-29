@@ -36,6 +36,31 @@ comparison <- function(x = all_values, y, num = F) {
 }
 
 
+#' detection()
+#'
+#' a new version of comparison function designed for the
+#' configurations. Needs further reworking to get rid
+#' of the for loop at later stages
+#'
+#' @param df list of all the solutions or configurations
+#' which are obtained from multiple QCA solutions
+#' @param x QCA solutions in their raw form as produced
+#' by \pkg{QCA} package
+#' @return The function counts the individual solutions
+#' or configurations  depending on the plot
+#' function of this package. The output is a data frame.
+#'
+#' @export
+detection <- function(df, x){
+  mtr <- NULL
+  for(l in x) {
+    vctr <- as.numeric(stringi::stri_detect_fixed(df, l))
+    mtr <- cbind(mtr, vctr)
+    mtr <- as.data.frame(mtr)
+  }
+
+  return(mtr)
+}
 
 #'dt.selector()
 #'
@@ -177,7 +202,7 @@ config_upset <- function(df, const = FALSE, y, nsets) {
 
 
 #' config_upset_h()
-#'
+#' a rewritten version
 #' Plot Function for the charting of configuration
 #' intersection of the panel QCA output in a solution.
 #'
@@ -199,13 +224,20 @@ config_upset <- function(df, const = FALSE, y, nsets) {
 #' as opposed to it's sibling function config_upset
 #'
 #' @export
-config_upset_h <- function(df, nsets) {
-  temp1 <- purrr::map(df, function(x) stringi::stri_split_fixed(x, "+")) %>% unlist()
-  temp1 <- purrr::map(temp1, function(x) stringi::stri_trim(x))
-  all_values <- stringi::stri_unique(unlist(temp1))
-  final_matrix <- plyr::ldply(temp1, function(y) comparison(x = all_values, y = y, num = T))
-  colnames(final_matrix) <- all_values
-  UpSetR::upset(final_matrix, order.by = "freq", nsets = nsets)
+
+config_upset_h1 <- function(df, nsets) {
+  #preparing the data
+  temp1 <- purrr::map(df, function(x) stringi::stri_trim(x))
+  temp1 <- unlist(temp1)
+
+  #preparing the configurations
+  all_values <- purrr::map(df, function(x) stringi::stri_split_fixed(x, "+"))
+  all_values <- stringi::stri_unique(unlist(all_values))
+
+  #applying the function for detection
+  finl <- detection(temp1, all_values)
+  colnames(finl) <- all_values
+  UpSetR::upset(finl, order.by = "freq", nsets = nsets)
 }
 
 
