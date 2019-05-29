@@ -202,9 +202,6 @@ config_upset <- function(df, const = FALSE, y, nsets) {
 
 
 #' config_upset_h()
-#' a rewritten version
-#' Plot Function for the charting of configuration
-#' intersection of the panel QCA output in a solution.
 #'
 #' @importFrom magrittr %>%
 #' @import stringi
