@@ -180,24 +180,20 @@ conds_upset_h <- function (df, nsets) {
 config_upset <- function(df, const = FALSE, y, nsets) {
 
   if (!const) {
-    df <- unlist(df$solution)
-    temp1 <- purrr::map(df, function(x) stringi::stri_split_fixed(x,
-                                                                  "+"))
-    temp1 <- purrr::map(temp1, unlist)
-    temp1 <- purrr::map(temp1, function(x) stringi::stri_split_fixed(x,
-                                                                     " "))
+    temp1 <- unlist(df$solution)
+
   }
   else {
     temp1 <- dt.selector(df, con.thresh = y)
     temp1 <- purrr::map(temp1$config, unlist)
   }
-  temp2 <- purrr::map(temp1, function(x) stringi::stri_trim(x))
+  temp1 <- purrr::map(temp1, function(x) stringi::stri_trim(x))
   all_values <- stringi::stri_unique(unlist(temp1))
-  all_values <- purrr::map(all_values, function(x) stringi::stri_trim(x))
-  final_matrix <- plyr::ldply(temp1, function(y) comparison(x = all_values,
-                                                            y = y, num = T))
-  colnames(final_matrix) <- all_values
-  UpSetR::upset(final_matrix, order.by = "freq", nsets = nsets)
+  all_values
+
+  finl <- detection(temp1, all_values)
+  colnames(finl) <- all_values
+  UpSetR::upset(finl, order.by = "freq", nsets = nsets)
 }
 
 
