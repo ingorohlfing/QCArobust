@@ -317,9 +317,19 @@ solutions_table <- function(ls) {
 }
 
 
-#'the solutions barchart
-#'The documentation required
-barplot <- function(ls){
+#' sols_barplot()
+#'
+#' Frequency plotting of the solutoins
+#'
+#' @importFrom magrittr %>%
+#' @import pander
+#' @param ls is a list of all solutions in their
+#' entireity and row format
+#' @return the function returns a frequency distirbution
+#' of the solutions as they are in their entirety
+#'
+#' @export
+sols_barplot <- function(ls){
 
   #Working with the data
   ls <- unlist(ls)
