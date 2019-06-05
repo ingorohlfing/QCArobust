@@ -322,6 +322,7 @@ solutions_table <- function(ls) {
 barplot <- function(ls){
 
   #Working with the data
+  ls <- unlist(ls)
   temp3 <- purrr::map(ls, function(x) stringi::stri_split_fixed(x, " "))
   solutions1 <- Reduce(c, ls) %>% as.list()
   all_values3 <- unlist(unique(solutions1))
