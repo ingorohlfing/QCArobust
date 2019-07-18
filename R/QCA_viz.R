@@ -74,7 +74,6 @@ detection <- function(df, x){
 #' threshold value.
 #'
 #' @export
-
 dt.selector <- function(x, con.thresh = 0){
 
   sol <- purrr::map(x$solution, function(x) stringi::stri_split_fixed(x, "+"))
@@ -215,7 +214,6 @@ config_upset <- function(df, const = FALSE, y, nsets) {
 #' as opposed to it's sibling function config_upset
 #'
 #' @export
-
 config_upset_h <- function(df, nsets) {
   #preparing the data
   temp1 <- purrr::map(df, function(x) stringi::stri_trim(x))
