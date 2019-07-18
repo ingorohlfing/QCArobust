@@ -371,6 +371,37 @@ sols_barplot <- function(ls){
   return(plot2)
 }
 
+#Adding functions (documentation tbd)
+anchor <- function(a, b, c) {
+  min_a <- a
+  if (min_a < 0) {
+    min_b <- 0.9 * min_a
+  } else {
+    min_b <- 1.1 * min_a
+  }
+
+  first <- runif(1, min_a, min_b)
+
+  if (b > 0) {
+    second <- runif(1, 0.9*b, 1.1*b)
+  } else {
+    second <- runif(1, 1.1*b, 0.9*b)
+  }
+
+  # Maximum
+  max_a <- c
+  if (max_a < 0) {
+    max_b <- 1.1 * max_a
+  } else {
+    max_b <- 0.9 * max_a
+  }
+
+  third <- runif(1, max_b, max_a)
+
+  c(first, second, third)
+}
+
+
 
 #Datasets Documentation ----
 
