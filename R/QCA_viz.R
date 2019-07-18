@@ -24,7 +24,6 @@ library(magrittr)
 #' or configurations  depending on the plot
 #' function of this package. The output is a data frame.
 #'
-#' @export
 comparison <- function(x = all_values, y, num = F) {
   temp <- x %in% y
 
@@ -50,7 +49,6 @@ comparison <- function(x = all_values, y, num = F) {
 #' or configurations  depending on the plot
 #' function of this package. The output is a data frame.
 #'
-#' @export
 detection <- function(df, x){
   mtr <- NULL
   for(l in x) {
@@ -388,7 +386,7 @@ anchor <- function(a, b, c) {
     second <- runif(1, 1.1*b, 0.9*b)
   }
 
-  # Maximum
+
   max_a <- c
   if (max_a < 0) {
     max_b <- 1.1 * max_a
