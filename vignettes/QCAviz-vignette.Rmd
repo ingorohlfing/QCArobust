@@ -31,12 +31,14 @@ four <- replicate(18, "DEV*LIT*STA")
 five <- replicate(6, "DEV*STA+DEV*LIT*ind")
 # combining solutions in list
 Skaaning_csanchors <- list(one, two, three, four, five)
+
 ```
 
 On the highest level of aggregation, one simply looks at the frequencies of the solutions.
-The function does not exist anymore.
+The latest function has been added here too. 
 ```{r Skaaning csqca anchors sols}
 sols_barplot(Skaaning_csanchors)
+solutions_table_S(Skaaning_csanchors)
 ```
 
 On the second, medium level of aggregation, the solutions are decomposed into their configurations. The `config_upset()` function serves this purpose. This should be used now with the config_upset_h() version of the function.
