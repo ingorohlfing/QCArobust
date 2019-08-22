@@ -24,7 +24,6 @@ library(magrittr)
 #' or configurations  depending on the plot
 #' function of this package. The output is a data frame.
 #'
-#' @export
 comparison <- function(x = all_values, y, num = F) {
   temp <- x %in% y
 
@@ -50,7 +49,6 @@ comparison <- function(x = all_values, y, num = F) {
 #' or configurations  depending on the plot
 #' function of this package. The output is a data frame.
 #'
-#' @export
 detection <- function(df, x){
   mtr <- NULL
   for(l in x) {
@@ -76,7 +74,6 @@ detection <- function(df, x){
 #' threshold value.
 #'
 #' @export
-
 dt.selector <- function(x, con.thresh = 0){
 
   sol <- purrr::map(x$solution, function(x) stringi::stri_split_fixed(x, "+"))
@@ -217,7 +214,6 @@ config_upset <- function(df, const = FALSE, y, nsets) {
 #' as opposed to it's sibling function config_upset
 #'
 #' @export
-
 config_upset_h <- function(df, nsets) {
   #preparing the data
   temp1 <- purrr::map(df, function(x) stringi::stri_trim(x))
@@ -370,6 +366,37 @@ sols_barplot <- function(ls){
 
   return(plot2)
 }
+
+#Adding functions (documentation tbd)
+anchor <- function(a, b, c) {
+  min_a <- a
+  if (min_a < 0) {
+    min_b <- 0.9 * min_a
+  } else {
+    min_b <- 1.1 * min_a
+  }
+
+  first <- runif(1, min_a, min_b)
+
+  if (b > 0) {
+    second <- runif(1, 0.9*b, 1.1*b)
+  } else {
+    second <- runif(1, 1.1*b, 0.9*b)
+  }
+
+
+  max_a <- c
+  if (max_a < 0) {
+    max_b <- 1.1 * max_a
+  } else {
+    max_b <- 0.9 * max_a
+  }
+
+  third <- runif(1, max_b, max_a)
+
+  c(first, second, third)
+}
+
 
 
 #Datasets Documentation ----
