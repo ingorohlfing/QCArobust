@@ -312,6 +312,38 @@ solutions_table <- function(ls) {
   return(Solutions_table)
 }
 
+#' solutions_table_S()
+#'
+#' Plot Function for the table version of solutions
+#' the present function is built for data that is
+#' inputted manually in a form of a non-QCA list.
+#'
+#' @importFrom magrittr %>%
+#' @import pander
+#' @param ls is a list of all solutions in their
+#' entireity and row format
+#' @return the function returns a table of solutions
+#' and their frequency of occurrence in a desceinding
+#' order (in the ready for rmarkwdon)
+#'
+#' @export
+solutions_table_S <- function(ls){
+  temp3 <- purrr::map(ls, function(x) stringi::stri_split_fixed(x, " "))
+  solutions1 <- Reduce(c, ls) %>% as.list()
+  all_values3 <- unique(solutions1)
+  counts <- lapply(ls, length)
+
+
+  #building the table
+  tableX <- do.call(rbind,
+                    Map(function(...) setNames(cbind.data.frame(...),
+                                               c("Solution", "Freq")),
+                        all_values3, counts))
+
+  newdf <- tableX %>% dplyr::arrange(desc(Freq))
+  Solutions_table <- pander::pandoc.table(newdf)
+}
+
 
 #' sols_barplot()
 #'
