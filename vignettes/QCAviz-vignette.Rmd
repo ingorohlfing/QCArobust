@@ -104,8 +104,8 @@ Initially on the naive model 1 (referred to as ka_model_1_sim)
 model_1 <- read.csv("ka_model_1_sim.csv")
 
 #conditions
-conds_upset(model_1$Configurations, nsets = 200)
-config_upset_t(model_1$Configurations, nsets = 378)
+kcp <- conds_upset(model_1$Configurations, nsets = 200)
+kcp <- config_upset_t(model_1$Configurations, nsets = 378)
 
 conds_upset(model_1$Configurations, nsets = 162)
 config_upset_t(model_1$Configurations, nsets = 387)

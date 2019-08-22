@@ -62,7 +62,7 @@ detection <- function(df, x){
   return(mtr)
 }
 
-#'dt.selector()
+#' dt.selector()
 #'
 #' function that allows for selecting configurations
 #' bsaed on consistency values before plitting
