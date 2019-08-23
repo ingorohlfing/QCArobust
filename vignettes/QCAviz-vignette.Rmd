@@ -31,23 +31,34 @@ four <- replicate(18, "DEV*LIT*STA")
 five <- replicate(6, "DEV*STA+DEV*LIT*ind")
 # combining solutions in list
 Skaaning_csanchors <- list(one, two, three, four, five)
-
 ```
 
 On the highest level of aggregation, one simply looks at the frequencies of the solutions.
-The latest function has been added here too. 
+The function does not exist anymore.
 ```{r Skaaning csqca anchors sols}
-sols_barplot(Skaaning_csanchors)
-solutions_table_S(Skaaning_csanchors)
+skaaning_sols <- sols_barplot(Skaaning_csanchors)
+skaaning_sols + 
+  scale_x_discrete("") +
+  scale_y_continuous("frequency") +
+  theme_classic() +
+  theme(legend.position = 'none',
+        plot.title = element_blank())
+ggsave("Skaaning_solutions.png", width = 6, height = 4)
 ```
 
 On the second, medium level of aggregation, the solutions are decomposed into their configurations. The `config_upset()` function serves this purpose. This should be used now with the config_upset_h() version of the function.
 ```{r Skaaning csqca anchors configs}
-config_upset_h(Skaaning_csanchors, nsets = 100)
+skaaning_configs <- config_upset_h(Skaaning_csanchors, nsets = 100)
+png("Skaaning_configs.png", width = 600, height = 400, res = "100")
+print(skaaning_configs)
+dev.off()
 ```
 
 ```{r Skaaning csqca anchors conditions}
-conds_upset(Skaaning_csanchors, nsets = 200)
+skaaning_conds <- conds_upset(Skaaning_csanchors, nsets = 200)
+png("Skaaning_conds.png", width = 600, height = 400, res = "100")
+print(skaaning_conds)
+dev.off()
 ```
 
 Adding (to be edited later) application of the functions that allow for selection of the consistenc values.
@@ -106,8 +117,8 @@ Initially on the naive model 1 (referred to as ka_model_1_sim)
 model_1 <- read.csv("ka_model_1_sim.csv")
 
 #conditions
-conds_upset(model_1$Configurations, nsets = 200)
-config_upset_t(model_1$Configurations, nsets = 378)
+kcp <- conds_upset(model_1$Configurations, nsets = 200)
+kcp <- config_upset_t(model_1$Configurations, nsets = 378)
 
 conds_upset(model_1$Configurations, nsets = 162)
 config_upset_t(model_1$Configurations, nsets = 387)
