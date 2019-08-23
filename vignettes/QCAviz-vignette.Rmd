@@ -255,6 +255,12 @@ QCAviz::conds_upset(sol.cons, nsets = 15)
 ```
 
 
+The configurations function for the simulated output
+```{r}
+config_upset_sim(sol.pars, nsets = 15)
+config_upset_sim(sol.cons, nsets = 17)
+```
+
 
 
 
