@@ -209,12 +209,50 @@ config_upset_h(allsols, nsets = 10)
 ```
 
 
+Adding the simulated dataset fr Hinter-Leitner study
+```{r}
+library(QCAsummary)
+
+#Simulating and reducing data
+data("hinter")
+data("arg1")
+data("arg2")
+
+#15 fuzzy sets
+m_fuzzy <- dat_fuzzy(arg1, arg2, n = 5,
+                     case = hinter$case, outcome = hinter$PRG)
+
+#truth tables
+temp_dta <- truth_function(df = m_fuzzy, outcome = "pos",
+                           conditions = c("ambition", "CR", "DC", "EFF", "COM", "outcome"),
+                           n.cut = 1, incl.cut1 = 0.637)
+
+```
+
+
+Deriving the parsimonious solutions and plotting it
+with the QCAviz conditions function
+
+```{r warning=FALSE}
+sol.p <- reduced_p(temp_dta)
+sol.pars <- solutions(sol.p)
+
+#plotting the conditions
+QCAviz::conds_upset(sol.pars, nsets = 28)
+```
 
 
 
+Deriving the conservative case and plotting it
+with the QCAviz conditions function
 
+```{r warning=FALSE}
+sol.c <- reduced_c(temp_dta)
+sol.cons <- solutions(sol.c)
 
-
+#plotting the conditions
+QCAviz::conds_upset(sol.cons, nsets = 15)
+```
 
 
 
