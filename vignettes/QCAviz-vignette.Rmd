@@ -218,13 +218,13 @@ data("hinter")
 data("arg1")
 data("arg2")
 
-#15 fuzzy sets
+#350 fuzzy sets
 m_fuzzy <- dat_fuzzy(arg1, arg2, n = 350,
                      case = hinter$case, outcome = hinter$PRG)
 
 #truth tables
 temp_dta <- truth_function(df = m_fuzzy, outcome = "pos",
-                           conditions = c("ambition", "CR", "DC", "EFF", "COM", "outcome"),
+                           conditions = c("ambition", "CR", "DC", "EFF", "COM"),
                            n.cut = 1, incl.cut1 = 0.637)
 
 ```
@@ -258,7 +258,7 @@ QCAviz::conds_upset(sol.cons, nsets = 350)
 The configurations function for the simulated output
 ```{r}
 config_upset_sim(sol.pars, nsets = 50)
-config_upset_sim(sol.cons, nsets = 17)
+config_upset_sim(sol.cons, nsets = 87)
 ```
 
 

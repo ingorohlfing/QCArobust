@@ -297,7 +297,7 @@ config_upset_sim <- function(df, nsets) {
   temp1 <- purrr::map(temp1, function(x) stringi::stri_trim(x))
   all_values <- stringi::stri_unique(unlist(temp1))
   finl <- detection(temp1, all_values)
-  colnames(finl) <- all_values
+  colnames(finl) <- paste0("sol_", 1:length(all_values))
   UpSetR::upset(finl, order.by = "freq", nsets = nsets)
 }
 
