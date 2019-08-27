@@ -219,7 +219,7 @@ data("arg1")
 data("arg2")
 
 #15 fuzzy sets
-m_fuzzy <- dat_fuzzy(arg1, arg2, n = 5,
+m_fuzzy <- dat_fuzzy(arg1, arg2, n = 350,
                      case = hinter$case, outcome = hinter$PRG)
 
 #truth tables
@@ -238,7 +238,7 @@ sol.p <- reduced_p(temp_dta)
 sol.pars <- solutions(sol.p)
 
 #plotting the conditions
-QCAviz::conds_upset(sol.pars, nsets = 28)
+QCAviz::conds_upset(sol.pars, nsets = 350)
 ```
 
 
@@ -251,13 +251,13 @@ sol.c <- reduced_c(temp_dta)
 sol.cons <- solutions(sol.c)
 
 #plotting the conditions
-QCAviz::conds_upset(sol.cons, nsets = 15)
+QCAviz::conds_upset(sol.cons, nsets = 350)
 ```
 
 
 The configurations function for the simulated output
 ```{r}
-config_upset_sim(sol.pars, nsets = 15)
+config_upset_sim(sol.pars, nsets = 50)
 config_upset_sim(sol.cons, nsets = 17)
 ```
 
