@@ -91,6 +91,26 @@ dt.selector <- function(x, con.thresh = 0){
   return(output)
 }
 
+
+#' dt.selector()
+#'
+#' function that allows for selecting configurations
+#' bsaed on consistency values before plitting
+#'
+
+#'
+#' @export
+dt.selector2 <- function(x, cov.thresh){
+
+  sol <- purrr::map(x$solution, function(x) stringi::stri_split_fixed(x, "+"))
+  cnst <- x$IC$incl.cov[["inclS"]]
+
+
+
+  return(output)
+}
+
+
 #' conds_upset()
 #'
 #' Function decomposes results into individual conditions
