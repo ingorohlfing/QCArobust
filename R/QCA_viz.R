@@ -500,6 +500,18 @@ reduced_int <- function(df, dir) {
   return(temp_posint)
 }
 
+
+# The latest addition: counting the
+# number of terms in a configuration
+counting <- function(list, terms) {
+  temp <- stringi::stri_count_fixed(list, terms)
+  final <- count(temp)
+  return(final)
+}
+
+
+
+
 #Datasets Documentation ----
 
 #' Hinter-Leitner dataset
