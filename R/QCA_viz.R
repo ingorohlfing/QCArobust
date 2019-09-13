@@ -489,6 +489,16 @@ reduced_c <- function(df){
 }
 
 
+# Intermediate solution
+reduced_int <- function(df, dir) {
+  temp_posint <- NULL
+  temp_posint <- purrr::map((df), QCA:eqmcc, details = FALSE,
+                            PRI = FALSE, all.sol = TRUE,
+                            include = "?",
+                            dir.exp = dir)
+
+  return(temp_posint)
+}
 
 #Datasets Documentation ----
 
