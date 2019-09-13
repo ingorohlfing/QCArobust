@@ -94,8 +94,8 @@ dt.selector <- function(x, con.thresh = 0){
 
 #' dt.selector()
 #'
-#' function that allows for selecting configurations
-#' bsaed on consistency values before plitting
+#' function that allows for selecting specific
+#' coverage threshold.
 #'
 
 #'
