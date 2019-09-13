@@ -525,3 +525,32 @@ reduced_int <- function(df, dir) {
 #' @source \url{http://onlinelibrary.wiley.com/doi/10.1111/1475-6765.12142/suppinfo/}
 "hinter"
 
+
+#' Skaaning data set (to be included)
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#' @source \url{To be inserted}
+"Skaaning"
+
+
+
+#' Krogslund/Choi/Poertner data set (to be included)
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#'
+#' @source \url{To be inserted}
+"Krogslund"
+
