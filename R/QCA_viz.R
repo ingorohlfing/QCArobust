@@ -478,7 +478,15 @@ reduced_p <- function(df) {
   return(temp_POS)
 }
 
-#
+# Conservative
+reduced_c <- function(df){
+  temp_POS <- NULL
+  temp_POS <- purrr::map((df), QCA::eqmcc, details = TRUE,
+                         all.sol = TRUE, explain = "1",
+                         include = "1")
+
+  return(temp_POS)
+}
 
 
 
