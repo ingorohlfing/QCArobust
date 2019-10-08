@@ -222,6 +222,9 @@ config_upset_sim <- function(df, nsets) {
 }
 
 
+
+
+
 #Adding functions (documentation tbd)
 anchor <- function(a, b, c) {
   min_a <- a
