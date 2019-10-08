@@ -92,7 +92,7 @@ dt.selector <- function(x, con.thresh = 0){
 }
 
 
-#' dt.selector()
+#' dt.selector2()
 #'
 #' function that allows for selecting specific
 #' coverage threshold.
@@ -103,9 +103,16 @@ dt.selector <- function(x, con.thresh = 0){
 dt.selector2 <- function(x, cov.thresh){
 
   sol <- purrr::map(x$solution, function(x) stringi::stri_split_fixed(x, "+"))
-  cnst <- x$IC$incl.cov[["inclS"]]
+  cov<- x$IC$incl.cov[["inclS"]]
 
 
+  output <- rlist::list.append(sol, cov)
+  colnames(output) <- c("config", "cov")
+
+  output <- as.data.frame(output)
+  output <- output %>%
+    filter(cov > cov.thresh) %>%
+    select(cov)
 
   return(output)
 }
