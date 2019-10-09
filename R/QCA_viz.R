@@ -338,15 +338,26 @@ reduced_c <- function(df){
 
 #' reduced_int()
 #'
-#'a wrapper function
+#'a wrapper function to minimize causal conditions
+#'of the QCA truth table for an intermediate solution
 #'
-#' @param df
-#' @param include
-#' @param dir.exp
+#' @param df truth table derived with the truth function
+#' @param details an argument, asking whether to print
+#' the details of a solution or not
+#'
+#' @param PRI
+#' @param all.sol an argument for printing of all solutions
+#' irrespective of the number of prime implicants
+#' @param include other input data to be included when
+#' minimizing the table
+#' @param dir.exp an argument to define directional expectations
+#' for intermediate solutions
 #' @return returns a particular data type
-#' @note
+#' @import stats
 #'
-#' @export this is a wrapper function
+#' @note this is a wrapper function
+#'
+#' @export this
 #'
 reduced_int <- function(df, dir) {
   temp_posint <- NULL
