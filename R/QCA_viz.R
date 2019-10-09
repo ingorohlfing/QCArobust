@@ -230,6 +230,19 @@ config_upset_sim <- function(df, nsets) {
 
 
 
+#' anchor()
+#'
+#' threshholds function
+#' this function allows to randomize the threshholds
+#' for each anchor uploaded with the data by generating
+#' a 10% mark-ups around the threshholds
+#'
+#' @param a First threshold
+#' @param b Second threshold
+#' @param c Third threshhold
+#'
+#' @return three numbers which are randomly generated within
+#' 10% range of the initial input numbers
 
 
 #Adding functions (documentation tbd)
