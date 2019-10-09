@@ -243,9 +243,12 @@ config_upset_sim <- function(df, nsets) {
 #'
 #' @return three numbers which are randomly generated within
 #' 10% range of the initial input numbers
-
-
-#Adding functions (documentation tbd)
+#'
+#' @import stats
+#' @note It is important to remember that random number
+#' draws are obtained from a uniform distribution
+#'
+#' @export
 anchor <- function(a, b, c) {
   min_a <- a
   if (min_a < 0) {
