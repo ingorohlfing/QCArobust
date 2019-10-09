@@ -292,9 +292,16 @@ anchor <- function(a, b, c) {
 #' @param all.sol an argument for printing of all solutions
 #' irrespective of the number of prime implicants
 #'
+#'@param include other output data to be included while
+#'minimizing the table
+#'@param dir.exp an argument to define directional
+#'expectations for parsimonious solutions
 #'
-
-
+#'@return returns a QCA-specific data type
+#'@import stats
+#'@note this is a wrapper function
+#'
+#'@export
 reduced_p <- function(df) {
   temp_POS <- NULL
   temp_POS <- purrr::map((df), QCA::eqmcc, details = TRUE,
