@@ -279,7 +279,20 @@ anchor <- function(a, b, c) {
 }
 
 
-
+#' reduced_p()
+#'
+#' a wrapper function to minimize causal conditions
+#' of the QCA truth table for a parsimonious solution
+#'
+#' @param df truth table derived with the truth_function
+#' @param details an argument, asking whether to
+#' print the details of a solution or not
+#'
+#' @param PRI
+#' @param all.sol an argument for printing of all solutions
+#' irrespective of the number of prime implicants
+#'
+#'
 
 
 reduced_p <- function(df) {
