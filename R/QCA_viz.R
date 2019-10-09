@@ -278,9 +278,10 @@ anchor <- function(a, b, c) {
   c(first, second, third)
 }
 
-#Re-editing the functions per each solution
 
-#Parsimonious ----
+
+
+
 reduced_p <- function(df) {
   temp_POS <- NULL
   temp_POS <- purrr::map((df), QCA::eqmcc, details = TRUE,
