@@ -283,8 +283,18 @@ reduced_c <- function(df){
   return(temp_POS)
 }
 
-
-# Intermediate solution
+#' reduced_int()
+#'
+#'a wrapper function
+#'
+#' @param df
+#' @param include
+#' @param dir.exp
+#' @return returns a particular data type
+#' @note
+#'
+#' @export this is a wrapper function
+#'
 reduced_int <- function(df, dir) {
   temp_posint <- NULL
   temp_posint <- purrr::map((df), QCA:eqmcc, details = FALSE,
