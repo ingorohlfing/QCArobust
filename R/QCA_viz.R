@@ -306,8 +306,16 @@ reduced_int <- function(df, dir) {
 }
 
 
-# The latest addition: counting the
-# number of terms in a configuration
+#'an original function
+#'
+#' @param list the data from within which we want to count
+#' @param include terms: terms that we need to count
+#' @return returns a the count of terms within the list of strings
+#' @note this functiion uses the stri_count function of the
+#' stringi function to count  a pattern in a list of strings
+#'
+#' @export this is a wrapper function
+#'
 counting <- function(list, terms) {
   temp <- stringi::stri_count_fixed(list, terms)
   final <- count(temp)
