@@ -264,7 +264,7 @@ anchor <- function(a, b, c) {
 
 #Re-editing the functions per each solution
 
-#Parsimonious
+#Parsimonious ----
 reduced_p <- function(df) {
   temp_POS <- NULL
   temp_POS <- purrr::map((df), QCA::eqmcc, details = TRUE,
@@ -273,7 +273,23 @@ reduced_p <- function(df) {
   return(temp_POS)
 }
 
-# Conservative
+
+#' reduced_c()
+#' a wrapper function to minimize causal conditions of the
+#' QCA truth table for a parsimonious solution
+#'
+#' @param df truth table derived with the truth function
+#' @param details an argument, asking wheter to pring
+#' the details of a solution or not
+#' @param PRI
+#' @param all.sol an argument for printing of all solutions
+#' irrespective of the number of prime implicants
+#' @param include other output data to be included while
+#' minimizing the table
+#' @param dir.exp an argument to defin directional
+#' expectations for conserveative solutions
+
+
 reduced_c <- function(df){
   temp_POS <- NULL
   temp_POS <- purrr::map((df), QCA::eqmcc, details = TRUE,
@@ -314,7 +330,7 @@ reduced_int <- function(df, dir) {
 #' @note this functiion uses the stri_count function of the
 #' stringi function to count  a pattern in a list of strings
 #'
-#' @export this is a wrapper function
+#' @export this
 #'
 counting <- function(list, terms) {
   temp <- stringi::stri_count_fixed(list, terms)
