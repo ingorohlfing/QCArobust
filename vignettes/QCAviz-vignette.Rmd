@@ -33,18 +33,6 @@ five <- replicate(6, "DEV*STA+DEV*LIT*ind")
 Skaaning_csanchors <- list(one, two, three, four, five)
 ```
 
-On the highest level of aggregation, one simply looks at the frequencies of the solutions.
-The function does not exist anymore.
-```{r Skaaning csqca anchors sols}
-skaaning_sols <- sols_barplot(Skaaning_csanchors)
-skaaning_sols + 
-  scale_x_discrete("") +
-  scale_y_continuous("frequency") +
-  theme_classic() +
-  theme(legend.position = 'none',
-        plot.title = element_blank())
-ggsave("Skaaning_solutions.png", width = 6, height = 4)
-```
 
 On the second, medium level of aggregation, the solutions are decomposed into their configurations. The `config_upset()` function serves this purpose. This should be used now with the config_upset_h() version of the function.
 ```{r Skaaning csqca anchors configs}
