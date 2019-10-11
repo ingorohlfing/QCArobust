@@ -418,3 +418,18 @@ counting <- function(list, terms) {
 "hinter"
 
 
+#' Krogslund dataset
+#' Data borrowed from Krogslund/Choi/Poertner study
+#' A dataset containing informaiton about 5 variables
+#' that are the result of a simulation
+#'
+#' @format A tibble with 40000 observations of 5 variables
+#' \describe{
+#'   \item{incl.cut1.val}{First inclusion cut}
+#'   \item{incl.cut0.val}{Second inclusion cut}
+#'   \item{n.cut.val}{the numeric value}
+#'   \item{error}{the error}
+#'   \item{Configurations}{Configurations vector}
+#' }
+#' @source \url{https://www.cambridge.org/core/journals/political-analysis/article/fuzzy-sets-on-shaky-ground-parameter-sensitivity-and-confirmation-bias-in-fsqca/B693F136C5158DF3C19686EC89522C23}
+"hinter"
