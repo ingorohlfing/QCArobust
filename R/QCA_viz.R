@@ -103,7 +103,7 @@ dt.selector <- function(x, con.thresh = 0){
 dt.selector2 <- function(x, cov.thresh){
 
   sol <- purrr::map(x$solution, function(x) stringi::stri_split_fixed(x, "+"))
-  cov<- x$IC$incl.cov[["inclS"]]
+  cov<- x$IC$incl[["inclS"]]
 
 
   output <- rlist::list.append(sol, cov)
@@ -231,7 +231,7 @@ config_upset_sim <- function(df, nsets) {
 
 
 #' anchor()
-#'
+#' Question: should it be moved to a different package?
 #' threshholds function
 #' this function allows to randomize the threshholds
 #' for each anchor uploaded with the data by generating
@@ -368,6 +368,9 @@ reduced_int <- function(df, dir) {
 
   return(temp_posint)
 }
+
+
+
 
 
 #'an original function
