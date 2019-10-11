@@ -418,31 +418,3 @@ counting <- function(list, terms) {
 "hinter"
 
 
-#' Skaaning data set (to be included)
-#'
-#'
-#'
-#'
-#'
-#'
-#'
-#'
-#'
-#' @source \url{To be inserted}
-"Skaaning"
-
-
-
-#' Krogslund/Choi/Poertner data set (to be included)
-#'
-#'
-#'
-#'
-#'
-#'
-#'
-#'
-#'
-#' @source \url{To be inserted}
-"Krogslund"
-
