@@ -106,10 +106,8 @@ model_1 <- read.csv("ka_model_1_sim.csv")
 
 #conditions
 kcp <- conds_upset(model_1$Configurations, nsets = 200)
-kcp <- config_upset_t(model_1$Configurations, nsets = 378)
-
 conds_upset(model_1$Configurations, nsets = 162)
-config_upset_t(model_1$Configurations, nsets = 387)
+
 ```
 
 
@@ -136,11 +134,11 @@ conds_upset(model_6$Configurations, nsets = 500)
 
 Configurations applied
 ```{r}
-config_upset_t(model_2$Configurations, nsets = 300)
-config_upset_t(model_3$Configurations, nsets = 300)
-config_upset_t(model_4$Configurations, nsets = 400)
-config_upset_t(model_5$Configurations, nsets = 500)
-config_upset_t(model_6$Configurations, nsets = 400)
+config_upset(model_2$Configurations, nsets = 300)
+config_upset(model_3$Configurations, nsets = 300)
+config_upset(model_4$Configurations, nsets = 400)
+config_upset(model_5$Configurations, nsets = 500)
+config_upset(model_6$Configurations, nsets = 400)
 
 ```
 
@@ -192,8 +190,8 @@ allsols <- c(posinter$solution, poscons$solution, pospars$solution,
 
 Checking the main pooled solution functions
 ```{r}
-conds_upset_h(allsols, nsets = 10)
-config_upset_h(allsols, nsets = 10)
+conds_upset(allsols, nsets = 10)
+config_upset(allsols, nsets = 10)
 ```
 
 
@@ -222,8 +220,8 @@ Deriving the parsimonious solutions and plotting it
 with the QCAviz conditions function
 
 ```{r warning=FALSE}
-sol.p <- reduced_p(temp_dta)
-sol.pars <- solutions(sol.p)
+sol.p <- QCAsummary::reduced_p(temp_dta)
+sol.pars <- QCAsummary::solutions(sol.p)
 
 #plotting the conditions
 QCAviz::conds_upset(sol.pars, nsets = 350)
