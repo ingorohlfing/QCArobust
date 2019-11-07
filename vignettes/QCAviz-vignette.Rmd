@@ -1,0 +1,267 @@
+---
+title: "Working with the QCAviz package"
+author: "Ingo Rohlfing, Ayjeren Rozyjumayeva"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+QCA solutions that a researcher wants to aggregate can be created in different ways.
+
+## Manual import of solutions
+We use the original robustness analysis by Skaaning to illzstrate the manual import of solutions. (Skaaning, Svend-Erik (2011): Assessing the Robustness of Crisp-Set and Fuzzy-Set QCA Results. *Sociological Methods & Research* 40 (2): 391-408. [published version](http://10.1177/0049124111404818))
+
+The following solutions are extracted from table 3 in the article that summarizes results for the choice of different calibration anchors for crisp-set QCA.
+```{r Skaaning csqca anchors}
+# crisp-set solutions with different anchors
+one <- replicate(28, "DEV*STA")
+two <- replicate(27, "DEV*ind+DEV*STA")
+three <- replicate(165, "C")
+four <- replicate(18, "DEV*LIT*STA")
+five <- replicate(6, "DEV*STA+DEV*LIT*ind")
+# combining solutions in list
+Skaaning_csanchors <- list(one, two, three, four, five)
+```
+
+
+On the second, medium level of aggregation, the solutions are decomposed into their configurations. The `config_upset()` function serves this purpose. This should be used now with the config_upset_h() version of the function.
+```{r Skaaning csqca anchors configs}
+skaaning_configs <- config_upset_h(Skaaning_csanchors, nsets = 100)
+png("Skaaning_configs.png", width = 600, height = 400, res = "100")
+print(skaaning_configs)
+dev.off()
+```
+
+```{r Skaaning csqca anchors conditions}
+skaaning_conds <- conds_upset(Skaaning_csanchors, nsets = 200)
+png("Skaaning_conds.png", width = 600, height = 400, res = "100")
+print(skaaning_conds)
+dev.off()
+```
+
+Adding (to be edited later) application of the functions that allow for selection of the consistenc values.
+
+```{r}
+data("hinter")
+hinter <- hinter %>% 
+  mutate(POScal = round(calibrate(pos, thresholds = "-2.4, -0.15, 1.4"), digits = 2)) %>% 
+  mutate(AMBcal = round(calibrate(ambition, thresholds = "0.01, 0.1205, 0.2"), digits = 2)) %>% 
+  mutate(CRcal = round(calibrate(CR, thresholds = c("5, 52, 95")), digits = 2)) %>% 
+  mutate(DCcal = round(calibrate(DC, thresholds = c("33.5, 47, 55")), digits = 2)) %>% 
+  mutate(EFFcal = round(calibrate(EFF, thresholds = c("0.7, 1.175, 2.065")), digits = 2)) %>%
+  mutate(COMcal = round(calibrate(COM, thresholds = c("4.28, 4.86, 5.285")), digits = 2))
+
+ttpos <- truthTable(data = hinter, outcome = "POScal", neg.out = FALSE,
+                    conditions = c("AMBcal", "CRcal", "DCcal", 
+                                   "EFFcal", "COMcal", "PRG"),
+                    n.cut = 1, incl.cut1 = 0.837, sort.by = c("incl", "n"), 
+                    complete = F, decreasing = T, show.cases = TRUE, PRI = F)
+
+poscons <- minimize(ttpos, details = T, 
+                 explain = "1", include = "1",
+                 all.sol = T)
+
+```
+
+
+Applying the selector function itself and then the function within the UpSetR wrap function.
+
+```{r}
+dt.selector(poscons)
+dt.selector(poscons, con.thresh = 0.85)
+
+#being re-written
+#list.selector(solutionslist)
+#list.selector(solutionslist, con.thresh = 0.85)
+```
+
+
+Usage of the selectors within the QCAViz functions
+```{r}
+solutionslist <- list(poscons, poscons)
+
+#the configurations that are subset
+config_upset(poscons, const = TRUE, y = 0.85, nsets = 10)
+
+#all of the configurations
+config_upset(poscons, nsets = 10)
+```
+
+
+Applying the functions to Krogslund et al. (PA, 2015)
+Initially on the naive model 1 (referred to as ka_model_1_sim)
+
+```{r}
+model_1 <- read.csv("ka_model_1_sim.csv")
+
+#conditions
+kcp <- conds_upset(model_1$Configurations, nsets = 200)
+kcp <- config_upset_t(model_1$Configurations, nsets = 378)
+
+conds_upset(model_1$Configurations, nsets = 162)
+config_upset_t(model_1$Configurations, nsets = 387)
+```
+
+
+The rest of the models (titled for the sake of clarity as model_n)
+model_1 (is the model presented in the chunk above).
+
+```{r}
+model_2 <- read.csv("ka_model_1_ncut1_error.csv")
+model_3 <- read.csv("model_2_ncut1_error.csv")
+model_4 <- read.csv("model_2_sim.csv")
+model_5 <- read.csv("model_ncut2_error.csv")
+model_6 <- read.csv("model_sim.csv")
+```
+
+Conditions function
+```{r}
+conds_upset(model_2$Configurations, nsets = 200)
+conds_upset(model_3$Configurations, nsets = 500)
+conds_upset(model_4$Configurations, nsets = 300)
+conds_upset(model_5$Configurations, nsets = 400)
+conds_upset(model_6$Configurations, nsets = 500)
+```
+
+
+Configurations applied
+```{r}
+config_upset_t(model_2$Configurations, nsets = 300)
+config_upset_t(model_3$Configurations, nsets = 300)
+config_upset_t(model_4$Configurations, nsets = 400)
+config_upset_t(model_5$Configurations, nsets = 500)
+config_upset_t(model_6$Configurations, nsets = 400)
+
+```
+
+
+Applying the functions to the Böller Study
+
+
+Important: 
+1. the process first needs the derivation of solutions.
+2. The cases with a single condition do not work within the UpSetR environment.
+
+The conditions
+```{r}
+conds_upset(negcons$solution, nsets = 15)
+conds_upset(negpars$solution, nsets = 13)
+conds_upset(poscons$solution, nsets = 5)
+conds_upset(neginter$solution, nsets = 15)
+
+#the non-functioning cases
+conds_upset(posinter$solution, nsets = 5) #does not work bc there is a single condition!
+conds_upset(pospars$solution, nsets = 5)  #does not work bc there is a single condition!
+```
+
+
+The configurations
+The same notes as above apply
+```{r}
+
+config_upset(neginter, nsets = 4)
+config_upset(poscons, nsets = 13)
+config_upset(negcons, nsets = 13)
+config_upset(negpars, nsets = 12)
+
+#the non-functioning cases
+config_upset(pospars, nsets = 10) #does not work bc there is a sngl condition
+config_upset(posinter, nsets = 14) #does not work bc there is a sngl condition
+```
+
+
+Pulling solutions (will be taken out of the 
+final version of the vignette, I just want to check if 
+the functions for hand pulled solutions work)
+
+Pulling all of the solutions
+```{r}
+allsols <- c(posinter$solution, poscons$solution, pospars$solution, 
+                 neginter$solution, negcons$solution, negpars$solution)
+```
+
+Checking the main pooled solution functions
+```{r}
+conds_upset_h(allsols, nsets = 10)
+config_upset_h(allsols, nsets = 10)
+```
+
+
+Adding the simulated dataset fr Hinter-Leitner study
+```{r}
+library(QCAsummary)
+
+#Simulating and reducing data
+data("hinter")
+data("arg1")
+data("arg2")
+
+#350 fuzzy sets
+m_fuzzy <- dat_fuzzy(arg1, arg2, n = 350,
+                     case = hinter$case, outcome = hinter$PRG)
+
+#truth tables
+temp_dta <- truth_function(df = m_fuzzy, outcome = "pos",
+                           conditions = c("ambition", "CR", "DC", "EFF", "COM"),
+                           n.cut = 1, incl.cut1 = 0.637)
+
+```
+
+
+Deriving the parsimonious solutions and plotting it
+with the QCAviz conditions function
+
+```{r warning=FALSE}
+sol.p <- reduced_p(temp_dta)
+sol.pars <- solutions(sol.p)
+
+#plotting the conditions
+QCAviz::conds_upset(sol.pars, nsets = 350)
+```
+
+
+
+Deriving the conservative case and plotting it
+with the QCAviz conditions function
+
+```{r warning=FALSE}
+sol.c <- reduced_c(temp_dta)
+sol.cons <- solutions(sol.c)
+
+#plotting the conditions
+QCAviz::conds_upset(sol.cons, nsets = 350)
+```
+
+
+The configurations function for the simulated output
+```{r}
+config_upset_sim(sol.pars, nsets = 50)
+config_upset_sim(sol.cons, nsets = 87)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
