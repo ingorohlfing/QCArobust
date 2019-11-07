@@ -3,8 +3,7 @@
 \docType{data}
 \name{hinter}
 \alias{hinter}
-\title{data frame function
-Hinter-Leitner dataset
+\title{Hinter-Leitner dataset
 Data borrowed from Hinter and Leitner study
 A dataset containing informaiton about 20 countres
 used to understand the politic sof external
@@ -34,7 +33,6 @@ hinter
 hinter
 }
 \description{
-data frame function
 Hinter-Leitner dataset
 Data borrowed from Hinter and Leitner study
 A dataset containing informaiton about 20 countres

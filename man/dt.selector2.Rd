@@ -6,6 +6,18 @@
 \usage{
 dt.selector2(x, cov.thresh)
 }
+\arguments{
+\item{x}{output of the QCA in its entirety
+produced by \pkg{QCA} package}
+
+\item{con.thresh}{is the threshold set by a
+researcher. Te default value equals to zero}
+}
+\value{
+The function returns a subset of
+configurations that are larger than the selected
+threshold value.
+}
 \description{
 function that allows for selecting specific
 coverage threshold.

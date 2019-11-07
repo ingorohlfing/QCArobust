@@ -15,7 +15,8 @@ Imports:
         pander, 
         plyr, 
         purrr, 
-        stringi
+        stringi, 
+        magrittr
 Suggests: knitr,
     rmarkdown
 VignetteBuilder: knitr
