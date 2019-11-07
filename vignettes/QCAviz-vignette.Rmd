@@ -233,8 +233,8 @@ Deriving the conservative case and plotting it
 with the QCAviz conditions function
 
 ```{r warning=FALSE}
-sol.c <- reduced_c(temp_dta)
-sol.cons <- solutions(sol.c)
+sol.c <- QCAsummary::reduced_c(temp_dta)
+sol.cons <- QCAsummary::solutions(sol.c)
 
 #plotting the conditions
 QCAviz::conds_upset(sol.cons, nsets = 350)
