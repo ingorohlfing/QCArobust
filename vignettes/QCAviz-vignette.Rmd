@@ -205,11 +205,11 @@ data("arg1")
 data("arg2")
 
 #350 fuzzy sets
-m_fuzzy <- dat_fuzzy(arg1, arg2, n = 350,
+m_fuzzy <- QCAsummary::dat_fuzzy(arg1, arg2, n = 350,
                      case = hinter$case, outcome = hinter$PRG)
 
 #truth tables
-temp_dta <- truth_function(df = m_fuzzy, outcome = "pos",
+temp_dta <- QCAsummary::truth_function(df = m_fuzzy, outcome = "pos",
                            conditions = c("ambition", "CR", "DC", "EFF", "COM"),
                            n.cut = 1, incl.cut1 = 0.637)
 
