@@ -96,8 +96,13 @@ dt.selector <- function(x, con.thresh = 0){
 #'
 #' function that allows for selecting specific
 #' coverage threshold.
-#'
-
+#' @param x output of the QCA in its entirety
+#' produced by \pkg{QCA} package
+#' @param con.thresh is the threshold set by a
+#' researcher. Te default value equals to zero
+#' @return The function returns a subset of
+#' configurations that are larger than the selected
+#' threshold value.
 #'
 #' @export
 dt.selector2 <- function(x, cov.thresh){
