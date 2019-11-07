@@ -36,7 +36,7 @@ Skaaning_csanchors <- list(one, two, three, four, five)
 
 On the second, medium level of aggregation, the solutions are decomposed into their configurations. The `config_upset()` function serves this purpose. This should be used now with the config_upset_h() version of the function.
 ```{r Skaaning csqca anchors configs}
-skaaning_configs <- config_upset_h(Skaaning_csanchors, nsets = 100)
+skaaning_configs <- config_upset(Skaaning_csanchors, nsets = 100)
 png("Skaaning_configs.png", width = 600, height = 400, res = "100")
 print(skaaning_configs)
 dev.off()

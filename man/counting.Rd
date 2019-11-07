@@ -2,20 +2,20 @@
 % Please edit documentation in R/QCA_viz.R
 \name{counting}
 \alias{counting}
-\title{an original function}
+\title{counting()}
 \usage{
 counting(list, terms)
 }
 \arguments{
 \item{list}{the data from within which we want to count}
 
-\item{include}{terms: terms that we need to count}
+\item{terms}{are the terms that we need to count}
 }
 \value{
 returns a the count of terms within the list of strings
 }
 \description{
-an original function
+Function that counts a specific string combination
 }
 \note{
 this functiion uses the stri_count function of the
