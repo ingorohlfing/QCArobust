@@ -243,8 +243,8 @@ QCAviz::conds_upset(sol.cons, nsets = 350)
 
 The configurations function for the simulated output
 ```{r}
-config_upset_sim(sol.pars, nsets = 50)
-config_upset_sim(sol.cons, nsets = 87)
+config_upset(sol.pars, nsets = 50)
+config_upset(sol.cons, nsets = 87)
 ```
 
 
