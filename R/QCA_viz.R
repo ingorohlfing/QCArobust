@@ -175,6 +175,7 @@ conds_upset <- function(df, nsets) {
 #' @return An \pkg{UpSetR}-generated intersection plot
 #' presenting the frequency of individual configurations across
 #' QCA solutions and their intersections across solutions.
+#'
 #' @export
 config_upset <- function(df, const = FALSE, y, nsets) {
 
@@ -197,16 +198,19 @@ config_upset <- function(df, const = FALSE, y, nsets) {
 
 
 
-#'an original function
+#' counting()
 #'
+#' Function that counts a specific string combination
+#'
+#' @importFrom magrittr %>%
+#' @import stringi
 #' @param list the data from within which we want to count
-#' @param include terms: terms that we need to count
+#' @param terms are the terms that we need to count
 #' @return returns a the count of terms within the list of strings
 #' @note this functiion uses the stri_count function of the
 #' stringi function to count  a pattern in a list of strings
 #'
-#' @export this
-#'
+#' @export
 counting <- function(list, terms) {
   temp <- stringi::stri_count_fixed(list, terms)
   final <- count(temp)
