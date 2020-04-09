@@ -53,6 +53,7 @@ Adding (to be edited later) application of the functions that allow for selectio
 
 ```{r}
 data("hinter")
+
 hinter <- hinter %>% 
   mutate(POScal = round(calibrate(pos, thresholds = "-2.4, -0.15, 1.4"), digits = 2)) %>% 
   mutate(AMBcal = round(calibrate(ambition, thresholds = "0.01, 0.1205, 0.2"), digits = 2)) %>% 
