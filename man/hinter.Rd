@@ -9,7 +9,8 @@ A dataset containing informaiton about 20 countres
 used to understand the politic sof external
 approval: Explaining the IMF's evaluation
 of austerity programmes in those countries.}
-\format{A list with 20 observations of 10 variables
+\format{
+A list with 20 observations of 10 variables
 \describe{
   \item{case}{the case covered in the study. The country being analyzed}
   \item{pos}{the numeric value of pos}
@@ -21,7 +22,17 @@ of austerity programmes in those countries.}
   \item{CR}{the numeric value of CR}
   \item{COM}{the numeric value of COM}
   \item{PRG}{the numeric value of PRG}
-}}
+}
+
+A tibble with 40000 observations of 5 variables
+\describe{
+  \item{incl.cut1.val}{First inclusion cut}
+  \item{incl.cut0.val}{Second inclusion cut}
+  \item{n.cut.val}{the numeric value}
+  \item{error}{the error}
+  \item{Configurations}{Configurations vector}
+}
+}
 \source{
 \url{http://onlinelibrary.wiley.com/doi/10.1111/1475-6765.12142/suppinfo/}
 

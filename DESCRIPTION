@@ -1,14 +1,28 @@
-Package: QCAviz
-Type: Package
-Title: Vizualisation of QCA output (Title Case)
-Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: The package is created to vizualize QCA solutions of various models. The vizualisation is based on the intersections of either solutions, conditions or configurations using UpSetR package.
+Package: QCAViz
+Title: Robustness tests and visualization for QCA solutions
+Version: 0.0.0.9
+Authors@R:
+    c(
+    person("Ingo", "Rohlfing", email = "i.rohlfing@uni-koeln.de",
+           role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0001-8715-4771")),
+    person("Ayjeren", "Rozyjumayeva", email = "ayjeren.rzj@gmail.com",
+           role = c("aut"))
+           )
+Description: The robustness of a solution in Qualitative comparative Analysis
+    (QCA) can be analyzed on three levels. First, on the top level one can 
+    check whether complete solutions are identical. Second, one can assess 
+    robustness on the level of sufficient terms (individual conditions or 
+    conjunctions) by decomposing solutions into their constitutive elements. 
+    Third, solutions can be decomposed into individual conditions
+    (individually sufficient or INUS conditions). The results can be easily 
+    visualized using a bar chart (the first level) or Upset plots.
 License: MIT
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.0
+URL: https://github.com/ingorohlfing/QCAViz
+BugReports: https://github.com/ingorohlfing/QCAViz
 Imports:
         UpSetR, 
         dplyr, 
