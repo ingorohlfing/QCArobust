@@ -137,6 +137,9 @@ dt.selector2 <- function(x, cov.thresh){
 #'
 #' @importFrom magrittr %>%
 #' @import stringi
+#' @import purrr
+#' @import plyr
+#' @import UpSetR
 #' @param df Dataframe with solutions extracted
 #' from the solutions of the \pkg{QCA} package
 #' @param nsets An argument imported from the \pkg{UpSetR}
@@ -165,6 +168,8 @@ conds_upset <- function(df, nsets) {
 #'
 #' @importFrom magrittr %>%
 #' @import stringi
+#' @import purrr
+#' @import UpSetR
 #' @param df output extracted from the \pkg{QCA} package
 #' in their entirety.
 #' @param const is the argument of a function with binary
@@ -209,7 +214,6 @@ config_upset <- function(df, const = FALSE, y, nsets) {
 #'
 #' Function that counts a specific string combination
 #'
-#' @importFrom magrittr %>%
 #' @import stringi
 #' @param list the data from within which we want to count
 #' @param terms are the terms that we need to count
