@@ -1,9 +1,7 @@
 #QCAviz
 
 #The core functions  -----
-#Libraries needed to be loaded
-library(dplyr)
-library(magrittr)
+
 
 #' Main Functions
 #' comparison()
@@ -41,6 +39,7 @@ comparison <- function(x = all_values, y, num = F) {
 #' configurations. Needs further reworking to get rid
 #' of the for loop at later stages
 #'
+#' @import stringi
 #' @param df list of all the solutions or configurations
 #' which are obtained from multiple QCA solutions
 #' @param x QCA solutions in their raw form as produced
@@ -65,6 +64,10 @@ detection <- function(df, x){
 #' function that allows for selecting configurations
 #' bsaed on consistency values before plitting
 #'
+#' @importFrom magrittr %>%
+#' @import stingi
+#' @import rlist
+#' @import purrr
 #' @param x output of the QCA in its entirety
 #' produced by \pkg{QCA} package
 #' @param con.thresh is the threshold set by a
@@ -96,6 +99,10 @@ dt.selector <- function(x, con.thresh = 0){
 #'
 #' function that allows for selecting specific
 #' coverage threshold.
+#'
+#' @importFrom magrittr %>%
+#' @import rlist
+#' @import purrr
 #' @param x output of the QCA in its entirety
 #' produced by \pkg{QCA} package
 #' @param con.thresh is the threshold set by a
