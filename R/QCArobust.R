@@ -1,27 +1,17 @@
-#QCArobust
 
-#The core functions  -----
-
-
-#' Main Functions
-#' comparison()
+#' Comparison of matrices preparing data for plotting
 #'
-#' function compares matrices of solutions
-#' to prepare the data for charting with the UpSetR
-#'
-#' @param x list of all the solutions or configurations
-#' which are obtained from multiple QCA solutions
+#' @param x List of QCA solutions or configurations
+#' derived from multiple truth table analyses
 #' @param y QCA solutions in their raw form as produced
 #' by \pkg{QCA} package
-#' @param num is a default argument which checks
-#' whether the inputs are numeric or not. The default
-#' is set for false. This ensures that even if the input
+#' @param num Checks whether the input is  numeric or not. The default
+#' is set to \code{FALSE}. This ensures that even if the input
 #' is non-numeric, the function will read in the
 #' data in a numeric format.
-#' @return The function counts the individual solutions
-#' or configurations  depending on the plot
-#' function of this package. The output is a data frame.
 #'
+#' @return A dataframe counting the individual solutions
+#' or configurations.
 comparison <- function(x = all_values, y, num = F) {
   temp <- x %in% y
 
@@ -65,7 +55,7 @@ detection <- function(df, x){
 #' bsaed on consistency values before plitting
 #'
 #' @importFrom magrittr %>%
-#' @import stingi
+#' @import stringi
 #' @import rlist
 #' @import purrr
 #' @param x output of the QCA in its entirety
