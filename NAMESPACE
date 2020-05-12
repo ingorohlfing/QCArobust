@@ -2,8 +2,8 @@
 
 export(conds_upset)
 export(config_upset)
+export(cons_minimum)
 export(counting)
-export(dt.selector)
 export(dt.selector2)
 import(UpSetR)
 import(plyr)

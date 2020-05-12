@@ -2,7 +2,7 @@
 % Please edit documentation in R/QCArobust.R
 \name{comparison}
 \alias{comparison}
-\title{Comparison of matrices preparing data for plotting}
+\title{Comparison of matrices preparing data for plotting (internal function)}
 \usage{
 comparison(x = all_values, y, num = F)
 }
@@ -11,7 +11,7 @@ comparison(x = all_values, y, num = F)
 derived from multiple truth table analyses}
 
 \item{y}{QCA solutions in their raw form as produced
-by \pkg{QCA} package}
+by \code{\link[QCA]{minimize}} from \code{QCA} package}
 
 \item{num}{Checks whether the input is  numeric or not. The default
 is set to \code{FALSE}. This ensures that even if the input
@@ -23,5 +23,5 @@ A dataframe counting the individual solutions
 or configurations.
 }
 \description{
-Comparison of matrices preparing data for plotting
+Comparison of matrices preparing data for plotting (internal function)
 }

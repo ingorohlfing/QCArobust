@@ -2,7 +2,9 @@
 % Please edit documentation in R/QCArobust.R
 \name{detection}
 \alias{detection}
-\title{detection()}
+\title{New version of comparison function designed for the
+configurations. Needs further reworking to get rid
+of the for loop at later stages}
 \usage{
 detection(df, x)
 }
@@ -19,7 +21,7 @@ or configurations  depending on the plot
 function of this package. The output is a data frame.
 }
 \description{
-a new version of comparison function designed for the
+New version of comparison function designed for the
 configurations. Needs further reworking to get rid
 of the for loop at later stages
 }
