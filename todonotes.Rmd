@@ -1,0 +1,23 @@
+---
+title: "todonotes"
+author: "Ingo Rohlfing, Ayjeren Rozyjumayeva"
+date: "25 5 2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### To do
+**General**:  
+- for AR: Get rid of plyr/purrr warning regarding compact function.
+
+**Comparison**  
+- by IR: Should be good
+
+**Counting**  
+- for AR: function searches for exact matches in list, which might be wrong. 
+See examples: Result for AB is correct, result for AC is false because 
+function does not detect AC in ABC.
+

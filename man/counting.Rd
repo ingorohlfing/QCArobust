@@ -4,15 +4,17 @@
 \alias{counting}
 \title{counting()}
 \usage{
-counting(list, terms)
+counting(list, term)
 
-counting(list, terms)
+counting(list, term)
 }
 \arguments{
 \item{list}{List of terms that is searched for a match}
 
-\item{terms}{Terms (single condition or conjunction) that should
+\item{term}{Term (single condition or conjunction) that should
 be searched for}
+
+\item{terms}{are the terms that we need to count}
 }
 \value{
 returns a the count of terms within the list of strings
@@ -27,7 +29,7 @@ this functiion uses the stri_count function of the
 stringi function to count  a pattern in a list of strings
 }
 \examples{
-conjunction_list <- list(c("ABC", "ACD", "ADF"))
+conjunction_list <- list(c("ABC", "ACD", "ABD"))
 counting(conjunction_list, "AC")
 
 }
