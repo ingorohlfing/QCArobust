@@ -1,13 +1,13 @@
-#' Comparison of matrices preparing data for plotting (internal function)
+#' Comparison of matrices preparing data for plotting
 #'
 #' @param x List of QCA solutions or configurations
 #' derived from multiple truth table analyses
-#' @param y QCA solutions in their raw form as produced
+#' @param y QCA solutions as produced
 #' by \code{\link[QCA]{minimize}} from \code{QCA} package
-#' @param num Checks whether the input is  numeric or not. The default
-#' is set to \code{FALSE}. This ensures that even if the input
-#' is non-numeric, the function will read in the
-#' data in a numeric format.
+#' @param num Check for numeric input. Default
+#' is set to \code{FALSE}. This setting ensures that the function
+#' will read data in a numeric format even it is in a
+#' different formt.
 #'
 #' @return A dataframe counting the individual solutions
 #' or configurations.
