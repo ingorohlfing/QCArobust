@@ -1,27 +1,17 @@
-#QCArobust
 
-#The core functions  -----
-
-
-#' Main Functions
-#' comparison()
+#' Comparison of matrices preparing data for plotting (internal function)
 #'
-#' function compares matrices of solutions
-#' to prepare the data for charting with the UpSetR
-#'
-#' @param x list of all the solutions or configurations
-#' which are obtained from multiple QCA solutions
+#' @param x List of QCA solutions or configurations
+#' derived from multiple truth table analyses
 #' @param y QCA solutions in their raw form as produced
-#' by \pkg{QCA} package
-#' @param num is a default argument which checks
-#' whether the inputs are numeric or not. The default
-#' is set for false. This ensures that even if the input
+#' by \code{\link[QCA]{minimize}} from \code{QCA} package
+#' @param num Checks whether the input is  numeric or not. The default
+#' is set to \code{FALSE}. This ensures that even if the input
 #' is non-numeric, the function will read in the
 #' data in a numeric format.
-#' @return The function counts the individual solutions
-#' or configurations  depending on the plot
-#' function of this package. The output is a data frame.
 #'
+#' @return A dataframe counting the individual solutions
+#' or configurations.
 comparison <- function(x = all_values, y, num = F) {
   temp <- x %in% y
 
@@ -33,9 +23,7 @@ comparison <- function(x = all_values, y, num = F) {
 }
 
 
-#' detection()
-#'
-#' a new version of comparison function designed for the
+#' New version of comparison function designed for the
 #' configurations. Needs further reworking to get rid
 #' of the for loop at later stages
 #'
@@ -47,7 +35,6 @@ comparison <- function(x = all_values, y, num = F) {
 #' @return The function counts the individual solutions
 #' or configurations  depending on the plot
 #' function of this package. The output is a data frame.
-#'
 detection <- function(df, x){
   mtr <- NULL
   for(l in x) {
@@ -59,25 +46,21 @@ detection <- function(df, x){
   return(mtr)
 }
 
-#' dt.selector()
-#'
-#' function that allows for selecting configurations
-#' bsaed on consistency values before plitting
+#' Preselecting configurations for analysis bsaed on minimum consistency value
 #'
 #' @importFrom magrittr %>%
-#' @import stingi
+#' @import stringi
 #' @import rlist
 #' @import purrr
 #' @param x output of the QCA in its entirety
 #' produced by \pkg{QCA} package
-#' @param con.thresh is the threshold set by a
-#' researcher. Te default value equals to zero
-#' @return The function returns a subset of
-#' configurations that are larger than the selected
-#' threshold value.
+#' @param con.thresh Minimum consistency threshold for being included in
+#' the analysis. Default is zero.
+#'
+#' @return A list of a subset of configurations meeting the threshold.
 #'
 #' @export
-dt.selector <- function(x, con.thresh = 0){
+cons_minimum <- function(x, conthresh = 0) {
 
   sol <- purrr::map(x$solution, function(x) stringi::stri_split_fixed(x, "+"))
   cnst <- x$IC$incl.cov[["inclS"]]
@@ -87,9 +70,7 @@ dt.selector <- function(x, con.thresh = 0){
   colnames(output) <- c("config", "consist")
 
   output <- as.data.frame(output)
-  output <- output %>%
-    filter(consist > con.thresh) %>%
-    select(config)
+  output <- output %>% filter(consist > conthresh) %>% select(config)
 
   return(output)
 }
@@ -196,7 +177,7 @@ config_upset <- function(df, const = FALSE, y, nsets) {
 
   }
   else {
-    temp1 <- dt.selector(df, con.thresh = y)
+    temp1 <- cons_minimum(df, con.thresh = y)
     temp1 <- purrr::map(temp1$config, unlist)
   }
   temp1 <- purrr::map(temp1, function(x) stringi::stri_trim(x))

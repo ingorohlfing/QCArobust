@@ -36,10 +36,10 @@ Skaaning_csanchors <- list(one, two, three, four, five)
 
 On the second, medium level of aggregation, the solutions are decomposed into their configurations. The `config_upset()` function serves this purpose. This should be used now with the config_upset_h() version of the function.
 ```{r Skaaning csqca anchors configs}
-skaaning_configs <- config_upset(Skaaning_csanchors, nsets = 100)
-png("Skaaning_configs.png", width = 600, height = 400, res = "100")
-print(skaaning_configs)
-dev.off()
+#skaaning_configs <- config_upset(Skaaning_csanchors, nsets = 100)
+#png("Skaaning_configs.png", width = 600, height = 400, res = "100")
+#print(skaaning_configs)
+#dev.off()
 ```
 
 ```{r Skaaning csqca anchors conditions}
@@ -51,7 +51,7 @@ dev.off()
 
 Adding (to be edited later) application of the functions that allow for selection of the consistenc values.
 
-```{r}
+```{r, eval = F}
 data("hinter")
 
 hinter <- hinter %>% 
@@ -77,7 +77,7 @@ poscons <- minimize(ttpos, details = T,
 
 Applying the selector function itself and then the function within the UpSetR wrap function.
 
-```{r}
+```{r, eval = F}
 dt.selector(poscons)
 dt.selector(poscons, con.thresh = 0.85)
 
@@ -88,7 +88,7 @@ dt.selector(poscons, con.thresh = 0.85)
 
 
 Usage of the selectors within the QCAViz functions
-```{r}
+```{r, eval = F}
 solutionslist <- list(poscons, poscons)
 
 #the configurations that are subset
@@ -102,7 +102,7 @@ config_upset(poscons, nsets = 10)
 Applying the functions to Krogslund et al. (PA, 2015)
 Initially on the naive model 1 (referred to as ka_model_1_sim)
 
-```{r}
+```{r, eval = F}
 model_1 <- read.csv("ka_model_1_sim.csv")
 
 #conditions
@@ -115,7 +115,7 @@ conds_upset(model_1$Configurations, nsets = 162)
 The rest of the models (titled for the sake of clarity as model_n)
 model_1 (is the model presented in the chunk above).
 
-```{r}
+```{r,eval=F}
 model_2 <- read.csv("ka_model_1_ncut1_error.csv")
 model_3 <- read.csv("model_2_ncut1_error.csv")
 model_4 <- read.csv("model_2_sim.csv")
@@ -124,7 +124,7 @@ model_6 <- read.csv("model_sim.csv")
 ```
 
 Conditions function
-```{r}
+```{r, eval = F}
 conds_upset(model_2$Configurations, nsets = 200)
 conds_upset(model_3$Configurations, nsets = 500)
 conds_upset(model_4$Configurations, nsets = 300)
@@ -134,7 +134,7 @@ conds_upset(model_6$Configurations, nsets = 500)
 
 
 Configurations applied
-```{r}
+```{r, eval = F}
 config_upset(model_2$Configurations, nsets = 300)
 config_upset(model_3$Configurations, nsets = 300)
 config_upset(model_4$Configurations, nsets = 400)
@@ -152,7 +152,7 @@ Important:
 2. The cases with a single condition do not work within the UpSetR environment.
 
 The conditions
-```{r}
+```{r, eval = F}
 conds_upset(negcons$solution, nsets = 15)
 conds_upset(negpars$solution, nsets = 13)
 conds_upset(poscons$solution, nsets = 5)
@@ -166,7 +166,7 @@ conds_upset(pospars$solution, nsets = 5)  #does not work bc there is a single co
 
 The configurations
 The same notes as above apply
-```{r}
+```{r, eval = F}
 
 config_upset(neginter, nsets = 4)
 config_upset(poscons, nsets = 13)
@@ -184,74 +184,16 @@ final version of the vignette, I just want to check if
 the functions for hand pulled solutions work)
 
 Pulling all of the solutions
-```{r}
+```{r, eval = F}
 allsols <- c(posinter$solution, poscons$solution, pospars$solution, 
                  neginter$solution, negcons$solution, negpars$solution)
 ```
 
 Checking the main pooled solution functions
-```{r}
+```{r, eval = F}
 conds_upset(allsols, nsets = 10)
 config_upset(allsols, nsets = 10)
 ```
-
-
-Adding the simulated dataset fr Hinter-Leitner study
-```{r}
-library(QCAsummary)
-
-#Simulating and reducing data
-data("hinter")
-data("arg1")
-data("arg2")
-
-#350 fuzzy sets
-m_fuzzy <- QCAsummary::dat_fuzzy(arg1, arg2, n = 350,
-                     case = hinter$case, outcome = hinter$PRG)
-
-#truth tables
-temp_dta <- QCAsummary::truth_function(df = m_fuzzy, outcome = "pos",
-                           conditions = c("ambition", "CR", "DC", "EFF", "COM"),
-                           n.cut = 1, incl.cut1 = 0.637)
-
-```
-
-
-Deriving the parsimonious solutions and plotting it
-with the QCAviz conditions function
-
-```{r warning=FALSE}
-sol.p <- QCAsummary::reduced_p(temp_dta)
-sol.pars <- QCAsummary::solutions(sol.p)
-
-#plotting the conditions
-QCAviz::conds_upset(sol.pars, nsets = 350)
-```
-
-
-
-Deriving the conservative case and plotting it
-with the QCAviz conditions function
-
-```{r warning=FALSE}
-sol.c <- QCAsummary::reduced_c(temp_dta)
-sol.cons <- QCAsummary::solutions(sol.c)
-
-#plotting the conditions
-QCAviz::conds_upset(sol.cons, nsets = 350)
-```
-
-
-The configurations function for the simulated output
-```{r}
-config_upset(sol.pars, nsets = 50)
-config_upset(sol.cons, nsets = 87)
-```
-
-
-
-
-
 
 
 
