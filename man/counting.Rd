@@ -9,24 +9,25 @@ counting(list, terms)
 counting(list, terms)
 }
 \arguments{
-\item{list}{the data from within which we want to count}
+\item{list}{List of terms that is searched for a match}
 
-\item{terms}{are the terms that we need to count}
+\item{terms}{Terms (single condition or conjunction) that should
+be searched for}
 }
 \value{
 returns a the count of terms within the list of strings
 
-returns a the count of terms within the list of strings
+Count of search terms in the list that has been searched
 }
 \description{
-Function that counts a specific string combination
-
 Function that counts a specific string combination
 }
 \note{
 this functiion uses the stri_count function of the
 stringi function to count  a pattern in a list of strings
+}
+\examples{
+conjunction_list <- list(c("ABC", "ACD", "ADF"))
+counting(conjunction_list, "AC")
 
-this functiion uses the stri_count function of the
-stringi function to count  a pattern in a list of strings
 }

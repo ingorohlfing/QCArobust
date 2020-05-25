@@ -1,13 +1,16 @@
-#' counting()
+#' Counts frequency of a specific string combination
 #'
-#' Function that counts a specific string combination
+#' @importFrom stringi stri_count_fixed
 #'
-#' @import stringi
-#' @param list the data from within which we want to count
-#' @param terms are the terms that we need to count
-#' @return returns a the count of terms within the list of strings
-#' @note this functiion uses the stri_count function of the
-#' stringi function to count  a pattern in a list of strings
+#' @param list List of terms that is searched for a match
+#' @param terms Terms (single condition or conjunction) that should
+#' be searched for
+#'
+#' @return Count of search terms in the list that has been searched
+#'
+#' @examples
+#' conjunction_list <- list(c("ABC", "ACD", "ADF"))
+#' counting(conjunction_list, "AC")
 #'
 #' @export
 counting <- function(list, terms) {
