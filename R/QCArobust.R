@@ -46,7 +46,7 @@ detection <- function(df, x){
   return(mtr)
 }
 
-#' Preselecting configurations for analysis bsaed on minimum consistency value
+#' Preselecting configurations for analysis based on minimum consistency value
 #'
 #' @importFrom magrittr %>%
 #' @import stringi
