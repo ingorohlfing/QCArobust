@@ -4,9 +4,9 @@
 #' and creates intersection plots.
 #'
 #' @importFrom magrittr %>%
-#' @import stringi
-#' @import purrr
-#' @import plyr
+#' @importFrom stringi stri_split_fixed stri_unique
+#' @import purrr map
+#' @importFrom plyr ldply
 #' @import UpSetR
 #' @param df Dataframe with solutions extracted
 #' from the solutions of the \pkg{QCA} package

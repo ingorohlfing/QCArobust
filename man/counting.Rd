@@ -31,5 +31,6 @@ stringi function to count  a pattern in a list of strings
 \examples{
 conjunction_list <- list(c("ABC", "ACD", "ABD"))
 counting(conjunction_list, "AC")
+counting(conjunction_list, "AB")
 
 }
