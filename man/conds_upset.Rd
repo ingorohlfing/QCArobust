@@ -12,8 +12,8 @@ conds_upset(df, nsets)
 \item{df}{Dataframe with solutions extracted
 from the solutions of the \pkg{QCA} package}
 
-\item{nsets}{An argument imported from the \pkg{UpSetR}
-package. Determines the number of sets to be plotted.}
+\item{nsets}{Argument imported from the \pkg{UpSetR}
+package determining the number of sets to be plotted.}
 }
 \value{
 An \pkg{UpSetR}-generated intersection plot

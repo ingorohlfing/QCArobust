@@ -5,16 +5,17 @@
 #'
 #' @importFrom magrittr %>%
 #' @importFrom stringi stri_split_fixed stri_unique
-#' @import purrr map
+#' @importFrom purrr map
 #' @importFrom plyr ldply
 #' @import UpSetR
+#'
 #' @param df Dataframe with solutions extracted
 #' from the solutions of the \pkg{QCA} package
-#' @param nsets An argument imported from the \pkg{UpSetR}
-#' package. Determines the number of sets to be plotted.
-#' @return An \pkg{UpSetR}-generated intersection plot
-#' presenting the frequency of individual conditions across
-#' QCA solutions and their intersections across solutions.
+#' @param nsets Argument imported from the \pkg{UpSetR}
+#' package determining the number of sets to be plotted.
+#'
+#' @return A plot presenting the frequency of individual
+#' conditions and their co-occurrences across QCA solutions.
 #'
 #' @export
 conds_upset <- function(df, nsets) {
@@ -25,5 +26,4 @@ conds_upset <- function(df, nsets) {
   final_matrix$.id <- NULL
   colnames(final_matrix) <- all_values
   UpSetR::upset(final_matrix, order.by = "freq", nsets = nsets)
-
 }
