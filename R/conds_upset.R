@@ -7,10 +7,10 @@
 #' @importFrom plyr ldply
 #' @import UpSetR
 #'
-#' @param df Dataframe with solutions extracted
-#' from the solutions of the \pkg{QCA} package
-#' @param nsets Argument imported from the \pkg{UpSetR}
-#' package determining the number of sets to be plotted.
+#' @param df Dataframe or list with solutions extracted
+#' from the solutions of the \code{\link{QCA}} package
+#' @param nsets Argument imported from the \code{\link{upset}}
+#' function from \pkg{UpSetR}. Specifies number of sets to be plotted.
 #'
 #' @return A plot presenting the frequency of individual
 #' conditions and their co-occurrences across QCA solutions.
