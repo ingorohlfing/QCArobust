@@ -21,3 +21,8 @@ knitr::opts_chunk$set(echo = TRUE)
 See examples: Result for AB is correct, result for AC is false because 
 function does not detect AC in ABC.
 
+**conds_upset**
+- documentation says input should be dataframe, but it also works with a list
+- IR: I changed documentation and example to list; df and list now options
+- for AR: In example, AB is not decomposed into A and B, as it should be
+

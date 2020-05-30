@@ -1,5 +1,3 @@
-#' conds_upset()
-#'
 #' Function decomposes results into individual conditions
 #' and creates intersection plots.
 #'
@@ -16,6 +14,10 @@
 #'
 #' @return A plot presenting the frequency of individual
 #' conditions and their co-occurrences across QCA solutions.
+#'
+#' @examples
+#' sols <- list(c(replicate("A", 2), replicate("AB+c", 2), replicate("A+c", 2)))
+#' conds_upset(sols)
 #'
 #' @export
 conds_upset <- function(df, nsets) {
