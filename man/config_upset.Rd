@@ -2,7 +2,8 @@
 % Please edit documentation in R/config_upset.R
 \name{config_upset}
 \alias{config_upset}
-\title{config_upset()}
+\title{Function decomposes results into individual configurations
+and creates intersection plots.}
 \usage{
 config_upset(df, const = FALSE, y, nsets)
 }

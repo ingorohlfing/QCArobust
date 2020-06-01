@@ -1,5 +1,3 @@
-#' config_upset()
-#'
 #' Function decomposes results into individual configurations
 #' and creates intersection plots.
 #'
@@ -7,6 +5,7 @@
 #' @import stringi
 #' @import purrr
 #' @import UpSetR
+#'
 #' @param df output extracted from the \pkg{QCA} package
 #' in their entirety.
 #' @param const is the argument of a function with binary
@@ -33,7 +32,7 @@ config_upset <- function(df, const = FALSE, y, nsets) {
 
   }
   else {
-    temp1 <- cons_minimum(df, con.thresh = y)
+    temp1 <- cons_minimum(df, consthresh = y)
     temp1 <- purrr::map(temp1$config, unlist)
   }
   temp1 <- purrr::map(temp1, function(x) stringi::stri_trim(x))
