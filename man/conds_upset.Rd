@@ -8,8 +8,8 @@ and creates intersection plots.}
 conds_upset(df, nsets)
 }
 \arguments{
-\item{df}{Dataframe or list with solutions extracted
-from the solutions of the \code{\link{QCA}} package}
+\item{df}{Dataframe or list with solutions produced with
+\code{\link{QCA}} package}
 
 \item{nsets}{Argument imported from the \code{\link{upset}}
 function from \pkg{UpSetR}. Specifies number of sets to be plotted.}
