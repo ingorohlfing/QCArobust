@@ -2,20 +2,19 @@
 % Please edit documentation in R/cons_minimum.R
 \name{cons_minimum}
 \alias{cons_minimum}
-\title{Preselecting configurations for analysis bsaed on minimum consistency value}
+\title{Filtering configurations from results using minimum consistency value}
 \usage{
-cons_minimum(x, conthresh = 0)
+cons_minimum(x, consthresh = 0)
 }
 \arguments{
-\item{x}{output of the QCA in its entirety
-produced by \pkg{QCA} package}
+\item{x}{List of solutions generated with \code{\link{QCA}} package}
 
-\item{con.thresh}{Minimum consistency threshold for being included in
-the analysis. Default is zero.}
+\item{consthresh}{Minimum consistency threshold for for filtering
+configurations. Default is zero.}
 }
 \value{
-A list of a subset of configurations meeting the threshold.
+A list of configurations meeting the consistency threshold.
 }
 \description{
-Preselecting configurations for analysis bsaed on minimum consistency value
+Filtering configurations from results using minimum consistency value
 }
