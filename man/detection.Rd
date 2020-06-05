@@ -2,26 +2,21 @@
 % Please edit documentation in R/detection.R
 \name{detection}
 \alias{detection}
-\title{New version of comparison function designed for the
-configurations. Needs further reworking to get rid
-of the for loop at later stages}
+\title{Version of comparison function for configurations.}
 \usage{
 detection(df, x)
 }
 \arguments{
-\item{df}{list of all the solutions or configurations
-which are obtained from multiple QCA solutions}
-
-\item{x}{QCA solutions in their raw form as produced
-by \pkg{QCA} package}
+\item{df}{List of QCA solutions or configurations
+derived from multiple truth table analyses performed
+with \code{\link{QCA}} package
+with \code{\link[QCA]{minimize}} from \code{\link{QCA}}
+package}
 }
 \value{
-The function counts the individual solutions
-or configurations  depending on the plot
-function of this package. The output is a data frame.
+A dataframe counting the individual solutions
+or configurations.
 }
 \description{
-New version of comparison function designed for the
-configurations. Needs further reworking to get rid
-of the for loop at later stages
+Version of comparison function for configurations.
 }

@@ -8,10 +8,12 @@ comparison(x = all_values, y, num = F)
 }
 \arguments{
 \item{x}{List of QCA solutions or configurations
-derived from multiple truth table analyses}
+derived from multiple truth table analyses performed
+with \code{\link{QCA}} package}
 
 \item{y}{QCA solutions as produced
-with \code{\link[QCA]{minimize}} from \code{QCA} package}
+with \code{\link[QCA]{minimize}} from \code{\link{QCA}}
+package}
 
 \item{num}{Check for numeric input. Default
 is set to \code{FALSE}. This setting ensures that the function

@@ -23,3 +23,11 @@ function does not detect AC in ABC.
 - IR: I changed documentation and example to list; df and list now options
 - for AR: In example, AB is not decomposed into A and B, as it should be
 
+**cons_minimum**
+- We need an example of existing solutions that are imported
+
+**detection**
+- param df: Says it is a list. df usually stands for dataframe. It is 
+an internal function, probably does not matter.
+- original documentation said: "Needs further reworking to get rid
+ of the for loop at later stages" <= is this necessary?
