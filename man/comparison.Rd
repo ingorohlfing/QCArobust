@@ -11,7 +11,7 @@ comparison(x = all_values, y, num = F)
 derived from multiple truth table analyses}
 
 \item{y}{QCA solutions as produced
-by \code{\link[QCA]{minimize}} from \code{QCA} package}
+with \code{\link[QCA]{minimize}} from \code{QCA} package}
 
 \item{num}{Check for numeric input. Default
 is set to \code{FALSE}. This setting ensures that the function
