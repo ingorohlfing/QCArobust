@@ -1,28 +1,26 @@
-#' Function decomposes results into individual configurations
-#' and creates intersection plots.
+#' Function decomposes results into individual sufficient
+#' terms and creates intersection plots.
 #'
 #' @importFrom magrittr %>%
-#' @import stringi
-#' @import purrr
+#' @importFrom stringi stri_trim stri_unique
+#' @importFrom purrr map
 #' @import UpSetR
 #'
-#' @param df output extracted from the \pkg{QCA} package
-#' in their entirety.
-#' @param const is the argument of a function with binary
-#' input. The default option - FALSE - indicates that all
-#' of the QCA configurations will be plotted. If the argument
-#' is set to TRUE, the function will only plot those
-#' configurations which are above a chosen threshold: see
-#' the following argument for threshold.
+#' @param df Dataframe of QCA solutions as produced
+#' with \code{\link[QCA]{minimize}} from \code{\link{QCA}}
+#' package
+#' @param const Choose between the plotting of all solutions
+#' (\code{const = F} or only those meeting a minimum consistency
+#' threshold specified with \cod€{const}.
 #' @param y is an argument with default value of zero. If
 #' any other number is set for the given argument, only
 #' those configurations which are above the set value for y
 #' will be plotted by the function
-#' @param nsets An argument imported from the \pkg{UpSetR}
-#' package. Determines the number of sets to be plotted.
-#' @return An \pkg{UpSetR}-generated intersection plot
-#' presenting the frequency of individual configurations across
-#' QCA solutions and their intersections across solutions.
+#' @param nsets Specifies number of sets to be plotted. Argument
+#' imported from the \code{\link{upset}} function from \pkg{UpSetR}.
+#'
+#' @return A plot presenting the frequency of individual
+#' conditions and their co-occurrences across QCA solutions.
 #'
 #' @export
 config_upset <- function(df, const = FALSE, y, nsets) {

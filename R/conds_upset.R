@@ -9,8 +9,8 @@
 #'
 #' @param df Dataframe or list with solutions produced with
 #'  \code{\link{QCA}} package
-#' @param nsets Argument imported from the \code{\link{upset}}
-#' function from \pkg{UpSetR}. Specifies number of sets to be plotted.
+#' @param nsets Specifies number of sets to be plotted. Argument
+#' imported from the \code{\link{upset}} function from \pkg{UpSetR}.
 #'
 #' @return A plot presenting the frequency of individual
 #' conditions and their co-occurrences across QCA solutions.

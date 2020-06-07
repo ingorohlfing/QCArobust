@@ -2,21 +2,19 @@
 % Please edit documentation in R/config_upset.R
 \name{config_upset}
 \alias{config_upset}
-\title{Function decomposes results into individual configurations
-and creates intersection plots.}
+\title{Function decomposes results into individual sufficient
+terms and creates intersection plots.}
 \usage{
 config_upset(df, const = FALSE, y, nsets)
 }
 \arguments{
-\item{df}{output extracted from the \pkg{QCA} package
-in their entirety.}
+\item{df}{Dataframe of QCA solutions as produced
+with \code{\link[QCA]{minimize}} from \code{\link{QCA}}
+package}
 
-\item{const}{is the argument of a function with binary
-input. The default option - FALSE - indicates that all
-of the QCA configurations will be plotted. If the argument
-is set to TRUE, the function will only plot those
-configurations which are above a chosen threshold: see
-the following argument for threshold.}
+\item{const}{Choose between the plotting of all solutions
+(\code{const = F} or only those meeting a minimum consistency
+threshold specified with \cod€{const}.}
 
 \item{y}{is an argument with default value of zero. If
 any other number is set for the given argument, only
@@ -32,6 +30,6 @@ presenting the frequency of individual configurations across
 QCA solutions and their intersections across solutions.
 }
 \description{
-Function decomposes results into individual configurations
-and creates intersection plots.
+Function decomposes results into individual sufficient
+terms and creates intersection plots.
 }
