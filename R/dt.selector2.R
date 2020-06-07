@@ -1,21 +1,21 @@
-#' dt.selector2()
-#'
-#' function that allows for selecting specific
-#' coverage threshold.
+#' Filtering configurations based on coverage threshold.
 #'
 #' @importFrom magrittr %>%
-#' @import rlist
-#' @import purrr
-#' @param x output of the QCA in its entirety
-#' produced by \pkg{QCA} package
-#' @param con.thresh is the threshold set by a
-#' researcher. Te default value equals to zero
-#' @return The function returns a subset of
-#' configurations that are larger than the selected
-#' threshold value.
+#' @importFrom rlist list.append
+#' @importFrom purrr map
+#'
+#' @param x List of QCA solutions or configurations
+#' derived from multiple truth table analyses performed
+#' with \code{\link[QCA]{minimize}} from \code{\link{QCA}}
+#' package
+#' @param convthresh Coverage threshold for filtering
+#' solutions or configurations. Default value is 0.
+#'
+#' @return A dataframe with configurations meeting the coverage
+#' threshold.
 #'
 #' @export
-dt.selector2 <- function(x, cov.thresh){
+dt.selector2 <- function(x, covthresh){
 
   sol <- purrr::map(x$solution, function(x) stringi::stri_split_fixed(x, "+"))
   cov<- x$IC$incl[["inclS"]]
@@ -26,7 +26,7 @@ dt.selector2 <- function(x, cov.thresh){
 
   output <- as.data.frame(output)
   output <- output %>%
-    filter(cov > cov.thresh) %>%
+    filter(cov > covthresh) %>%
     select(cov)
 
   return(output)

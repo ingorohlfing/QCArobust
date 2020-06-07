@@ -21,13 +21,12 @@ any other number is set for the given argument, only
 those configurations which are above the set value for y
 will be plotted by the function}
 
-\item{nsets}{An argument imported from the \pkg{UpSetR}
-package. Determines the number of sets to be plotted.}
+\item{nsets}{Specifies number of sets to be plotted. Argument
+imported from the \code{\link{upset}} function from \pkg{UpSetR}.}
 }
 \value{
-An \pkg{UpSetR}-generated intersection plot
-presenting the frequency of individual configurations across
-QCA solutions and their intersections across solutions.
+A plot presenting the frequency of individual
+conditions and their co-occurrences across QCA solutions.
 }
 \description{
 Function decomposes results into individual sufficient

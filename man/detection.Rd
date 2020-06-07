@@ -9,7 +9,6 @@ detection(df, x)
 \arguments{
 \item{df}{List of QCA solutions or configurations
 derived from multiple truth table analyses performed
-with \code{\link{QCA}} package
 with \code{\link[QCA]{minimize}} from \code{\link{QCA}}
 package}
 }

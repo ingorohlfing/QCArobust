@@ -2,23 +2,23 @@
 % Please edit documentation in R/dt.selector2.R
 \name{dt.selector2}
 \alias{dt.selector2}
-\title{dt.selector2()}
+\title{Filtering configurations based on coverage threshold.}
 \usage{
-dt.selector2(x, cov.thresh)
+dt.selector2(x, covthresh)
 }
 \arguments{
-\item{x}{output of the QCA in its entirety
-produced by \pkg{QCA} package}
+\item{x}{List of QCA solutions or configurations
+derived from multiple truth table analyses performed
+with \code{\link[QCA]{minimize}} from \code{\link{QCA}}
+package}
 
-\item{con.thresh}{is the threshold set by a
-researcher. Te default value equals to zero}
+\item{convthresh}{Coverage threshold for filtering
+solutions or configurations. Default value is 0.}
 }
 \value{
-The function returns a subset of
-configurations that are larger than the selected
-threshold value.
+A dataframe with configurations meeting the coverage
+threshold.
 }
 \description{
-function that allows for selecting specific
-coverage threshold.
+Filtering configurations based on coverage threshold.
 }

@@ -13,7 +13,8 @@ cons_minimum(x, consthresh = 0)
 configurations. Default is zero.}
 }
 \value{
-A list of configurations meeting the consistency threshold.
+A dataframe with configurations meeting the consistency
+threshold.
 }
 \description{
 Filtering configurations from results using minimum consistency value

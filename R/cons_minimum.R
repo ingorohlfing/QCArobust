@@ -10,7 +10,8 @@
 #' @param consthresh Minimum consistency threshold for for filtering
 #' configurations. Default is zero.
 #'
-#' @return A list of configurations meeting the consistency threshold.
+#' @return A dataframe with configurations meeting the consistency
+#' threshold.
 #'
 #' @export
 cons_minimum <- function(x, consthresh = 0) {

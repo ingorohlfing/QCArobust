@@ -8,11 +8,13 @@ and creates intersection plots.}
 conds_upset(df, nsets)
 }
 \arguments{
-\item{df}{Dataframe or list with solutions produced with
-\code{\link{QCA}} package}
+\item{df}{Dataframe or list of QCA solutions or configurations
+derived from multiple truth table analyses performed
+with \code{\link[QCA]{minimize}} from \code{\link{QCA}}
+package}
 
-\item{nsets}{Argument imported from the \code{\link{upset}}
-function from \pkg{UpSetR}. Specifies number of sets to be plotted.}
+\item{nsets}{Specifies number of sets to be plotted. Argument
+imported from the \code{\link{upset}} function from \pkg{UpSetR}.}
 }
 \value{
 A plot presenting the frequency of individual

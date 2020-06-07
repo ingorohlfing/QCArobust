@@ -7,8 +7,10 @@
 #' @importFrom plyr ldply
 #' @import UpSetR
 #'
-#' @param df Dataframe or list with solutions produced with
-#'  \code{\link{QCA}} package
+#' @param df Dataframe or list of QCA solutions or configurations
+#' derived from multiple truth table analyses performed
+#' with \code{\link[QCA]{minimize}} from \code{\link{QCA}}
+#' package
 #' @param nsets Specifies number of sets to be plotted. Argument
 #' imported from the \code{\link{upset}} function from \pkg{UpSetR}.
 #'
