@@ -37,4 +37,6 @@ an internal function, probably does not matter.
 - original documentation said: "Needs further reworking to get rid
  of the for loop at later stages" <= is this necessary?
  
- 
+**cov_minimum**
+- formerly dt.selector 2. Renamed it to have a meaningful function name
+complemeting cons_minimum
