@@ -11,19 +11,18 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### To do
 
-
-
-
 **conds_upset**
 - documentation says input should be dataframe, but it also works with a list
 - IR: I changed documentation and example to list; df and list now options
 - for AR: In example, AB is not decomposed into A and B, as it should be
 
-**cons_minimum**
-- We need an example of existing solutions that are imported
+
+### In Progress Now
+1. Checking the new counting against ne datasets.
+2. And the **cons_minimum** check against imported solutions.
 
 
-# Addressed
+### Addressed
 
 **Counting**  
 - for AR: Done
