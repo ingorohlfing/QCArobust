@@ -1,6 +1,6 @@
 #' Counts frequency of a term in list of results
 #'
-#' @importFrom stringi stri_count_fixed
+#' @importFrom sjmisc stri_find
 #'
 #' @param list List of terms that is searched for a match
 #' @param term Term (single condition or conjunction) that should

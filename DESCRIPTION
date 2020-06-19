@@ -30,7 +30,8 @@ Imports:
         plyr, 
         purrr, 
         stringi, 
-        magrittr
+        magrittr,
+        sjmisc
 Suggests: knitr,
     rmarkdown
 VignetteBuilder: knitr
