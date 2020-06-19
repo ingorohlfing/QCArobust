@@ -15,7 +15,7 @@
 #'
 #' @export
 counting <- function(list, term) {
-  temp <- stringi::stri_count_fixed(list, term)
+  temp <- sjmisc::stri_find(list, term, precision = 2, partial = 2)
   final <- count(temp)
   names(final)[1] <- term
   return(final)

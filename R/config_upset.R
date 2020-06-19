@@ -23,14 +23,14 @@
 #' conditions and their co-occurrences across QCA solutions.
 #'
 #' @export
-config_upset <- function(df, const = FALSE, y, nsets) {
+config_upset <- function(df, const = FALSE, nsets) {
 
   if (!const) {
     temp1 <- unlist(df$solution)
 
   }
   else {
-    temp1 <- cons_minimum(df, consthresh = y)
+    temp1 <- cons_minimum(df)
     temp1 <- purrr::map(temp1$config, unlist)
   }
   temp1 <- purrr::map(temp1, function(x) stringi::stri_trim(x))
