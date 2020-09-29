@@ -9,14 +9,18 @@ Authors@R:
     person("Ayjeren", "Rozyjumayeva", email = "ayjeren.rzj@gmail.com",
            role = c("aut"))
            )
-Description: The robustness of a solution in Qualitative comparative Analysis
-    (QCA) can be analyzed on three levels. First, on the top level one can 
-    check whether complete solutions are identical. Second, one can assess 
-    robustness on the level of sufficient terms (individual conditions or 
-    conjunctions) by decomposing solutions into their constitutive elements. 
+Description: The robustness of a minimized solution in Qualitative comparative 
+    Analysis (QCA) can be analyzed on three levels. First, on the top level 
+    one can check whether complete solutions are identical.
+    Second, one can assess robustness on the level of sufficient terms 
+    (individual conditions or conjunctions) by decomposing solutions into 
+    their constitutive elements. 
     Third, solutions can be decomposed into individual conditions
-    (individually sufficient or INUS conditions). The results can be easily 
-    visualized using a bar chart (the first level) or Upset plots.
+    (individually sufficient or INUS conditions[INUS = Insufficient and
+    Necessary condition belonging to a conjunction that is Unnecessary
+    and Sufficient]). The results can be easily visualized using a bar 
+    chart (the first level) or Upset plots for sufficient terms and
+    individual conditions (levels two and three).
 License: MIT
 Encoding: UTF-8
 LazyData: true
