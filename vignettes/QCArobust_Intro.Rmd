@@ -25,14 +25,7 @@ library(QCArobust)
 We use the original robustness analysis by Skaaning to illustrate the main functions. (Skaaning, Svend-Erik (2011): Assessing the Robustness of Crisp-Set and Fuzzy-Set QCA Results. *Sociological Methods & Research* 40 (2): 391-408. [published version](http://10.1177/0049124111404818)).
 We import a list of solutions presented in table 3 of the article. It  summarizes results for the choice of different calibration anchors for crisp-set QCA.
 ```{r Skaaning csqca anchors}
-# crisp-set solutions with different anchors
-one <- replicate(28, "DEV*STA")
-two <- replicate(27, "DEV*ind+DEV*STA")
-three <- replicate(165, "C")
-four <- replicate(18, "DEV*LIT*STA")
-five <- replicate(6, "DEV*STA+DEV*LIT*ind")
-# combining solutions in list
-Skaaning_csanchors <- list(one, two, three, four, five)
+data(Skaaning_csanchors)
 ```
 
 
