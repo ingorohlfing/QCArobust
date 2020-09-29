@@ -41,17 +41,20 @@
 #' @source \url{https://www.cambridge.org/core/journals/political-analysis/article/fuzzy-sets-on-shaky-ground-parameter-sensitivity-and-confirmation-bias-in-fsqca/B693F136C5158DF3C19686EC89522C23}
 "krogslund"
 
-#The documentation needs to be finished fully.
-# i do not have all the info on the cases.
 
 #' Skaaning dataset
-#' Data is ....
-#'
-#' @format A list of length 5
+#' Data is borrowed from the robustness analysis by Skaaning and Sven-Erik (2011)
+#' The list of solutions presented in table 3 of the article. It  summarizes
+#' results for the choice of different calibration anchors for crisp-set QCA.
+#' @format A list of solutions.
 #' \describe{
-#'   \item{incl.cut1.val}{First inclusion cut}
+#'   \item{solution1}{First solution}
+#'   \item{solution2}{Second solution}
+#'   \item{solution3}{Third solution}
+#'   \item{solution4}{Fourth solution}
+#'   \item{solution5}{Fifth solution}
 #' }
-#' @source
+#' @source \url{http://10.1177/0049124111404818}
 "Skaaning_csanchors"
 
 
