@@ -11,7 +11,7 @@
 #' package
 #' @param const Choose between the plotting of all solutions
 #' (\code{const = F} or only those meeting a minimum consistency
-#' threshold specified with \cod€{const}.
+#' threshold specified with \code{const}.
 #' @param y is an argument with default value of zero. If
 #' any other number is set for the given argument, only
 #' those configurations which are above the set value for y

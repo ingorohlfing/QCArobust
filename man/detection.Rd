@@ -4,16 +4,16 @@
 \alias{detection}
 \title{Version of comparison function for configurations.}
 \usage{
-detection(df, x)
+detection(ls, x)
 }
 \arguments{
-\item{df}{List of QCA solutions or configurations
+\item{ls}{List of QCA solutions or configurations
 derived from multiple truth table analyses performed
 with \code{\link[QCA]{minimize}} from \code{\link{QCA}}
 package}
 }
 \value{
-A dataframe counting the individual solutions
+A list counting the individual solutions
 or configurations.
 }
 \description{

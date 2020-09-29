@@ -11,7 +11,7 @@
 #' @param num Check for numeric input. Default
 #' is set to \code{FALSE}. This setting ensures that the function
 #' will read data in a numeric format even it is in a
-#' different formt.
+#' different format.
 #'
 #' @return A dataframe counting the individual solutions
 #' or configurations.

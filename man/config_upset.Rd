@@ -5,7 +5,7 @@
 \title{Function decomposes results into individual sufficient
 terms and creates intersection plots.}
 \usage{
-config_upset(df, const = FALSE, y, nsets)
+config_upset(df, const = FALSE, nsets)
 }
 \arguments{
 \item{df}{Dataframe of QCA solutions as produced
@@ -14,15 +14,15 @@ package}
 
 \item{const}{Choose between the plotting of all solutions
 (\code{const = F} or only those meeting a minimum consistency
-threshold specified with \cod€{const}.}
+threshold specified with \code{const}.}
+
+\item{nsets}{Specifies number of sets to be plotted. Argument
+imported from the \code{\link{upset}} function from \pkg{UpSetR}.}
 
 \item{y}{is an argument with default value of zero. If
 any other number is set for the given argument, only
 those configurations which are above the set value for y
 will be plotted by the function}
-
-\item{nsets}{Specifies number of sets to be plotted. Argument
-imported from the \code{\link{upset}} function from \pkg{UpSetR}.}
 }
 \value{
 A plot presenting the frequency of individual
