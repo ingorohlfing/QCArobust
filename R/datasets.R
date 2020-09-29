@@ -39,4 +39,19 @@
 #'   \item{Configurations}{Configurations vector}
 #' }
 #' @source \url{https://www.cambridge.org/core/journals/political-analysis/article/fuzzy-sets-on-shaky-ground-parameter-sensitivity-and-confirmation-bias-in-fsqca/B693F136C5158DF3C19686EC89522C23}
-"hinter"
+"krogslund"
+
+#The documentation needs to be finished fully.
+# i do not have all the info on the cases.
+
+#' Skaaning dataset
+#' Data is ....
+#'
+#' @format A list of length 5
+#' \describe{
+#'   \item{incl.cut1.val}{First inclusion cut}
+#' }
+#' @source
+"Skaaning_csanchors"
+
+
