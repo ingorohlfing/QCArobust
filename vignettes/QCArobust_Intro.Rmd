@@ -1,10 +1,10 @@
 ---
-title: "Working with the QCAviz package"
+title: "Introduction ot the QCArobust package"
 author: "Ingo Rohlfing, Ayjeren Rozyjumayeva"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{Introduction ot the QCArobust package}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -16,12 +16,14 @@ knitr::opts_chunk$set(
 )
 ```
 
-QCA solutions that a researcher wants to aggregate can be created in different ways.
+```{r load package}
+library(QCArobust)
+```
+
 
 ## Manual import of solutions
-We use the original robustness analysis by Skaaning to illzstrate the manual import of solutions. (Skaaning, Svend-Erik (2011): Assessing the Robustness of Crisp-Set and Fuzzy-Set QCA Results. *Sociological Methods & Research* 40 (2): 391-408. [published version](http://10.1177/0049124111404818))
-
-The following solutions are extracted from table 3 in the article that summarizes results for the choice of different calibration anchors for crisp-set QCA.
+We use the original robustness analysis by Skaaning to illustrate the main functions. (Skaaning, Svend-Erik (2011): Assessing the Robustness of Crisp-Set and Fuzzy-Set QCA Results. *Sociological Methods & Research* 40 (2): 391-408. [published version](http://10.1177/0049124111404818)).
+We import a list of solutions presented in table 3 of the article. It  summarizes results for the choice of different calibration anchors for crisp-set QCA.
 ```{r Skaaning csqca anchors}
 # crisp-set solutions with different anchors
 one <- replicate(28, "DEV*STA")
