@@ -18,81 +18,35 @@ knitr::opts_chunk$set(
 
 ```{r load package}
 library(QCArobust)
+devtools::load_all()
 ```
 
-
-## Manual import of solutions
+## Illustration using Skaaning (2011)
 We use the original robustness analysis by Skaaning to illustrate the main functions. (Skaaning, Svend-Erik (2011): Assessing the Robustness of Crisp-Set and Fuzzy-Set QCA Results. *Sociological Methods & Research* 40 (2): 391-408. [published version](http://10.1177/0049124111404818)).
 We import a list of solutions presented in table 3 of the article. It  summarizes results for the choice of different calibration anchors for crisp-set QCA.
 ```{r Skaaning csqca anchors}
+# Loading data from table 3
 data("Skaaning_csanchors")
+```
+
+On the first, most highly aggregated level of analysis one can create a simple bar chart plotting the frequency of solutions.
+```{r}
+# solution function here
 ```
 
 
 On the second, medium level of aggregation, the solutions are decomposed into their configurations. The `config_upset()` function serves this purpose. This should be used now with the config_upset_h() version of the function.
-```{r Skaaning csqca anchors configs}
+```{r}
 #skaaning_configs <- config_upset(Skaaning_csanchors, nsets = 100)
 #png("Skaaning_configs.png", width = 600, height = 400, res = "100")
 #print(skaaning_configs)
 #dev.off()
 ```
 
-```{r Skaaning csqca anchors conditions}
+```{r, fig.width=7, fig.height=5}
 skaaning_conds <- conds_upset(Skaaning_csanchors, nsets = 200)
-png("Skaaning_conds.png", width = 600, height = 400, res = "100")
-print(skaaning_conds)
-dev.off()
+skaaning_conds
 ```
-
-Adding (to be edited later) application of the functions that allow for selection of the consistenc values.
-
-```{r, eval = F}
-data("hinter")
-
-hinter <- hinter %>% 
-  mutate(POScal = round(calibrate(pos, thresholds = "-2.4, -0.15, 1.4"), digits = 2)) %>% 
-  mutate(AMBcal = round(calibrate(ambition, thresholds = "0.01, 0.1205, 0.2"), digits = 2)) %>% 
-  mutate(CRcal = round(calibrate(CR, thresholds = c("5, 52, 95")), digits = 2)) %>% 
-  mutate(DCcal = round(calibrate(DC, thresholds = c("33.5, 47, 55")), digits = 2)) %>% 
-  mutate(EFFcal = round(calibrate(EFF, thresholds = c("0.7, 1.175, 2.065")), digits = 2)) %>%
-  mutate(COMcal = round(calibrate(COM, thresholds = c("4.28, 4.86, 5.285")), digits = 2))
-
-ttpos <- truthTable(data = hinter, outcome = "POScal", neg.out = FALSE,
-                    conditions = c("AMBcal", "CRcal", "DCcal", 
-                                   "EFFcal", "COMcal", "PRG"),
-                    n.cut = 1, incl.cut1 = 0.837, sort.by = c("incl", "n"), 
-                    complete = F, decreasing = T, show.cases = TRUE, PRI = F)
-
-poscons <- minimize(ttpos, details = T, 
-                 explain = "1", include = "1",
-                 all.sol = T)
-
-```
-
-
-Applying the selector function itself and then the function within the UpSetR wrap function.
-
-```{r, eval = F}
-dt.selector(poscons)
-dt.selector(poscons, con.thresh = 0.85)
-
-#being re-written
-#list.selector(solutionslist)
-#list.selector(solutionslist, con.thresh = 0.85)
-```
-
-
-Usage of the selectors within the QCAViz functions
-```{r, eval = F}
-solutionslist <- list(poscons, poscons)
-
-#the configurations that are subset
-config_upset(poscons, const = TRUE, y = 0.85, nsets = 10)
-
-#all of the configurations
-config_upset(poscons, nsets = 10)
-```
-
 
 Applying the functions to Krogslund et al. (PA, 2015)
 Initially on the naive model 1 (referred to as ka_model_1_sim)
