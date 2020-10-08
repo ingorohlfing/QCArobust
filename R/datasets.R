@@ -39,7 +39,7 @@
 #'   \item{Configurations}{Configurations vector}
 #' }
 #' @source \url{https://doi.org/10.1093/pan/mpu016}
-"Krogslund"
+NULL
 
 #' Skaaning dataset
 #' Data is borrowed from the robustness analysis by Skaaning and Sven-Erik (2011)

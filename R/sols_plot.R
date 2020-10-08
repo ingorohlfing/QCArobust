@@ -1,17 +1,17 @@
 #' sols_plot()
 #'
-#' the special plot function which allows to
-#' chart the solutions in their entirety (with all
-#' the configurations included)
+#' Plots the frequency of solutions using a bar chart.
 #'
 #' @importFrom magrittr %>%
 #' @import ggplot2
-#' @param ls is a list of all solutions generated
-#' through the iterative process
-#' @return the function returns a chart which plots out
-#' the number of times a specific solution occurs in a
-#' given model. The solutions are checked against
-#' multiple amount of iterations
+#'
+#' @param ls List of QCA solutions or configurations
+#' derived from multiple truth table analyses performed
+#' with \code{\link[QCA]{minimize}} from \pkg{QCA}
+#' package.
+#'
+#' @return A bar chart created with \code{\link{ggplot2}} summarizing
+#' the frequency of solutions in the data.
 #'
 #' @export
 sols_plot <- function(ls){

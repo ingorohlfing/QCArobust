@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="author" content="Ingo Rohlfing, Ayjeren Rozyjumayeva" />
+
+<meta name="date" content="2020-10-08" />
+
+<title>Introduction to the QCArobust package</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Introduction to the QCArobust package</h1>
+<h4 class="author">Ingo Rohlfing, Ayjeren Rozyjumayeva</h4>
+<h4 class="date">2020-10-08</h4>
+
+
+
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">library</span>(QCArobust)</a>
+<a class="sourceLine" id="cb1-2" title="2">devtools<span class="op">::</span><span class="kw">load_all</span>()</a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="co">#&gt; Loading QCArobust</span></a></code></pre></div>
+<div id="illustration-using-skaaning-2011" class="section level2">
+<h2>Illustration using Skaaning (2011)</h2>
+<p>We use the original robustness analysis by Skaaning to illustrate the main functions. (Skaaning, Svend-Erik (2011): Assessing the Robustness of Crisp-Set and Fuzzy-Set QCA Results. <em>Sociological Methods &amp; Research</em> 40 (2): 391-408. <a href="http://10.1177/0049124111404818">published version</a>). We import a list of solutions presented in table 3 of the article. It summarizes results for the choice of different calibration anchors for crisp-set QCA.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="co"># Loading data from table 3</span></a>
+<a class="sourceLine" id="cb2-2" title="2"><span class="kw">data</span>(<span class="st">&quot;Skaaning_csanchors&quot;</span>)</a></code></pre></div>
+<p>On the first, most highly aggregated level of analysis one can create a simple bar chart plotting the frequency of solutions.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">sols_plot</span>(Skaaning_csanchors)</a></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<p>On the second, medium level of aggregation, the solutions are decomposed into their configurations. The <code>config_upset()</code> function serves this purpose. This should be used now with the config_upset_h() version of the function.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="co">#skaaning_configs &lt;- config_upset(Skaaning_csanchors, nsets = 100)</span></a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="co">#png(&quot;Skaaning_configs.png&quot;, width = 600, height = 400, res = &quot;100&quot;)</span></a>
+<a class="sourceLine" id="cb4-3" title="3"><span class="co">#print(skaaning_configs)</span></a>
+<a class="sourceLine" id="cb4-4" title="4"><span class="co">#dev.off()</span></a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">skaaning_conds &lt;-<span class="st"> </span><span class="kw">conds_upset</span>(Skaaning_csanchors, <span class="dt">nsets =</span> <span class="dv">200</span>)</a>
+<a class="sourceLine" id="cb5-2" title="2">skaaning_conds</a></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<p>Applying the functions to Krogslund et al. (PA, 2015) Initially on the naive model 1 (referred to as ka_model_1_sim)</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">model_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;ka_model_1_sim.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb6-2" title="2"></a>
+<a class="sourceLine" id="cb6-3" title="3"><span class="co">#conditions</span></a>
+<a class="sourceLine" id="cb6-4" title="4">kcp &lt;-<span class="st"> </span><span class="kw">conds_upset</span>(model_<span class="dv">1</span><span class="op">$</span>Configurations, <span class="dt">nsets =</span> <span class="dv">200</span>)</a>
+<a class="sourceLine" id="cb6-5" title="5"><span class="kw">conds_upset</span>(model_<span class="dv">1</span><span class="op">$</span>Configurations, <span class="dt">nsets =</span> <span class="dv">162</span>)</a></code></pre></div>
+<p>The rest of the models (titled for the sake of clarity as model_n) model_1 (is the model presented in the chunk above).</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">model_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;ka_model_1_ncut1_error.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb7-2" title="2">model_<span class="dv">3</span> &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;model_2_ncut1_error.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb7-3" title="3">model_<span class="dv">4</span> &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;model_2_sim.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb7-4" title="4">model_<span class="dv">5</span> &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;model_ncut2_error.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb7-5" title="5">model_<span class="dv">6</span> &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;model_sim.csv&quot;</span>)</a></code></pre></div>
+<p>Conditions function</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw">conds_upset</span>(model_<span class="dv">2</span><span class="op">$</span>Configurations, <span class="dt">nsets =</span> <span class="dv">200</span>)</a>
+<a class="sourceLine" id="cb8-2" title="2"><span class="kw">conds_upset</span>(model_<span class="dv">3</span><span class="op">$</span>Configurations, <span class="dt">nsets =</span> <span class="dv">500</span>)</a>
+<a class="sourceLine" id="cb8-3" title="3"><span class="kw">conds_upset</span>(model_<span class="dv">4</span><span class="op">$</span>Configurations, <span class="dt">nsets =</span> <span class="dv">300</span>)</a>
+<a class="sourceLine" id="cb8-4" title="4"><span class="kw">conds_upset</span>(model_<span class="dv">5</span><span class="op">$</span>Configurations, <span class="dt">nsets =</span> <span class="dv">400</span>)</a>
+<a class="sourceLine" id="cb8-5" title="5"><span class="kw">conds_upset</span>(model_<span class="dv">6</span><span class="op">$</span>Configurations, <span class="dt">nsets =</span> <span class="dv">500</span>)</a></code></pre></div>
+<p>Configurations applied</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">config_upset</span>(model_<span class="dv">2</span><span class="op">$</span>Configurations, <span class="dt">nsets =</span> <span class="dv">300</span>)</a>
+<a class="sourceLine" id="cb9-2" title="2"><span class="kw">config_upset</span>(model_<span class="dv">3</span><span class="op">$</span>Configurations, <span class="dt">nsets =</span> <span class="dv">300</span>)</a>
+<a class="sourceLine" id="cb9-3" title="3"><span class="kw">config_upset</span>(model_<span class="dv">4</span><span class="op">$</span>Configurations, <span class="dt">nsets =</span> <span class="dv">400</span>)</a>
+<a class="sourceLine" id="cb9-4" title="4"><span class="kw">config_upset</span>(model_<span class="dv">5</span><span class="op">$</span>Configurations, <span class="dt">nsets =</span> <span class="dv">500</span>)</a>
+<a class="sourceLine" id="cb9-5" title="5"><span class="kw">config_upset</span>(model_<span class="dv">6</span><span class="op">$</span>Configurations, <span class="dt">nsets =</span> <span class="dv">400</span>)</a></code></pre></div>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,10 +1,10 @@
 ---
-title: "Introduction ot the QCArobust package"
+title: "Introduction to the QCArobust package"
 author: "Ingo Rohlfing, Ayjeren Rozyjumayeva"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Introduction ot the QCArobust package}
+  %\VignetteIndexEntry{Introduction to the QCArobust package}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -31,7 +31,7 @@ data("Skaaning_csanchors")
 
 On the first, most highly aggregated level of analysis one can create a simple bar chart plotting the frequency of solutions.
 ```{r}
-# solution function here
+sols_plot(Skaaning_csanchors)
 ```
 
 
@@ -91,60 +91,6 @@ config_upset(model_5$Configurations, nsets = 500)
 config_upset(model_6$Configurations, nsets = 400)
 
 ```
-
-
-Applying the functions to the Böller Study
-
-
-Important: 
-1. the process first needs the derivation of solutions.
-2. The cases with a single condition do not work within the UpSetR environment.
-
-The conditions
-```{r, eval = F}
-conds_upset(negcons$solution, nsets = 15)
-conds_upset(negpars$solution, nsets = 13)
-conds_upset(poscons$solution, nsets = 5)
-conds_upset(neginter$solution, nsets = 15)
-
-#the non-functioning cases
-conds_upset(posinter$solution, nsets = 5) #does not work bc there is a single condition!
-conds_upset(pospars$solution, nsets = 5)  #does not work bc there is a single condition!
-```
-
-
-The configurations
-The same notes as above apply
-```{r, eval = F}
-
-config_upset(neginter, nsets = 4)
-config_upset(poscons, nsets = 13)
-config_upset(negcons, nsets = 13)
-config_upset(negpars, nsets = 12)
-
-#the non-functioning cases
-config_upset(pospars, nsets = 10) #does not work bc there is a sngl condition
-config_upset(posinter, nsets = 14) #does not work bc there is a sngl condition
-```
-
-
-Pulling solutions (will be taken out of the 
-final version of the vignette, I just want to check if 
-the functions for hand pulled solutions work)
-
-Pulling all of the solutions
-```{r, eval = F}
-allsols <- c(posinter$solution, poscons$solution, pospars$solution, 
-                 neginter$solution, negcons$solution, negpars$solution)
-```
-
-Checking the main pooled solution functions
-```{r, eval = F}
-conds_upset(allsols, nsets = 10)
-config_upset(allsols, nsets = 10)
-```
-
-
 
 
 

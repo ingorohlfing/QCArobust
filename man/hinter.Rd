@@ -24,24 +24,11 @@ A list with 20 observations of 10 variables
   \item{COM}{the numeric value of COM}
   \item{PRG}{the numeric value of PRG}
 }
-
-A tibble with 40000 observations of 5 variables
-\describe{
-  \item{incl.cut1.val}{First inclusion cut}
-  \item{incl.cut0.val}{Second inclusion cut}
-  \item{n.cut.val}{the numeric value}
-  \item{error}{the error}
-  \item{Configurations}{Configurations vector}
-}
 }
 \source{
 \url{http://onlinelibrary.wiley.com/doi/10.1111/1475-6765.12142/suppinfo/}
-
-\url{https://www.cambridge.org/core/journals/political-analysis/article/fuzzy-sets-on-shaky-ground-parameter-sensitivity-and-confirmation-bias-in-fsqca/B693F136C5158DF3C19686EC89522C23}
 }
 \usage{
-hinter
-
 hinter
 }
 \description{
@@ -52,10 +39,5 @@ A dataset containing informaiton about 20 countres
 used to understand the politic sof external
 approval: Explaining the IMF's evaluation
 of austerity programmes in those countries.
-
-Krogslund dataset
-Data borrowed from Krogslund/Choi/Poertner study
-A dataset containing informaiton about 5 variables
-that are the result of a simulation
 }
 \keyword{datasets}
