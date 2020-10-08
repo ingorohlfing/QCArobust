@@ -41,7 +41,6 @@
 #' @source \url{https://doi.org/10.1093/pan/mpu016}
 "Krogslund"
 
-
 #' Skaaning dataset
 #' Data is borrowed from the robustness analysis by Skaaning and Sven-Erik (2011)
 #' The list of solutions presented in table 3 of the article. It  summarizes
