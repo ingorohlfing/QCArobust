@@ -39,7 +39,7 @@
 #'   \item{Configurations}{Configurations vector}
 #' }
 #' @source \url{https://www.cambridge.org/core/journals/political-analysis/article/fuzzy-sets-on-shaky-ground-parameter-sensitivity-and-confirmation-bias-in-fsqca/B693F136C5158DF3C19686EC89522C23}
-"krogslund"
+"Krogslund"
 
 
 #' Skaaning dataset
