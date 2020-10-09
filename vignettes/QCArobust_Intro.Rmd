@@ -25,13 +25,13 @@ devtools::load_all()
 We use the original robustness analysis by Skaaning to illustrate the main functions. (Skaaning, Svend-Erik (2011): Assessing the Robustness of Crisp-Set and Fuzzy-Set QCA Results. *Sociological Methods & Research* 40 (2): 391-408. [published version](http://10.1177/0049124111404818)).
 We import a list of solutions presented in table 3 of the article. It  summarizes results for the choice of different calibration anchors for crisp-set QCA.
 ```{r Skaaning csqca anchors}
-# Loading data from table 3
-data("Skaaning_csanchors")
+# Loading Skaaning (2011) data from table 3
+data("Skaaning_table3")
 ```
 
 On the first, most highly aggregated level of analysis one can create a simple bar chart plotting the frequency of solutions.
 ```{r}
-sols_plot(Skaaning_csanchors)
+sols_plot(Skaaning_table3)
 ```
 
 
