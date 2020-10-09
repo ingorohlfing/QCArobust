@@ -11,11 +11,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### To do
 
-**conds_upset**
-- documentation says input should be dataframe, but it also works with a list
-- IR: I changed documentation and example to list; df and list now options
-- for AR: In example, AB is not decomposed into A and B, as it should be
-
+**sols_plot**
+- Outputs a bar chart that looks good. Needed as additional output (or separate function): Dataframe linking solution IDs from plot to actual solutions.
 
 ### In Progress Now
 1. Checking the new counting against ne datasets.
