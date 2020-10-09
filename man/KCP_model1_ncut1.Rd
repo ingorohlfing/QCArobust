@@ -4,12 +4,14 @@
 \name{KCP_model1_ncut1}
 \alias{KCP_model1_ncut1}
 \title{Datasets documentation
-Krogslund dataset
+Krogslund dataset (model 1, ncut 1)
 Data borrowed from Krogslund/Choi/Poertner study
 A dataset containing informaiton about 5 variables
-that are the result of a simulation}
+that are the result of a simulation analysis. This
+dataset refers to a simulation analysis of original data
+by Koenig-Archibugi.}
 \format{
-A tibble with 40000 observations of 5 variables
+A tibble with 40000 observations and 5 variables
 \describe{
   \item{incl.cut1.val}{First inclusion cut}
   \item{incl.cut0.val}{Second inclusion cut}
@@ -26,9 +28,11 @@ KCP_model1_ncut1
 }
 \description{
 Datasets documentation
-Krogslund dataset
+Krogslund dataset (model 1, ncut 1)
 Data borrowed from Krogslund/Choi/Poertner study
 A dataset containing informaiton about 5 variables
-that are the result of a simulation
+that are the result of a simulation analysis. This
+dataset refers to a simulation analysis of original data
+by Koenig-Archibugi.
 }
 \keyword{datasets}

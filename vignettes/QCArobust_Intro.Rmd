@@ -43,8 +43,8 @@ On the second, medium level of aggregation, the solutions are decomposed into th
 #dev.off()
 ```
 
-```{r, fig.width=7, fig.height=5}
-skaaning_conds <- conds_upset(Skaaning_csanchors, nsets = 200)
+```{r, fig.width = 7, fig.height = 5}
+skaaning_conds <- conds_upset(Skaaning_table3, nsets = 200)
 skaaning_conds
 ```
 

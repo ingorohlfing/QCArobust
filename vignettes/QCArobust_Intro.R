@@ -9,11 +9,11 @@ library(QCArobust)
 devtools::load_all()
 
 ## ----Skaaning csqca anchors---------------------------------------------------
-# Loading data from table 3
-data("Skaaning_csanchors")
+# Loading Skaaning (2011) data from table 3
+data("Skaaning_table3")
 
 ## -----------------------------------------------------------------------------
-sols_plot(Skaaning_csanchors)
+sols_plot(Skaaning_table3)
 
 ## -----------------------------------------------------------------------------
 #skaaning_configs <- config_upset(Skaaning_csanchors, nsets = 100)
@@ -21,8 +21,8 @@ sols_plot(Skaaning_csanchors)
 #print(skaaning_configs)
 #dev.off()
 
-## ---- fig.width=7, fig.height=5-----------------------------------------------
-skaaning_conds <- conds_upset(Skaaning_csanchors, nsets = 200)
+## ---- fig.width = 7, fig.height = 5-------------------------------------------
+skaaning_conds <- conds_upset(Skaaning_table3, nsets = 200)
 skaaning_conds
 
 ## ---- eval = F----------------------------------------------------------------
