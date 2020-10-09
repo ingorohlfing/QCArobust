@@ -24,7 +24,7 @@
 #' Data is borrowed from the robustness analysis by Skaaning and Sven-Erik (2011)
 #' The list of solutions presented in table 3 of the article. It  summarizes
 #' results for the choice of different calibration anchors for crisp-set QCA.
-#' @format A list of solutions.
+#' @format A list of 244 solutions.
 #' \describe{
 #'   \item{solution1}{First solution}
 #'   \item{solution2}{Second solution}
