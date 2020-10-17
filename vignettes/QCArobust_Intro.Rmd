@@ -18,7 +18,6 @@ knitr::opts_chunk$set(
 
 ```{r load package}
 library(QCArobust)
-devtools::load_all()
 ```
 
 ## Illustration using Skaaning (2011)
@@ -29,9 +28,11 @@ We import a list of solutions presented in table 3 of the article. It  summarize
 data("Skaaning_table3")
 ```
 
-On the first, most highly aggregated level of analysis one can create a simple bar chart plotting the frequency of solutions.
+### Analysis of solutions
+On the most highly aggregated level of analysis, `sols_plot()` either produces a bar chart plotting the frequency of solutions or a dataframe with solutions and their frequencies. 
 ```{r}
 sols_plot(Skaaning_table3)
+sols_plot(Skaaning_table3, plot = T, plot_solutions = 3)
 ```
 
 
