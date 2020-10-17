@@ -4,17 +4,29 @@
 \alias{sols_plot}
 \title{sols_plot()}
 \usage{
-sols_plot(ls)
+sols_plot(ls, plot = T, plot_solutions = 5)
 }
 \arguments{
 \item{ls}{List of QCA solutions or configurations
 derived from multiple truth table analyses performed
 with \code{\link[QCA]{minimize}} from \pkg{QCA}
 package.}
+
+\item{plot}{If set to \code{TRUE}, a bar chart of frequency
+of solutions is produced. If set to \code{FALSE},
+a dataframe with solutions and frequencies is returned.
+Default is \code{TRUE}.}
+
+\item{plot_solutions}{Number of solutions to be plotted in
+bar chart. Default is 5. If \code{plot} is set to \code{FALSE},
+the dataframe shows all solutions regardless of the number
+specified for plotting.}
 }
 \value{
-A bar chart created with \code{\link{ggplot2}} summarizing
-the frequency of solutions in the data.
+If \code{plot} set to \code{TRUE}, a bar chart of
+frequency of solutions is produced with \code{\link{ggplot2}}.
+If \code{plot} is set to \code{FALSE}, a dataframe with
+solutions and frequencies.
 }
 \description{
 Plots the frequency of solutions using a bar chart.
