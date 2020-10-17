@@ -6,7 +6,6 @@ knitr::opts_chunk$set(
 
 ## ----load package-------------------------------------------------------------
 library(QCArobust)
-devtools::load_all()
 
 ## ----Skaaning csqca anchors---------------------------------------------------
 # Loading Skaaning (2011) data from table 3
@@ -14,6 +13,7 @@ data("Skaaning_table3")
 
 ## -----------------------------------------------------------------------------
 sols_plot(Skaaning_table3)
+sols_plot(Skaaning_table3, plot = T, plot_solutions = 3)
 
 ## -----------------------------------------------------------------------------
 #skaaning_configs <- config_upset(Skaaning_csanchors, nsets = 100)
