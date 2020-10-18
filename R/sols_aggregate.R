@@ -1,6 +1,7 @@
-#' sols_plot()
+#' sols_aggregate()
 #'
-#' Plots the frequency of solutions using a bar chart.
+#' Aggregates over solutions by calculating and plotting
+#' their frequencies.
 #'
 #' @importFrom magrittr %>%
 #' @import ggplot2
@@ -24,7 +25,7 @@
 #' solutions and frequencies.
 #'
 #' @export
-sols_plot <- function(ls, plot = T, plot_solutions = 5) {
+sols_aggregate <- function(ls, plot = T, plot_solutions = 5) {
 
   # preprocessing the list
   temp3 <- purrr::map(ls, function(x) stringi::stri_split_fixed(x, " "))
