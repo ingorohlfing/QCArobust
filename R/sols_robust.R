@@ -1,6 +1,7 @@
-#' sols_aggregate()
+#' sols_robust()
 #'
-#' Aggregates over solutions by calculating and plotting
+#' Evaluates robustness on the level of QCA solutions. It
+#' aggregates over solutions by calculating and plotting
 #' their frequencies.
 #'
 #' @importFrom magrittr %>%
@@ -25,7 +26,7 @@
 #' solutions and frequencies.
 #'
 #' @export
-sols_aggregate <- function(ls, plot = T, plot_solutions = 5) {
+sols_robust <- function(ls, plot = T, plot_solutions = 5) {
 
   # preprocessing the list
   temp3 <- purrr::map(ls, function(x) stringi::stri_split_fixed(x, " "))

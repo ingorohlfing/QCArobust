@@ -19,10 +19,10 @@
 #'
 #' @examples
 #' sols <- list(c(replicate("A", 2), replicate("AB+c", 2), replicate("A+c", 2)))
-#' conds_upset(sols)
+#' conds_robust(sols)
 #'
 #' @export
-conds_upset <- function(df, nsets) {
+conds_robust <- function(df, nsets) {
   temp1 <- purrr::map(unlist(df), function(x) stringi::stri_split_fixed(x, "*") %>% unlist())
   temp1 <- purrr::map(temp1, function(x) stringi::stri_split_fixed(x, "+") %>% unlist())
   all_values <- stringi::stri_unique(unlist(temp1))

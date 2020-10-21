@@ -12,7 +12,7 @@
 
 <meta name="author" content="Ingo Rohlfing, Ayjeren Rozyjumayeva" />
 
-<meta name="date" content="2020-10-17" />
+<meta name="date" content="2020-10-21" />
 
 <title>Introduction to the QCArobust package</title>
 
@@ -371,11 +371,12 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 <h1 class="title toc-ignore">Introduction to the QCArobust package</h1>
 <h4 class="author">Ingo Rohlfing, Ayjeren Rozyjumayeva</h4>
-<h4 class="date">2020-10-17</h4>
+<h4 class="date">2020-10-21</h4>
 
 
 
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">library</span>(QCArobust)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">library</span>(QCArobust)</a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="kw">library</span>(formattable) <span class="co"># nicer html tables</span></a></code></pre></div>
 <div id="illustration-using-skaaning-2011" class="section level2">
 <h2>Illustration using Skaaning (2011)</h2>
 <p>We use the original robustness analysis by Skaaning to illustrate the main functions. (Skaaning, Svend-Erik (2011): Assessing the Robustness of Crisp-Set and Fuzzy-Set QCA Results. <em>Sociological Methods &amp; Research</em> 40 (2): 391-408. <a href="http://10.1177/0049124111404818">published version</a>). We import a list of solutions presented in table 3 of the article. It summarizes results for the choice of different calibration anchors for crisp-set QCA.</p>
@@ -383,19 +384,91 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <a class="sourceLine" id="cb2-2" title="2"><span class="kw">data</span>(<span class="st">&quot;Skaaning_table3&quot;</span>)</a></code></pre></div>
 <div id="analysis-of-solutions" class="section level3">
 <h3>Analysis of solutions</h3>
-<p>On the most highly aggregated level of analysis, <code>sols_plot()</code> either produces a bar chart plotting the frequency of solutions or a dataframe with solutions and their frequencies.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">sols_plot</span>(Skaaning_table3)</a></code></pre></div>
+<p>On the most highly aggregated level of analysis, <code>sols_robust()</code> either produces a bar chart plotting the frequency of solutions or a dataframe with solutions and their frequencies. The ´plot = T<code>creates a bar chart of solution frequencies in the dataset. The argument</code>plot_solutions` specifies how many solutions sohuld be plotted with the default being 5 (count always starts with the most frequent solution). Solutions can get long and be too long for plotting on the axes. This is why the solutions are numbered in the plots.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="co"># plotting solutions with default setting</span></a>
+<a class="sourceLine" id="cb3-2" title="2"><span class="kw">sols_robust</span>(Skaaning_table3, <span class="dt">plot =</span> T)</a></code></pre></div>
 <p><img src="data:image/png;base64,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" /><!-- --></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">sols_plot</span>(Skaaning_table3, <span class="dt">plot =</span> T, <span class="dt">plot_solutions =</span> <span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="co"># plotting three solutions</span></a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="kw">sols_robust</span>(Skaaning_table3, <span class="dt">plot =</span> T, <span class="dt">plot_solutions =</span> <span class="dv">3</span>)</a></code></pre></div>
 <p><img src="data:image/png;base64,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" /><!-- --></p>
+<p>If one wants to see what solution is behiind each number, one has to produce the dataframe with the argument <code>plot = F</code>. The dataframe always contains all solutions in the data regardless of the frequency.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">sols_robust</span>(Skaaning_table3, <span class="dt">plot =</span> F) -&gt;<span class="st"> </span>Skaaning_df</a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="kw">formattable</span>(Skaaning_df)</a></code></pre></div>
+<table class="table table-condensed">
+<thead>
+<tr>
+<th style="text-align:right;">
+Raw
+</th>
+<th style="text-align:right;">
+Freq
+</th>
+<th style="text-align:right;">
+solution
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+C
+</td>
+<td style="text-align:right;">
+165
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+DEV*STA
+</td>
+<td style="text-align:right;">
+28
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+DEV<em>ind+DEV</em>STA
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+DEV<em>LIT</em>STA
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+DEV<em>STA+DEV</em>LIT*ind
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+</tbody>
+</table>
 <p>On the second, medium level of aggregation, the solutions are decomposed into their configurations. The <code>config_upset()</code> function serves this purpose. This should be used now with the config_upset_h() version of the function.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="co">#skaaning_configs &lt;- config_upset(Skaaning_csanchors, nsets = 100)</span></a>
-<a class="sourceLine" id="cb5-2" title="2"><span class="co">#png(&quot;Skaaning_configs.png&quot;, width = 600, height = 400, res = &quot;100&quot;)</span></a>
-<a class="sourceLine" id="cb5-3" title="3"><span class="co">#print(skaaning_configs)</span></a>
-<a class="sourceLine" id="cb5-4" title="4"><span class="co">#dev.off()</span></a></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">skaaning_conds &lt;-<span class="st"> </span><span class="kw">conds_upset</span>(Skaaning_table3, <span class="dt">nsets =</span> <span class="dv">200</span>)</a>
 <a class="sourceLine" id="cb6-2" title="2">skaaning_conds</a></code></pre></div>
-<p><img src="data:image/png;base64,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" /><!-- --></p>
 <p>Applying the functions to Krogslund et al. (PA, 2015) Initially on the naive model 1 (referred to as ka_model_1_sim)</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">model_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;ka_model_1_sim.csv&quot;</span>)</a>
 <a class="sourceLine" id="cb7-2" title="2"></a>

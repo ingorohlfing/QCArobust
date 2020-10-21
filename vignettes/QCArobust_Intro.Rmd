@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r load package, warning = F}
+```{r load package, warning = F, message = F}
 library(QCArobust)
 library(formattable) # nicer html tables
 ```
@@ -30,31 +30,24 @@ data("Skaaning_table3")
 ```
 
 ### Analysis of solutions
-On the most highly aggregated level of analysis, `sols_aggregate()` either produces a bar chart plotting the frequency of solutions or a dataframe with solutions and their frequencies. The ´plot = T` creates a bar chart of solution frequencies in the dataset. The argument `plot_solutions` specifies how many solutions sohuld be plotted with the default being 5 (count always starts with the most frequent solution). Solutions can get long and be too long for plotting on the axes. This is why the solutions are numbered in the plots.
+On the most highly aggregated level of analysis, `sols_robust()` either produces a bar chart plotting the frequency of solutions or a dataframe with solutions and their frequencies. The ´plot = T` creates a bar chart of solution frequencies in the dataset. The argument `plot_solutions` specifies how many solutions sohuld be plotted with the default being 5 (count always starts with the most frequent solution). Solutions can get long and be too long for plotting on the axes. This is why the solutions are numbered in the plots.
 ```{r}
 # plotting solutions with default setting
-sols_aggregate(Skaaning_table3, plot = T)
+sols_robust(Skaaning_table3, plot = T)
 # plotting three solutions
-sols_aggregate(Skaaning_table3, plot = T, plot_solutions = 3)
+sols_robust(Skaaning_table3, plot = T, plot_solutions = 3)
 ```
 
 If one wants to see what solution is behiind each number, one has to produce the dataframe with the argument `plot = F`. The dataframe always contains all solutions in the data regardless of the frequency.
 ```{r}
-sols_aggregate(Skaaning_table3, plot = F) -> Skaaning_df
+sols_robust(Skaaning_table3, plot = F) -> Skaaning_df
 formattable(Skaaning_df)
 ```
 
 
 
 On the second, medium level of aggregation, the solutions are decomposed into their configurations. The `config_upset()` function serves this purpose. This should be used now with the config_upset_h() version of the function.
-```{r}
-#skaaning_configs <- config_upset(Skaaning_csanchors, nsets = 100)
-#png("Skaaning_configs.png", width = 600, height = 400, res = "100")
-#print(skaaning_configs)
-#dev.off()
-```
-
-```{r, fig.width = 7, fig.height = 5}
+```{r, eval = F, fig.width = 7, fig.height = 5}
 skaaning_conds <- conds_upset(Skaaning_table3, nsets = 200)
 skaaning_conds
 ```

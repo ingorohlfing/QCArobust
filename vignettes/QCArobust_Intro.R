@@ -4,26 +4,27 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 
-## ----load package-------------------------------------------------------------
+## ----load package, warning = F, message = F-----------------------------------
 library(QCArobust)
+library(formattable) # nicer html tables
 
 ## ----Skaaning csqca anchors---------------------------------------------------
 # Loading Skaaning (2011) data from table 3
 data("Skaaning_table3")
 
 ## -----------------------------------------------------------------------------
-sols_plot(Skaaning_table3)
-sols_plot(Skaaning_table3, plot = T, plot_solutions = 3)
+# plotting solutions with default setting
+sols_robust(Skaaning_table3, plot = T)
+# plotting three solutions
+sols_robust(Skaaning_table3, plot = T, plot_solutions = 3)
 
 ## -----------------------------------------------------------------------------
-#skaaning_configs <- config_upset(Skaaning_csanchors, nsets = 100)
-#png("Skaaning_configs.png", width = 600, height = 400, res = "100")
-#print(skaaning_configs)
-#dev.off()
+sols_robust(Skaaning_table3, plot = F) -> Skaaning_df
+formattable(Skaaning_df)
 
-## ---- fig.width = 7, fig.height = 5-------------------------------------------
-skaaning_conds <- conds_upset(Skaaning_table3, nsets = 200)
-skaaning_conds
+## ---- eval = F, fig.width = 7, fig.height = 5---------------------------------
+#  skaaning_conds <- conds_upset(Skaaning_table3, nsets = 200)
+#  skaaning_conds
 
 ## ---- eval = F----------------------------------------------------------------
 #  model_1 <- read.csv("ka_model_1_sim.csv")
