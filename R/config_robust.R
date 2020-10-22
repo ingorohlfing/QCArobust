@@ -1,5 +1,10 @@
-#' Function decomposes results into individual sufficient
-#' terms and creates intersection plots.
+#' config_robust()
+#'
+#' Evaluates robustness on the level of individual
+#' sufficient conditions or conjunctions (terms). It aggregates
+#' over sufficient terms by calculating their frequencies and
+#' the frequencies of terms cooccurring in a solution. The
+#' frequencies are plotted using Upset plots.
 #'
 #' @importFrom magrittr %>%
 #' @importFrom stringi stri_trim stri_unique
@@ -23,7 +28,7 @@
 #' conditions and their co-occurrences across QCA solutions.
 #'
 #' @export
-config_upset <- function(df, const = FALSE, nsets) {
+config_robust <- function(df, const = FALSE, nsets) {
 
   if (!const) {
     temp1 <- unlist(df$solution)
