@@ -1,5 +1,11 @@
-#' Function decomposes results into individual conditions
-#' and creates intersection plots.
+#' conds_robust()
+#'
+#' Evaluates robustness on the level of single conditions
+#' or INUS conditions (Insufficient and Necessary conditions
+#' that are part of a conjunction that is Unnecessary and
+#' Sufficient). It aggregates over conditions by calculating
+#' and plotting their frequencies and the frequencies of
+#' conditions cooccurring in a solution.
 #'
 #' @importFrom magrittr %>%
 #' @importFrom stringi stri_split_fixed stri_unique
@@ -23,10 +29,13 @@
 #'
 #' @export
 conds_robust <- function(df, nsets) {
-  temp1 <- purrr::map(unlist(df), function(x) stringi::stri_split_fixed(x, "*") %>% unlist())
-  temp1 <- purrr::map(temp1, function(x) stringi::stri_split_fixed(x, "+") %>% unlist())
+  temp1 <- purrr::map(unlist(df), function(x)
+    stringi::stri_split_fixed(x, "*") %>% unlist())
+  temp1 <- purrr::map(temp1, function(x)
+    stringi::stri_split_fixed(x, "+") %>% unlist())
   all_values <- stringi::stri_unique(unlist(temp1))
-  final_matrix <- plyr::ldply(temp1, function(y) comparison(x = all_values, y = y, num = T))
+  final_matrix <- plyr::ldply(temp1, function(y)
+    comparison(x = all_values, y = y, num = T))
   final_matrix$.id <- NULL
   colnames(final_matrix) <- all_values
   UpSetR::upset(final_matrix, order.by = "freq", nsets = nsets)
