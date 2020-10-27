@@ -1,0 +1,56 @@
+---
+title: "Analysis of solutions"
+author: "Ingo Rohlfing, Ayjeren Rozyjumayeva"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Analysis of solutions}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+We load the packages needed for illustrating a robustness assessment on the level of entire QCA solutions.
+```{r load package, warning = F, message = F}
+library(QCArobust)
+library(formattable) # nicer html tables
+```
+
+## Analysis of solutions
+The original robustness analysis by [Skaaning (2011)](http://10.1177/0049124111404818) is the basis for our empirical illustration. We import a list of solutions presented in table 3 of the article. It  summarizes results for the choice of different calibration anchors for crisp-set QCA.
+```{r Skaaning csqca anchors}
+# Loading Skaaning (2011) data from table 3
+data("Skaaning_table3")
+```
+
+### Plottung of robustness results
+On the most highly aggregated level of analysis, `sols_robust()` either produces a bar chart plotting the frequency of solutions or a dataframe with solutions and their frequencies. The ´plot = T` creates a bar chart of solution frequencies in the dataset. The argument `plot_solutions` specifies how many solutions sohuld be plotted with the default being 5 (count always starts with the most frequent solution). Solutions can get long and be too long for plotting on the axes. This is why the solutions are numbered in the plots.
+```{r, fig.width = 6, fig.height = 6}
+# plotting models with default setting
+sols_robust(Skaaning_table3, plot = T)
+```
+
+If one is interested in the most frequent models, one can limit the number of models that are to be plotted with the argument `plot_solutions` (default is 5).
+```{r, fig.width = 6, fig.height = 6}
+# plotting three solutions
+sols_robust(Skaaning_table3, plot = T, plot_solutions = 3)
+```
+
+
+### Dataframe of robustness results
+The complementary approach to plotting the results is the construction of a dataframe. The dataframe shows what the models are and how often each model occurs. One derives the dataframe with the argument `plot = F`.
+```{r}
+sols_robust(Skaaning_table3, plot = F) -> Skaaning_df
+formattable(Skaaning_df)
+```
+
+The models are ordered and numbered in descending order of their frequencies. The running numbers of models in the dataframe correspond to the numbers in the plot.
+
+
+
