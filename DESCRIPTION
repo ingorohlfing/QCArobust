@@ -35,6 +35,8 @@ Imports:
         purrr, 
         stringi, 
         magrittr,
+        ggplot2,
+        rlist,
         sjmisc
 Suggests: knitr,
     rmarkdown
