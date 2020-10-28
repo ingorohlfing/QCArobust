@@ -34,6 +34,7 @@ On the most highly aggregated level of analysis, `sols_robust()` either produces
 ```{r, fig.width = 6, fig.height = 6}
 # plotting models with default setting
 sols_robust(Skaaning_table3, plot = T)
+sols_robust(Skaaning_table3, plot = F)
 ```
 
 If one is interested in the most frequent models, one can limit the number of models that are to be plotted with the argument `plot_solutions` (default is 5).

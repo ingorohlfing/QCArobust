@@ -23,7 +23,7 @@ library(QCArobust)
 
 On the second, medium level of aggregation, the solutions are decomposed into their configurations. The `config_upset()` function serves this purpose. This should be used now with the config_upset_h() version of the function.
 ```{r, eval = F, fig.width = 7, fig.height = 5}
-skaaning_conds <- conds_upset(Skaaning_table3, nsets = 200)
+skaaning_conds <- conds_robust(Skaaning_table3, nsets = 200)
 skaaning_conds
 ```
 
