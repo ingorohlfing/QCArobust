@@ -14,11 +14,14 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
+We load the packages needed for illustrating a robustness assessment on the level of individual sufficient terms and single conditions.
+```{r load package, warning = F, message = F}
 library(QCArobust)
+library(formattable) # nicer html tables
 ```
 
-
+### Analysis of sufficient terms
+A *term* is any element of a solution that is in itself sufficient for the outcome. This can be a single condition or a single configuration (or conjunction), depending on the solution. The solution $A + BC \Leftrightarrow Y$ has $A$ and $BC$ as sufficient terms. The `config_robust()` function decomposes solutions into its individual terms (also if the term is a single condition; usually it is a configuration) and produces an Upset plot.
 
 
 On the second, medium level of aggregation, the solutions are decomposed into their configurations. The `config_upset()` function serves this purpose. This should be used now with the config_upset_h() version of the function.
