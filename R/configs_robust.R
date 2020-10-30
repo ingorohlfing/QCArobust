@@ -1,4 +1,4 @@
-#' config_robust()
+#' configs_robust()
 #'
 #' Evaluates robustness on the level of individual
 #' sufficient conditions or conjunctions (terms). It aggregates
@@ -28,7 +28,7 @@
 #' conditions and their co-occurrences across QCA solutions.
 #'
 #' @export
-config_robust <- function(df, const = FALSE, nsets) {
+configs_robust <- function(df, const = FALSE, nsets) {
 
   if (!const) {
     temp1 <- unlist(df$solution)
