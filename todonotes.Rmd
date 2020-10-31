@@ -10,35 +10,11 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ### To do
+**configs_robust**
+- 31.10.2020: Throws an error message in the vignette. Please check it
 
-**sols_plot**
-- Outputs a bar chart that looks good. Needed as additional output (or separate function): Dataframe linking solution IDs from plot to actual solutions.
+**conds_robust**
+- 31.10.2020: Also needs the `const` argument.
 
-### In Progress Now
-1. Checking the new counting against ne datasets.
-2. And the **cons_minimum** check against imported solutions.
-
-
-### Addressed
-
-**Counting**  
-- for AR: Done
-- By AR: But needs to be checked imported datasets as the new function was introduced.
-
-**Comparison**  
-- by IR: Should be good
-
-**config_upset**
-- what does const and y option do? Is it a consistency threshold? Is this needed when we have cons_minimum function?
-
-Correct. No noeed for the y anymore. 
-
-**detection**
-
-- original documentation said: "Needs further reworking to get rid of the for loop at later stages" <= is this necessary?
-
-- JR: No, not necessary. In fact, I could not find a more efficient solution to using the loop. 
- 
-**cov_minimum**
-- formerly dt.selector 2. Renamed it to have a meaningful function name
-complemeting cons_minimum
+**sols_robust**
+- 31.10.2020: Also needs the `const` argument.

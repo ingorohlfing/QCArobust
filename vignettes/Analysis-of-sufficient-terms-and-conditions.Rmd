@@ -38,6 +38,7 @@ skaaning_terms
 The function `conds_robust()` does the same as `configs_robust()` for single conditions. For example, the condition *ind* occurs in 33 solutions. In 27 solutions, *ind* cooccurs with *DEV* and *STA* and 6 times with *LIT*, *DEV* and *STA*.
 
 ```{r}
-conds_robust(Skaaning_table3, nsets = 10)
+conds_robust(Skaaning_table3, nsets = 10, )
 ```
 
+### Subsetting solutions by consistency values
