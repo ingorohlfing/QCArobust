@@ -19,13 +19,13 @@ knitr::opts_chunk$set(
 We load the packages needed for illustrating a robustness assessment on the level of entire QCA solutions.
 ```{r load package, warning = F, message = F}
 library(QCArobust)
-library(formattable) # nicer html tables
+library(knitr) # nicer html tables
 ```
 
 ## Analysis of solutions
 The original robustness analysis by [Skaaning (2011)](http://10.1177/0049124111404818) is the basis for our empirical illustration. We import a list of solutions presented in table 3 of the article. It summarizes results for the choice of different calibration anchors for crisp-set QCA.
 ```{r Skaaning csqca anchors}
-# Loading Skaaning (2011) data from table 3
+# load Skaaning (2011) data from table 3
 data("Skaaning_table3")
 ```
 
@@ -33,8 +33,8 @@ data("Skaaning_table3")
 On the most highly aggregated level of analysis, `sols_robust()` either produces a bar chart plotting the frequency of solutions or a dataframe with solutions and their frequencies. The ´plot = T` creates a bar chart of solution frequencies in the dataset. The argument `plot_solutions` specifies how many solutions sohuld be plotted with the default being 5 (count always starts with the most frequent solution). Solutions can get long and be too long for plotting on the axes. This is why the solutions are numbered in the plots.
 ```{r, fig.width = 6, fig.height = 6}
 # plotting models with default setting
-sols_robust(Skaaning_table3, plot = T)
-sols_robust(Skaaning_table3, plot = F)
+sols_robust(Skaaning_table3, plot = TRUE)
+sols_robust(Skaaning_table3, plot = FALSE)
 ```
 
 If one is interested in the most frequent models, one can limit the number of models that are to be plotted with the argument `plot_solutions` (default is 5).
