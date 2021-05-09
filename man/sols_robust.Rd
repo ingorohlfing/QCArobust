@@ -4,7 +4,7 @@
 \alias{sols_robust}
 \title{sols_robust()}
 \usage{
-sols_robust(ls, plot = T, plot_solutions = 5)
+sols_robust(ls, plot = TRUE, plot_solutions = 5)
 }
 \arguments{
 \item{ls}{List of QCA solutions or configurations
@@ -29,7 +29,7 @@ If \code{plot} is set to \code{FALSE}, a dataframe with
 solutions and frequencies.
 }
 \description{
-Evaluates robustness on the level of QCA solutions. It
+Evaluates robustness on the level of QCA models It
 aggregates over solutions by calculating and plotting
-their frequencies.
+model frequencies.
 }
