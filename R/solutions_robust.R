@@ -1,4 +1,4 @@
-#' sols_robust()
+#' solutions_robust()
 #'
 #' Evaluates robustness on the level of QCA models It
 #' aggregates over solutions by calculating and plotting
@@ -28,7 +28,7 @@
 #' solutions and frequencies.
 #'
 #' @export
-sols_robust <- function(ls, plot = TRUE, plot_solutions = 5) {
+solutions_robust <- function(ls, plot = TRUE, plot_solutions = 5) {
 
   # preprocessing the list
   temp3 <- purrr::map(ls, function(x) stringi::stri_split_fixed(x, " "))
