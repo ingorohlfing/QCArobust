@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 We load the packages needed for illustrating a robustness assessment on the level of individual sufficient terms and single conditions.
 ```{r load package, warning = F, message = F}
 library(QCArobust)
-library(formattable) # nicer html tables
+library(knitr) # nicer html tables
 ```
 
 ### Analysis of sufficient terms
@@ -28,14 +28,14 @@ A *term* is any element of a solution that is in itself sufficient for the outco
 data("Skaaning_table3")
 ```
 
-On the second, medium level of aggregation, the solutions are decomposed into their individual sufficient terms.  The `config_robust()` function decomposes solutions into its individual terms (also if the term is a single condition; usually it is a configuration) and produces an *Upset plot*. The horizontal bars of an Upset plot summarize the frequency of a term across all solutions. The vertical bars summarize the *cooccurrence* of terms in solutions. The argument `nsets` specifies the number of bars that should be plotted (also for `conditions_robust()`). The default is 5. 
+On the second, medium level of aggregation, the solutions are decomposed into their individual sufficient terms.  The `configurations_robust()` function decomposes solutions into its individual terms (also if the term is a single condition; usually it is a configuration) and produces an *Upset plot*. The horizontal bars of an Upset plot summarize the frequency of a term across all solutions. The vertical bars summarize the *cooccurrence* of terms in solutions. The argument `nsets` specifies the number of bars that should be plotted (also for `conditions_robust()`). The default is 5. 
 
 ```{r, eval = T, fig.width = 7, fig.height = 7}
-skaaning_terms <- configs_robust(Skaaning_table3)
+skaaning_terms <- configurations_robust(Skaaning_table3)
 skaaning_terms
 ```
 
-The function `conditions_robust()` does the same as `configs_robust()` for single conditions. For example, the condition *ind* occurs in 33 solutions. In 27 solutions, *ind* cooccurs with *DEV* and *STA* and 6 times with *LIT*, *DEV* and *STA*.
+The function `conditions_robust()` does the same as `configurations_robust()` for single conditions. For example, the condition *ind* occurs in 33 solutions. In 27 solutions, *ind* cooccurs with *DEV* and *STA* and 6 times with *LIT*, *DEV* and *STA*.
 
 ```{r}
 conditions_robust(Skaaning_table3, nsets = 10, )
