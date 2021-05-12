@@ -39,6 +39,7 @@ skaaning_terms <- configurations_robust(Skaaning_table3)
 skaaning_terms
 ```
 
+
 ### Subsetting terms by consistency values
 to be done
 
@@ -46,5 +47,26 @@ to be done
 The function `conditions_robust()` does the same as `configurations_robust()` for single conditions. For example, the condition *ind* occurs in 33 solutions. In 27 solutions, *ind* cooccurs with *DEV* and *STA* and 6 times with *LIT*, *DEV* and *STA*.
 
 ```{r, fig.width=7, fig.height=7, fig.align='center'}
-conditions_robust(Skaaning_table3, nsets = 10)
+conditions_robust(Skaaning_table3, nsets = 10) -> conds_plot
+conds_plot
 ```
+
+The `UpsetR` package that is used for plotting stores a cooccurrence dataset under `.$New_data`. 
+```{r}
+kable(head(conds_plot$New_data))
+```
+
+With a little bit of data wrangling, one can calculate the numbers plotted in an UpSet plot. Calculating the cooccurrence data (vertical bars).
+```{r}
+conds_plot$New_data %>% 
+  group_by(DEV, STA, ind, C, LIT) %>% 
+  summarize(cooccurrence = n()) %>% 
+  kable(.)
+```
+
+Calculating the total occurence by condition.
+```{r}
+kable(colSums(conds_plot$New_data))
+```
+
+
