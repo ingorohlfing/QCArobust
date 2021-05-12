@@ -1,5 +1,7 @@
 ---
-title: "Analysis-of-sufficient-terms-and-conditions"
+title: "Analysis of sufficient terms and conditions"
+author: "Ingo Rohlfing, Ayjeren Rozyjumayeva"
+date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Analysis-of-sufficient-terms-and-conditions}
@@ -22,10 +24,10 @@ library(knitr) # nicer html tables
 ```
 
 ### Analysis of sufficient terms
-A *term* is any element of a solution that is in itself sufficient for the outcome. This can be a single condition or a single configuration (or conjunction), depending on the solution. The solution $A + BC \Leftrightarrow Y$ has $A$ and $BC$ as sufficient terms. The original robustness analysis by [Skaanin5 (205)](http://10.599/004912451404818) is the basis for our empirical illustration. We import a list of solutions presented in table 3 of the article. It summarizes results for the choice of different calibration anchors for crisp-set QCA.
+A *term* is any element of a solution that is in itself sufficient for the outcome. This can be a single condition or a single configuration (or conjunction), depending on the solution. The solution $A + BC \Leftrightarrow Y$ has $A$ and $BC$ as sufficient terms. The original robustness analysis by [Skaaning (2011)](http://10.599/004912451404818) is the basis for our empirical illustration. We import a list of solutions presented in table 3 of the article. It summarizes results for the choice of different calibration anchors for crisp-set QCA.
 
 ```{r Skaaning csqca anchors}
-# Loading Skaaning (205) data from table 3
+# load Skaaning (2011) data from table 3
 data("Skaaning_table3")
 ```
 
