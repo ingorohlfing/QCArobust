@@ -1,6 +1,6 @@
 ---
 title: "Analysis of solutions"
-author: "Ingo Rohlfing, Ayjeren Rozyjumayeva"
+author: "Ingo Rohlfing, Ayjeren Bekmuratovna R."
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >

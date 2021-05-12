@@ -7,7 +7,8 @@ Authors@R:
     email = "i.rohlfing@uni-koeln.de",
            role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-8715-4771")),
-    person("Ayjeren", "Rozyjumayeva", email = "jeren.jmv@gmail.com",
+    person(given = "Ayjeren", family = "Bekmuratovna R.", 
+    email = "jeren.jmv@gmail.com",
            role = c("aut"))
            )
 Description: The robustness of a minimized solution in Qualitative comparative 
