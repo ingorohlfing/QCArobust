@@ -3,7 +3,7 @@
 #' Evaluates robustness on the level of individual
 #' sufficient terms (conditions or conjunctions/configurations).
 #' It aggregates over sufficient terms by calculating
-#' their frequencies and the frequencies of terms cooccurring
+#' their frequencies and the frequencies of terms co-occurring
 #' in a solution. The frequencies are plotted using Upset plots.
 #'
 #' @importFrom magrittr %>%
