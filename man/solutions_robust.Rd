@@ -2,7 +2,7 @@
 % Please edit documentation in R/solutions_robust.R
 \name{solutions_robust}
 \alias{solutions_robust}
-\title{solutions_robust()}
+\title{Evaluate robustness of complete QCA models}
 \usage{
 solutions_robust(ls, plot = TRUE, plot_solutions = 5)
 }
@@ -19,8 +19,8 @@ Default is \code{TRUE}.}
 
 \item{plot_solutions}{Number of solutions to be plotted in
 bar chart. Default is 5. If \code{plot} is set to \code{FALSE},
-the dataframe shows all solutions regardless of the number
-specified for plotting.}
+the dataframe shows all solutions regardless of what number has been
+specified.}
 }
 \value{
 If \code{plot} set to \code{TRUE}, a bar chart of
@@ -29,7 +29,14 @@ If \code{plot} is set to \code{FALSE}, a dataframe with
 solutions and frequencies.
 }
 \description{
-Evaluates robustness on the level of QCA models It
-aggregates over solutions by calculating and plotting
+Aggregate over multiple solutions and calculate and plot
 model frequencies.
+}
+\examples{
+data("Skaaning_table3")
+# plotting models with default setting
+solutions_robust(Skaaning_table3, plot = TRUE)
+# plotting three solutions
+solutions_robust(Skaaning_table3, plot = TRUE, plot_solutions = 3)
+
 }

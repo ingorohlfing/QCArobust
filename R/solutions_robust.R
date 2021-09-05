@@ -1,7 +1,6 @@
-#' solutions_robust()
+#' Evaluate robustness of complete QCA models
 #'
-#' Evaluates robustness on the level of QCA models It
-#' aggregates over solutions by calculating and plotting
+#' Aggregate over multiple solutions and calculate and plot
 #' model frequencies.
 #'
 #' @importFrom magrittr %>%
@@ -19,13 +18,20 @@
 #' Default is \code{TRUE}.
 #' @param plot_solutions Number of solutions to be plotted in
 #' bar chart. Default is 5. If \code{plot} is set to \code{FALSE},
-#' the dataframe shows all solutions regardless of the number
-#' specified for plotting.
+#' the dataframe shows all solutions regardless of what number has been
+#' specified.
 #'
 #' @return If \code{plot} set to \code{TRUE}, a bar chart of
 #' frequency of solutions is produced with \code{\link{ggplot2}}.
 #' If \code{plot} is set to \code{FALSE}, a dataframe with
 #' solutions and frequencies.
+#'
+#' @examples
+#' data("Skaaning_table3")
+#' # plotting models with default setting
+#' solutions_robust(Skaaning_table3, plot = TRUE)
+#' # plotting three solutions
+#' solutions_robust(Skaaning_table3, plot = TRUE, plot_solutions = 3)
 #'
 #' @export
 solutions_robust <- function(ls, plot = TRUE, plot_solutions = 5) {
