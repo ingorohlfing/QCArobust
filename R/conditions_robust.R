@@ -24,11 +24,11 @@
 #' conditions and their co-occurrences across QCA models.
 #'
 #' @examples
-#' sols <- list(c(replicate("A", 2), replicate("AB+c", 2), replicate("A+c", 2)))
+#' sols <- list(c(rep("A", 2), rep("AB+c", 2), rep("A+c", 3)))
 #' conditions_robust(sols)
 #'
 #' @export
-conditions_robust <- function(df, nsets) {
+conditions_robust <- function(df, nsets = 5) {
   temp1 <- purrr::map(unlist(df), function(x)
     stringi::stri_split_fixed(x, "*") %>% unlist())
   temp1 <- purrr::map(temp1, function(x)

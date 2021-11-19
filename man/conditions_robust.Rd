@@ -4,7 +4,7 @@
 \alias{conditions_robust}
 \title{Robustness for single (INUS) conditions}
 \usage{
-conditions_robust(df, nsets)
+conditions_robust(df, nsets = 5)
 }
 \arguments{
 \item{df}{Dataframe or list of QCA solutions or configurations
@@ -28,7 +28,7 @@ and plotting their frequencies and the frequencies of
 conditions that coincide in a QCA model
 }
 \examples{
-sols <- list(c(replicate("A", 2), replicate("AB+c", 2), replicate("A+c", 2)))
+sols <- list(c(rep("A", 2), rep("AB+c", 2), rep("A+c", 3)))
 conditions_robust(sols)
 
 }
