@@ -28,7 +28,7 @@
 #' terms and their cooccurrences across QCA solutions.
 #'
 #' @export
-configurations_robust <- function(df, const = FALSE, nsets) {
+configurations_robust <- function(df, const = FALSE, nsets = 5) {
 
   if (!const) {
     temp1 <- unlist(df$solution)
