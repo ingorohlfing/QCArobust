@@ -48,11 +48,13 @@ The function does not distinction between solutions with and without model ambig
 ### Dataframe of robustness results
 The complementary approach to plotting the results is the construction of a dataframe. The dataframe shows what the models are and how often each model occurs. One derives the dataframe with the argument `plot = F`.
 ```{r}
-sols_robust(Skaaning_table3, plot = FALSE) -> Skaaning_df3
+solutions_robust(Skaaning_table3, plot = FALSE) -> Skaaning_df3
 kable(Skaaning_df3)
 ```
 
-The models are ordered and numbered in descending order of their frequencies. The running numbers of models in the dataframe correspond to the numbers in the plot.
+The models are ordered and numbered in descending order of their frequencies. 
+The running numbers of models in the dataframe correspond to the numbers in the
+plot.
 
 
 
