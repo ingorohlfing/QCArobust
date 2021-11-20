@@ -27,6 +27,14 @@
 #' @return A plot presenting the frequency of individual
 #' terms and their cooccurrences across QCA solutions.
 #'
+#' @examples
+#' data(KCP_example)
+#' # analysis without any consistency threshold
+#' configurations_robust(KCP_example)
+#'
+#' # analysis with consistency >= .75
+#' configurations_robust(KCP_example, const = 0.75)
+#'
 #' @export
 configurations_robust <- function(df, const = FALSE, nsets = 5) {
 

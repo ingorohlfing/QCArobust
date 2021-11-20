@@ -4,7 +4,7 @@
 \alias{configurations_robust}
 \title{Robustness for sufficient terms (usually configurations)}
 \usage{
-configurations_robust(df, const = FALSE, nsets)
+configurations_robust(df, const = FALSE, nsets = 5)
 }
 \arguments{
 \item{df}{Dataframe of QCA solutions as produced
@@ -33,4 +33,13 @@ sufficient terms (conditions or conjunctions/configurations).
 It aggregates over sufficient terms by calculating
 their frequencies and the frequencies of terms co-occurring
 in a solution. The frequencies are plotted using Upset plots.
+}
+\examples{
+data(KCP_example)
+# analysis without any consistency threshold
+configurations_robust(KCP_example)
+
+# analysis with consistency >= .75
+configurations_robust(KCP_example, const = 0.75)
+
 }
