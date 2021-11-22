@@ -35,6 +35,14 @@
 #' # analysis with consistency >= .75
 #' configurations_robust(KCP_example, const = 0.75)
 #'
+#' # analysis with model ambiguity
+#' data(model_ambiguity)
+#' configurations_robust(model_ambiguity)
+#'
+#' # analysis with model ambiguity & consistency >= 0.75
+#' data(model_ambiguity)
+#' configurations_robust(model_ambiguity, const = 0.75)
+#'
 #' @export
 configurations_robust <- function(df, const = FALSE, nsets = 5) {
 
