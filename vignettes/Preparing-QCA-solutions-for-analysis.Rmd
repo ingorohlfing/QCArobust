@@ -1,0 +1,60 @@
+---
+title: "Preparing QCA solutions for analysis"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Preparing QCA solutions for analysis}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(QCArobust)
+library(QCA) # for truth tables and QCA solutions 
+```
+
+The QCA solutions that one want to use for a robustness analysis have to be
+prepared in a specific way for use with `solutions_robust()`, 
+`configurations_robust()` and `conditions_robust()`. 
+
+```{r data-prep}
+data("IMF_eval")
+# create a truth table and solution 
+truthtab_1 <- truthTable(data = IMF_eval, # calibrated data for creating the truth table
+                         outcome = "POS", # outcome set
+                         conditions = "AMB, DC, EFF, CR, COM, PRG", # condition sets
+                         incl.cut = 0.837, # consistency/inclusion threshold
+                         n.cut = 1, # frequency cutoff
+                         sort.by = "incl, n", # sorting rows by consistency and then by n
+                         complete = FALSE, # only show rows with cases
+                         show.cases = TRUE) # include case labels in truth table
+# produce parsimonious solution with model ambiguity
+sol_1 <- minimize(truthtab_1, 
+                  include = "?", # include consistent rows + remainders
+                  details = TRUE,
+                  row.dom = FALSE,
+                  all.sol = TRUE)
+
+# create another truth table and solution with lower incl.cut 
+truthtab_2 <- truthTable(data = IMF_eval, # calibrated data for creating the truth table
+                         outcome = "POS", # outcome set
+                         conditions = "AMB, DC, EFF, CR, COM, PRG", # condition sets
+                         incl.cut = 0.75, # consistency/inclusion threshold
+                         n.cut = 1, # frequency cutoff
+                         sort.by = "incl, n", # sorting rows by consistency and then by n
+                         complete = FALSE, # only show rows with cases
+                         show.cases = TRUE) # include case labels in truth table
+# produce parsimonious solution with model ambiguity
+sol_2 <- minimize(truthtab_2, 
+                  include = "?", # include consistent rows + remainders
+                  details = TRUE,
+                  row.dom = FALSE,
+                  all.sol = TRUE)
+```
+
