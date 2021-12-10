@@ -50,7 +50,7 @@ specifies the number of bars that should be plotted (also for
 `conditions_robust()`). The default is 5. 
 
 ```{r, eval = T, fig.width = 7, fig.height = 7}
-skaaning_terms <- configurations_robust(Skaaning_table3)
+skaaning_terms <- configurations_robust(Skaaning_table3, const = FALSE)
 skaaning_terms
 ```
 

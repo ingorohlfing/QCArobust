@@ -37,15 +37,15 @@
 #'
 #' @export
 configurations_robust <- function(df, const = FALSE, nsets = 5) {
-
   if (!const) {
-    temp1 <- unlist(df$solution)
+    temp1 <- unlist(df)
 
   }
   else {
     temp1 <- cons_minimum(df)
     temp1 <- purrr::map(temp1$config, unlist)
   }
+
   temp1 <- purrr::map(temp1, function(x) stringi::stri_trim(x))
   all_values <- stringi::stri_unique(unlist(temp1))
   all_values
