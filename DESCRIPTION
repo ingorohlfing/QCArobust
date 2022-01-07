@@ -32,7 +32,6 @@ BugReports: https://github.com/ingorohlfing/QCArobust
 Imports:
         UpSetR, 
         dplyr, 
-        pander, 
         plyr, 
         purrr, 
         stringi, 
