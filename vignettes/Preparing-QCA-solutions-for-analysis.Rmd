@@ -1,5 +1,7 @@
 ---
 title: "Preparing QCA solutions for analysis"
+author: "Ingo Rohlfing, Ayjeren Bekmuratovna R."
+date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Preparing QCA solutions for analysis}
@@ -9,6 +11,7 @@ vignette: >
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
+  error = T,
   collapse = TRUE,
   comment = "#>"
 )
@@ -19,42 +22,52 @@ library(QCArobust)
 library(QCA) # for truth tables and QCA solutions 
 ```
 
-The QCA solutions that one want to use for a robustness analysis have to be
-prepared in a specific way for use with `solutions_robust()`, 
-`configurations_robust()` and `conditions_robust()`. 
+The QCA solutions have to be stored as a *list* in order to use them as input
+for the three main functions `solutions_robust()`, `configurations_robust()` 
+and `conditions_robust()`. 
 
 ```{r data-prep}
-data("IMF_eval")
-# create a truth table and solution 
-truthtab_1 <- truthTable(data = IMF_eval, # calibrated data for creating the truth table
-                         outcome = "POS", # outcome set
-                         conditions = "AMB, DC, EFF, CR, COM, PRG", # condition sets
-                         incl.cut = 0.837, # consistency/inclusion threshold
-                         n.cut = 1, # frequency cutoff
-                         sort.by = "incl, n", # sorting rows by consistency and then by n
-                         complete = FALSE, # only show rows with cases
-                         show.cases = TRUE) # include case labels in truth table
-# produce parsimonious solution with model ambiguity
-sol_1 <- minimize(truthtab_1, 
-                  include = "?", # include consistent rows + remainders
-                  details = TRUE,
-                  row.dom = FALSE,
-                  all.sol = TRUE)
+set.seed(834) # seed for random number generation
+# create hypothetical crisp-set data
+crisp_data1 <- data.frame(A = rbinom(50, 1, 0.5),
+                          B = rbinom(50, 1, 0.5),
+                          C = rbinom(50, 1, 0.5),
+                          D = rbinom(50, 1, 0.5),
+                          Y = rbinom(50, 1, 0.5))
+# create truth table
+tt1 <- truthTable(data = crisp_data1, 
+                  outcome = "Y",
+                  sort = "incl, n")
+# derive conservative solution (type does not matter here)
+sol1 <- minimize(tt1,
+                 include = "1")
 
-# create another truth table and solution with lower incl.cut 
-truthtab_2 <- truthTable(data = IMF_eval, # calibrated data for creating the truth table
-                         outcome = "POS", # outcome set
-                         conditions = "AMB, DC, EFF, CR, COM, PRG", # condition sets
-                         incl.cut = 0.75, # consistency/inclusion threshold
-                         n.cut = 1, # frequency cutoff
-                         sort.by = "incl, n", # sorting rows by consistency and then by n
-                         complete = FALSE, # only show rows with cases
-                         show.cases = TRUE) # include case labels in truth table
-# produce parsimonious solution with model ambiguity
-sol_2 <- minimize(truthtab_2, 
-                  include = "?", # include consistent rows + remainders
-                  details = TRUE,
-                  row.dom = FALSE,
-                  all.sol = TRUE)
+# repeat process for hypothetical second dataset
+crisp_data2 <- data.frame(A = rbinom(50, 1, 0.5),
+                          B = rbinom(50, 1, 0.5),
+                          C = rbinom(50, 1, 0.5),
+                          D = rbinom(50, 1, 0.5),
+                          Y = rbinom(50, 1, 0.5))
+# create truth table
+tt2 <- truthTable(data = crisp_data2, 
+                  outcome = "Y",
+                  sort = "incl, n")
+# derive conservative solution (type does not matter here)
+sol2 <- minimize(tt2,
+                 include = "1")
+```
+
+The solution objects produced with the [QCA package](https://cran.r-project.org/package=QCA) 
+need to combined in a list to process them further with the *QCArobust* package.
+
+```{r create-list}
+sols_list <- list(sol1, sol2)
+```
+
+```{r}
+QCArobust::solutions_robust(sols_list) # throws a warning
+QCArobust::conditions_robust(sols_list) # error 
+QCArobust::configurations_robust(sols_list) # error
+
 ```
 
