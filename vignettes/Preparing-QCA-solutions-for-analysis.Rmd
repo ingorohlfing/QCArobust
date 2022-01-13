@@ -58,11 +58,17 @@ sol2 <- minimize(tt2,
 ```
 
 The solution objects produced with the [QCA package](https://cran.r-project.org/package=QCA) 
-need to combined in a list to process them further with the *QCArobust* package.
+need to combined in a list to process them further with the *QCArobust* package. 
+One only needs to include the solution attribute (`$solution`$) from the complete
+solution in a list of solutions.
 
 ```{r create-list}
 sols_list <- list(sol1$solution, sol2$solution) 
+sols_list
 ```
+
+When all solutions have been included in the list, one can use it with each of
+the three functions for aggregating the results.
 
 ```{r}
 QCArobust::solutions_robust(sols_list) # throws a warning
