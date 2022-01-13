@@ -61,7 +61,7 @@ The solution objects produced with the [QCA package](https://cran.r-project.org/
 need to combined in a list to process them further with the *QCArobust* package.
 
 ```{r create-list}
-sols_list <- list(sol1, sol2)
+sols_list <- list(sol1$solution, sol2$solution) 
 ```
 
 ```{r}
