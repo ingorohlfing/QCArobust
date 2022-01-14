@@ -1,5 +1,10 @@
 #' Datasets documentation
 
+#' List of hypothetical solutions
+#' A list with ten hypothetical solutions derived from a truth table analysis.
+#'
+#' @format A list with 10 solutions
+"solutions_example"
 
 #' Krogslund dataset (model 1, ncut 1)
 #' Data borrowed from Krogslund/Choi/Poertner study
