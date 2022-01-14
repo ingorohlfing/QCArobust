@@ -1,6 +1,7 @@
 #' Datasets documentation
 
 #' List of hypothetical solutions
+#'
 #' A list with ten hypothetical solutions derived from a truth table analysis.
 #'
 #' @format A list with 10 solutions

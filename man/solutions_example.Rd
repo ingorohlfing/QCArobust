@@ -4,8 +4,7 @@
 \name{solutions_example}
 \alias{solutions_example}
 \title{Datasets documentation
-List of hypothetical solutions
-A list with ten hypothetical solutions derived from a truth table analysis.}
+List of hypothetical solutions}
 \format{
 A list with 10 solutions
 }
@@ -13,8 +12,6 @@ A list with 10 solutions
 solutions_example
 }
 \description{
-Datasets documentation
-List of hypothetical solutions
 A list with ten hypothetical solutions derived from a truth table analysis.
 }
 \keyword{datasets}
