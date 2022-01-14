@@ -71,9 +71,9 @@ When all solutions have been included in the list, one can use it with each of
 the three functions for aggregating the results.
 
 ```{r}
-QCArobust::solutions_robust(sols_list) # throws a warning
-QCArobust::conditions_robust(sols_list) # error 
-QCArobust::configurations_robust(sols_list) # error
+QCArobust::solutions_robust(sols_list) 
+QCArobust::conditions_robust(sols_list) 
+QCArobust::configurations_robust(sols_list) 
 
 ```
 
