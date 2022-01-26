@@ -62,7 +62,7 @@ need to combined in a list to process them further with the *QCArobust* package.
 One only needs to include the solution attribute (`$solution`$) from the complete
 solution in a list of solutions.
 
-```{r create-list}
+```{r create list}
 sols_list <- list(sol1$solution, sol2$solution) 
 sols_list
 ```
