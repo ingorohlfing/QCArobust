@@ -37,7 +37,7 @@
 solutions_robust <- function(ls, plot = TRUE, plot_solutions = 5) {
 
   # preprocessing the list
-  temp3 <- purrr::map(ls, function(x) stringi::stri_split_fixed(x, " "))
+  temp3 <- purrr::map(ls, function(x) suppressWarnings(stringi::stri_split_fixed(x, " ")))
 
   #adding the space between special characters
   temp3 <- lapply(unlist(temp3), FUN = function(t) gsub(pattern = "[*]",
