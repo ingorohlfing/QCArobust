@@ -1,4 +1,4 @@
-#' Evaluate robustness of complete QCA models
+#' Robustness for complete QCA models
 #'
 #' Aggregate over multiple model and calculate and plot
 #' model frequencies.
