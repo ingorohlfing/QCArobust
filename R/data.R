@@ -4,7 +4,8 @@
 #'
 #' A list with ten hypothetical solutions derived from a truth table analysis.
 #'
-#' @format A list with 10 solutions
+#' @format A list with 10 solutions produced with \code{minimize} from the
+#' \code{\link{QCA}} package.
 "solutions_example"
 
 #' Krogslund dataset (model 1, ncut 1)

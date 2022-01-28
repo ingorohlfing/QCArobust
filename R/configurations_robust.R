@@ -1,17 +1,18 @@
 #' Robustness for sufficient terms (usually configurations)
 #'
-#' Evaluates robustness on the level of individual
-#' sufficient terms (conditions or conjunctions/configurations).
-#' It aggregates over sufficient terms by calculating
+#' Evaluate robustness on the level of individual
+#' sufficient terms (conditions or conjunctions/configurations) of models.
+#' Aggregates over sufficient terms by calculating
 #' their frequencies and the frequencies of terms co-occurring
-#' in a solution. The frequencies are plotted using Upset plots.
+#' in a model. The frequencies are plotted using Upset plots from
+#' \code{\link{UpSetR}}.
 #'
 #' @importFrom magrittr %>%
 #' @importFrom stringi stri_trim stri_unique
 #' @importFrom purrr map
 #' @import UpSetR
 #'
-#' @param df Dataframe of QCA solutions as produced
+#' @param ls List of QCA models as produced
 #' with \code{\link[QCA]{minimize}} from \code{\link{QCA}}
 #' package
 #' @param const Choose between the plotting of all solutions
@@ -25,24 +26,24 @@
 #' imported from the \code{\link{upset}} function from \pkg{UpSetR}.
 #'
 #' @return A plot presenting the frequency of individual
-#' terms and their cooccurrences across QCA solutions.
+#' terms and their co-occurrences across QCA models
 #'
 #' @examples
-#' data(KCP_example)
+#' data("solutions_example")
 #' # analysis without any consistency threshold
-#' configurations_robust(KCP_example)
+#' configurations_robust(solutions_example)
 #'
 #' # analysis with consistency >= .75
 #' configurations_robust(KCP_example, const = 0.75)
 #'
 #' @export
-configurations_robust <- function(df, const = FALSE, nsets = 5) {
+configurations_robust <- function(ls, const = FALSE, nsets = 5) {
   if (!const) {
-    temp1 <- unlist(df)
+    temp1 <- unlist(ls)
 
   }
   else {
-    temp1 <- cons_minimum(df)
+    temp1 <- cons_minimum(ls)
     temp1 <- purrr::map(temp1$config, unlist)
   }
 

@@ -6,7 +6,8 @@
 \title{Datasets documentation
 List of hypothetical solutions}
 \format{
-A list with 10 solutions
+A list with 10 solutions produced with \code{minimize} from the
+\code{\link{QCA}} package.
 }
 \usage{
 solutions_example

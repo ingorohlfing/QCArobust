@@ -4,12 +4,11 @@
 \alias{conditions_robust}
 \title{Robustness for single (INUS) conditions}
 \usage{
-conditions_robust(df, nsets = 5)
+conditions_robust(ls, nsets = 5)
 }
 \arguments{
-\item{df}{Dataframe or list of QCA solutions or configurations
-derived from multiple truth table analyses performed
-with \code{\link[QCA]{minimize}} from \code{\link{QCA}}
+\item{ls}{List of QCA models as produced
+with \code{\link[QCA]{minimize}} from \pkg{QCA}
 package}
 
 \item{nsets}{Specifies number of sets to be plotted. Argument
@@ -23,12 +22,12 @@ conditions and their co-occurrences across QCA models.
 Evaluates robustness on the level of single conditions
 or INUS conditions (Insufficient and Necessary conditions
 that are part of a conjunction that is Unnecessary and
-Sufficient). It aggregates over conditions by calculating
+Sufficient). Aggregates over conditions by calculating
 and plotting their frequencies and the frequencies of
-conditions that coincide in a QCA model
+conditions that co-occur in a QCA model
 }
 \examples{
-sols <- list(c(rep("A", 2), rep("AB+c", 2), rep("A+c", 3)))
-conditions_robust(sols)
+data("solutions_example")
+conditions_robust(solutions_example)
 
 }

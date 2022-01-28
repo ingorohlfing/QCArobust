@@ -4,10 +4,10 @@
 \alias{configurations_robust}
 \title{Robustness for sufficient terms (usually configurations)}
 \usage{
-configurations_robust(df, const = FALSE, nsets = 5)
+configurations_robust(ls, const = FALSE, nsets = 5)
 }
 \arguments{
-\item{df}{Dataframe of QCA solutions as produced
+\item{ls}{List of QCA models as produced
 with \code{\link[QCA]{minimize}} from \code{\link{QCA}}
 package}
 
@@ -25,19 +25,20 @@ will be plotted by the function.}
 }
 \value{
 A plot presenting the frequency of individual
-terms and their cooccurrences across QCA solutions.
+terms and their co-occurrences across QCA models
 }
 \description{
-Evaluates robustness on the level of individual
-sufficient terms (conditions or conjunctions/configurations).
-It aggregates over sufficient terms by calculating
+Evaluate robustness on the level of individual
+sufficient terms (conditions or conjunctions/configurations) of models.
+Aggregates over sufficient terms by calculating
 their frequencies and the frequencies of terms co-occurring
-in a solution. The frequencies are plotted using Upset plots.
+in a model. The frequencies are plotted using Upset plots from
+\code{\link{UpSetR}}.
 }
 \examples{
-data(KCP_example)
+data("solutions_example")
 # analysis without any consistency threshold
-configurations_robust(KCP_example)
+configurations_robust(solutions_example)
 
 # analysis with consistency >= .75
 configurations_robust(KCP_example, const = 0.75)
