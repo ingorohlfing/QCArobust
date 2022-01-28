@@ -1,6 +1,6 @@
 #' Evaluate robustness of complete QCA models
 #'
-#' Aggregate over multiple solutions and calculate and plot
+#' Aggregate over multiple model and calculate and plot
 #' model frequencies.
 #'
 #' @importFrom magrittr %>%
@@ -8,36 +8,37 @@
 #' @importFrom dplyr mutate
 #' @importFrom purrr map map_df
 #'
-#' @param ls List of QCA solutions or configurations
+#' @param ls List of QCA solutions
 #' derived from multiple truth table analyses performed
 #' with \code{\link[QCA]{minimize}} from \pkg{QCA}
 #' package.
-#' @param plot If set to \code{TRUE}, a bar chart of frequency
-#' of solutions is produced. If set to \code{FALSE},
-#' a dataframe with solutions and frequencies is returned.
+#' @param plot If set to \code{TRUE}, one produces a bar chart of frequency
+#' of models. If set to \code{FALSE},
+#' a dataframe with models and their frequencies is returned.
 #' Default is \code{TRUE}.
 #' @param plot_solutions Number of solutions to be plotted in
 #' bar chart. Default is 5. If \code{plot} is set to \code{FALSE},
-#' the dataframe shows all solutions regardless of what number has been
+#' the dataframe shows all solutions regardless of what number one has
 #' specified.
 #'
 #' @return If \code{plot} set to \code{TRUE}, a bar chart of
-#' frequency of solutions is produced with \code{\link{ggplot2}}.
-#' If \code{plot} is set to \code{FALSE}, a dataframe with
-#' solutions and frequencies.
+#' frequency of solutions is produced with \code{\link{ggplot2}} that can be
+#' customized. If \code{plot} is set to \code{FALSE}, a dataframe with
+#' solutions and frequencies is returned that can be further processed.
 #'
 #' @examples
-#' data("Skaaning_table3")
+#' data("solutions_example")
 #' # plotting models with default setting
-#' solutions_robust(Skaaning_table3, plot = TRUE)
+#' solutions_robust(solutions_example, plot = TRUE)
 #' # plotting three solutions
-#' solutions_robust(Skaaning_table3, plot = TRUE, plot_solutions = 3)
+#' solutions_robust(solutions_example, plot = TRUE, plot_solutions = 3)
 #'
 #' @export
 solutions_robust <- function(ls, plot = TRUE, plot_solutions = 5) {
 
   # preprocessing the list
-  temp3 <- purrr::map(ls, function(x) suppressWarnings(stringi::stri_split_fixed(x, " ")))
+  temp3 <- purrr::map(ls, function(x)
+    suppressWarnings(stringi::stri_split_fixed(x, " ")))
 
   #adding the space between special characters
   temp3 <- lapply(unlist(temp3), FUN = function(t) gsub(pattern = "[*]",
