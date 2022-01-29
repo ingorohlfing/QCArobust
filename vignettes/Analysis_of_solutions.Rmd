@@ -24,29 +24,49 @@ library(knitr) # nicer html tables
 ```
 
 ## Analysis of solutions
-The original robustness analysis by [Skaaning (2011)](http://10.1177/0049124111404818) is the basis for our empirical illustration. We import a list of solutions presented in table 3 of the article. It summarizes results for the choice of different calibration anchors for crisp-set QCA.
+The original robustness analysis by 
+[Skaaning (2011)](http://10.1177/0049124111404818) is the basis for our 
+empirical illustration. We import a list of solutions presented in table 3 of 
+the article. It summarizes results for the choice of different calibration 
+anchors for crisp-set QCA.
 ```{r Skaaning csqca anchors}
 # load Skaaning (2011) data from table 3
 data("Skaaning_table3")
 ```
 
 ### Plotting of robustness results
-On the most highly aggregated level of analysis, `sols_robust()` either produces a bar chart plotting the frequency of solutions or a dataframe with solutions and their frequencies. The ´plot = T` creates a bar chart of solution frequencies in the dataset. The argument `plot_solutions` specifies how many solutions sohuld be plotted with the default being 5 (count always starts with the most frequent solution). Solutions can get long and be too long for plotting on the axes. This is why the solutions are numbered in the plots.
+On the most highly aggregated level of analysis, `sols_robust()` either produces
+a bar chart plotting the frequency of solutions or a dataframe with solutions 
+and their frequencies. The ´plot = T` creates a bar chart of solution 
+frequencies in the dataset. The argument `plot_solutions` specifies how many 
+solutions sohuld be plotted with the default being 5 (count always starts with
+the most frequent solution). Solutions can get long and be too long for 
+plotting on the axes. This is why the solutions are numbered in the plots.
 ```{r, fig.width = 6, fig.height = 6}
 # plotting models with default setting
-solutions_robust(Skaaning_table3, plot = TRUE)
+solutions_robust(Skaaning_table3, 
+                 plot = TRUE)
 ```
 
-If one is interested in the most frequent models, one can limit the number of models that are to be plotted with the argument `plot_solutions` (default is 5).
+If one is interested in the most frequent models, one can limit the number of 
+models that are to be plotted with the argument `plot_solutions` (default is 5).
 ```{r, fig.width = 6, fig.height = 6}
 # plotting three solutions
-solutions_robust(Skaaning_table3, plot = TRUE, plot_solutions = 3)
+solutions_robust(Skaaning_table3, 
+                 plot = TRUE, 
+                 plot_solutions = 3)
 ```
 
-The function does not distinction between solutions with and without model ambiguity. Each model is treated on its own terms. Substantively, this makes sense to us because model ambiguity means that a solution features multiple models. This can be understood as a lack of robustness because it adds to the range of models that have been derived from the data. 
+The function does not distinction between solutions with and without model 
+ambiguity. Each model is treated on its own terms. Substantively, this makes
+sense to us because model ambiguity means that a solution features multiple 
+models. This can be understood as a lack of robustness because it adds to the 
+range of models that have been derived from the data. 
 
 ### Dataframe of robustness results
-The complementary approach to plotting the results is the construction of a dataframe. The dataframe shows what the models are and how often each model occurs. One derives the dataframe with the argument `plot = F`.
+As an alternative to plotting, one can produce a dataframe. The dataframe shows 
+what the models are and how often each model occurs. One derives the dataframe 
+with the argument `plot = FALSE`.
 ```{r}
 solutions_robust(Skaaning_table3, plot = FALSE) -> Skaaning_df3
 kable(Skaaning_df3)
@@ -55,6 +75,3 @@ kable(Skaaning_df3)
 The models are ordered and numbered in descending order of their frequencies. 
 The running numbers of models in the dataframe correspond to the numbers in the
 plot.
-
-
-
