@@ -4,7 +4,7 @@ author: "Ingo Rohlfing, Ayjeren Bekmuratovna R."
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Analysis-of-sufficient-terms-and-conditions}
+  %\VignetteIndexEntry{Analysis of sufficient terms and conditions}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -17,7 +17,8 @@ knitr::opts_chunk$set(
 )
 ```
 
-We load the packages needed for illustrating a robustness assessment on the level of individual sufficient terms and single conditions.
+We load the packages needed for illustrating a robustness assessment on the 
+level of individual sufficient terms and single conditions.
 ```{r load package, warning = F, message = F}
 library(QCArobust)
 library(dplyr) # data wrangling
@@ -45,23 +46,19 @@ sufficient terms. The `configurations_robust()` function decomposes solutions
 into its individual terms (also if the term is a single condition; usually it 
 is a configuration) and produces an *Upset plot*. The horizontal bars of an 
 Upset plot summarize the frequency of a term across all solutions. The vertical 
-bars summarize the *cooccurrence* of terms in solutions. The argument `nsets` 
+bars summarize the *co-occurrence* of terms in solutions. The argument `nsets` 
 specifies the number of bars that should be plotted (also for 
 `conditions_robust()`). The default is 5. 
 
 ```{r, eval = T, fig.width = 7, fig.height = 7}
-skaaning_terms <- configurations_robust(Skaaning_table3, const = FALSE)
+skaaning_terms <- configurations_robust(Skaaning_table3)
 skaaning_terms
 ```
-
-
-### Subsetting terms by consistency values
-to be done
 
 ## Analysis of individual conditions
 The function `conditions_robust()` does the same as `configurations_robust()` 
 for single conditions. For example, the condition *ind* occurs in 33 solutions. 
-In 27 solutions, *ind* cooccurs with *DEV* and *STA* and 6 times with *LIT*, 
+In 27 solutions, *ind* co-occurs with *DEV* and *STA* and 6 times with *LIT*, 
 *DEV* and *STA*.
 
 ```{r, fig.width=7, fig.height=7, fig.align='center'}
@@ -69,7 +66,7 @@ conditions_robust(Skaaning_table3, nsets = 10) -> conds_plot
 conds_plot
 ```
 
-The `UpsetR` package that is used for plotting stores a cooccurrence dataset 
+The `UpsetR` package that is used for plotting stores a co-occurrence dataset 
 under `.$New_data`. 
 
 ```{r}
@@ -77,7 +74,7 @@ kable(head(conds_plot$New_data))
 ```
 
 With a little bit of data wrangling, one can calculate the numbers plotted in 
-an UpSet plot. Calculating the cooccurrence data (vertical bars).
+an UpSet plot. Calculating the co-occurrence data (vertical bars).
 
 ```{r}
 conds_plot$New_data %>% 
@@ -86,7 +83,7 @@ conds_plot$New_data %>%
   kable(.)
 ```
 
-Calculating the total occurence by condition.
+Calculating the total frequency of condition.
 
 ```{r}
 kable(colSums(conds_plot$New_data))
