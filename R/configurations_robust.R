@@ -15,13 +15,7 @@
 #' @param ls List of QCA models as produced
 #' with \code{\link[QCA]{minimize}} from \code{\link{QCA}}
 #' package
-#' @param const Choose between the plotting of all solutions
-#' (\code{const = FALSE} or only those meeting a minimum consistency
-#' threshold specified with \code{const}.
-#' @param y is an argument with default value of zero. If
-#' any other number is set for the given argument, only
-#' those configurations which are above the set value for y
-#' will be plotted by the function.
+#'
 #' @param nsets Specifies number of sets to be plotted. Argument
 #' imported from the \code{\link{upset}} function from \pkg{UpSetR}.
 #'
@@ -37,16 +31,9 @@
 #' configurations_robust(KCP_example, const = 0.75)
 #'
 #' @export
-configurations_robust <- function(ls, const = FALSE, nsets = 5) {
-  if (!const) {
-    temp1 <- unlist(ls)
+configurations_robust <- function(ls, nsets = 5) {
 
-  }
-  else {
-    temp1 <- cons_minimum(ls)
-    temp1 <- purrr::map(temp1$config, unlist)
-  }
-
+  temp1 <- unlist(ls)
   temp1 <- purrr::map(temp1, function(x) stringi::stri_trim(x))
   all_values <- stringi::stri_unique(unlist(temp1))
   all_values
