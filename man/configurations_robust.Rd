@@ -4,24 +4,15 @@
 \alias{configurations_robust}
 \title{Robustness for sufficient terms (usually configurations)}
 \usage{
-configurations_robust(ls, const = FALSE, nsets = 5)
+configurations_robust(ls, nsets = 5)
 }
 \arguments{
 \item{ls}{List of QCA models as produced
 with \code{\link[QCA]{minimize}} from \code{\link{QCA}}
 package}
 
-\item{const}{Choose between the plotting of all solutions
-(\code{const = FALSE} or only those meeting a minimum consistency
-threshold specified with \code{const}.}
-
 \item{nsets}{Specifies number of sets to be plotted. Argument
 imported from the \code{\link{upset}} function from \pkg{UpSetR}.}
-
-\item{y}{is an argument with default value of zero. If
-any other number is set for the given argument, only
-those configurations which are above the set value for y
-will be plotted by the function.}
 }
 \value{
 A plot presenting the frequency of individual
