@@ -27,8 +27,6 @@
 #' # analysis without any consistency threshold
 #' configurations_robust(solutions_example)
 #'
-#' # analysis with consistency >= .75
-#' configurations_robust(KCP_example, const = 0.75)
 #'
 #' @export
 configurations_robust <- function(ls, nsets = 5) {
