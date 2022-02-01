@@ -22,7 +22,7 @@ Description: Empirical researchers can evaluate the robustness of a
     Necessary condition belonging to a conjunction that is Unnecessary
     and Sufficient]). \code{QCArobust} allows one to easily visualize 
     robustness of sufficient terms and individual conditions using UpSet plots.
-License: MIT
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.2
