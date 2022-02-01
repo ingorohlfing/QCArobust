@@ -21,6 +21,7 @@ level of entire QCA solutions.
 ```{r load package, warning = F, message = F}
 library(QCArobust)
 library(knitr) # nicer html tables
+library(QCA)
 ```
 
 ## Analysis of solutions

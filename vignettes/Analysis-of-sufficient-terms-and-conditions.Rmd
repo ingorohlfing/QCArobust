@@ -21,6 +21,7 @@ We load the packages needed for illustrating a robustness assessment on the
 level of individual sufficient terms and single conditions.
 ```{r load package, warning = F, message = F}
 library(QCArobust)
+library(QCA)
 library(dplyr) # data wrangling
 library(knitr) # nicer html tables
 ```
