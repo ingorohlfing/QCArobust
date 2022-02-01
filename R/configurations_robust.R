@@ -13,7 +13,7 @@
 #' @import UpSetR
 #'
 #' @param ls List of QCA models as produced
-#' with \code{\link[QCA-minimize]{QCA::minimize()}} from \pkg{QCA}
+#' with \code{\link[QCA]{minimize}} from \pkg{QCA}
 #' package
 #'
 #' @param nsets Specifies number of sets to be plotted. Argument

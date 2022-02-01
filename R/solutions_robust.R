@@ -10,7 +10,7 @@
 #'
 #' @param ls List of QCA solutions
 #' derived from multiple truth table analyses performed
-#' with \code{\link[QCA-minimize]{QCA::minimize()}} from \pkg{QCA}
+#' with \code{\link[QCA]{minimize}} from \pkg{QCA}
 #' package.
 #' @param plot If set to \code{TRUE}, one produces a bar chart of frequency
 #' of models. If set to \code{FALSE},

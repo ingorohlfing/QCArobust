@@ -5,7 +5,7 @@
 #' with \pkg{QCA} package
 #'
 #' @param y QCA solutions as produced
-#' with \code{\link[QCA-minimize]{QCA::minimize}} from \pkg{QCA}
+#' with \code{\link[QCA]{minimize}} from \pkg{QCA}
 #' package
 #'
 #' @param num Check for numeric input. Default

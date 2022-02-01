@@ -12,7 +12,7 @@ derived from multiple truth table analyses performed
 with \pkg{QCA} package}
 
 \item{y}{QCA solutions as produced
-with \code{\link[QCA-minimize]{QCA::minimize}} from \pkg{QCA}
+with \code{\link[QCA]{minimize}} from \pkg{QCA}
 package}
 
 \item{num}{Check for numeric input. Default

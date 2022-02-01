@@ -4,7 +4,7 @@
 #'
 #' @param ls List of QCA solutions or configurations
 #' derived from multiple truth table analyses performed
-#' with \code{\link[QCA-minimize]{QCA::minimize()}} from \pkg{QCA}
+#' with \code{\link[QCA]{minimize}} from \pkg{QCA}
 #' package
 #'
 #' @param x a vector of all unique values derived from the

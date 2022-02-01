@@ -9,7 +9,7 @@ solutions_robust(ls, plot = TRUE, plot_solutions = 5)
 \arguments{
 \item{ls}{List of QCA solutions
 derived from multiple truth table analyses performed
-with \code{\link[QCA-minimize]{QCA::minimize()}} from \pkg{QCA}
+with \code{\link[QCA]{minimize}} from \pkg{QCA}
 package.}
 
 \item{plot}{If set to \code{TRUE}, one produces a bar chart of frequency
