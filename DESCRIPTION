@@ -29,7 +29,8 @@ RoxygenNote: 7.1.2
 URL: https://github.com/ingorohlfing/QCArobust
 BugReports: https://github.com/ingorohlfing/QCArobust/issues
 Imports:
-        UpSetR, 
+        UpSetR,
+        QCA,
         dplyr, 
         plyr, 
         purrr, 

@@ -8,7 +8,6 @@
 #' @importFrom dplyr mutate desc
 #' @importFrom purrr map map_df
 #' @importFrom stats na.omit
-#' @importFrom
 #'
 #' @param ls List of QCA solutions
 #' derived from multiple truth table analyses performed
