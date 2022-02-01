@@ -37,7 +37,8 @@ Imports:
         magrittr,
         ggplot2,
         rlist,
-        sjmisc
+        sjmisc,
+        forcats
 Suggests: knitr,
     rmarkdown
 VignetteBuilder: knitr

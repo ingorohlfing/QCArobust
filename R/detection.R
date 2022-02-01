@@ -7,6 +7,9 @@
 #' with \code{\link[QCA]{minimize}} from \code{\link{QCA}}
 #' package
 #'
+#' @param x a vector of all unique values derived from the
+#' list of QCA solutions
+#'
 #' @return A list counting the individual solutions
 #' or configurations.
 detection <- function(ls, x){
