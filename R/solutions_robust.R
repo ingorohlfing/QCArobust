@@ -10,7 +10,7 @@
 #'
 #' @param ls List of QCA solutions
 #' derived from multiple truth table analyses performed
-#' with \code{\link[QCA]{minimize}} from \pkg{QCA}
+#' with \code{\link[QCA-minimize]{QCA::minimize()}} from \pkg{QCA}
 #' package.
 #' @param plot If set to \code{TRUE}, one produces a bar chart of frequency
 #' of models. If set to \code{FALSE},
@@ -22,7 +22,7 @@
 #' specified.
 #'
 #' @return If \code{plot} set to \code{TRUE}, a bar chart of
-#' frequency of solutions is produced with \code{\link{ggplot2}} that can be
+#' frequency of solutions is produced with \pkg{ggplot2} that can be
 #' customized. If \code{plot} is set to \code{FALSE}, a dataframe with
 #' solutions and frequencies is returned that can be further processed.
 #'

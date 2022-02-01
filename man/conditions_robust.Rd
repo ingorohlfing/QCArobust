@@ -8,7 +8,7 @@ conditions_robust(ls, nsets = 5)
 }
 \arguments{
 \item{ls}{List of QCA models as produced
-with \code{\link[QCA]{minimize}} from \pkg{QCA}
+with \code{\link[QCA-minimize]{QCA::minimize()}} from \pkg{QCA}
 package}
 
 \item{nsets}{Specifies number of sets to be plotted. Argument

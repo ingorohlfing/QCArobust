@@ -2,10 +2,10 @@
 #'
 #' @param x List of QCA solutions or configurations
 #' derived from multiple truth table analyses performed
-#' with \code{\link{QCA}} package
+#' with \pkg{QCA} package
 #'
 #' @param y QCA solutions as produced
-#' with \code{\link[QCA]{minimize}} from \code{\link{QCA}}
+#' with \code{\link[QCA-minimize]{QCA::minimize}} from \pkg{QCA}
 #' package
 #'
 #' @param num Check for numeric input. Default

@@ -9,7 +9,7 @@ detection(ls, x)
 \arguments{
 \item{ls}{List of QCA solutions or configurations
 derived from multiple truth table analyses performed
-with \code{\link[QCA]{minimize}} from \code{\link{QCA}}
+with \code{\link[QCA-minimize]{QCA::minimize()}} from \pkg{QCA}
 package}
 
 \item{x}{a vector of all unique values derived from the

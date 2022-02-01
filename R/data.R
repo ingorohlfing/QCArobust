@@ -5,7 +5,7 @@
 #' A list with ten hypothetical solutions derived from a truth table analysis.
 #'
 #' @format A list with 10 solutions produced with \code{minimize} from the
-#' \code{\link{QCA}} package.
+#' \pkg{QCA} package.
 "solutions_example"
 
 #' Skaaning dataset

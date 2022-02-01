@@ -5,7 +5,7 @@
 #' Aggregates over sufficient terms by calculating
 #' their frequencies and the frequencies of terms co-occurring
 #' in a model. The frequencies are plotted using Upset plots from
-#' \code{\link{UpSetR}}.
+#' \pkg{UpSetR}.
 #'
 #' @importFrom magrittr %>%
 #' @importFrom stringi stri_trim stri_unique
@@ -13,7 +13,7 @@
 #' @import UpSetR
 #'
 #' @param ls List of QCA models as produced
-#' with \code{\link[QCA]{minimize}} from \code{\link{QCA}}
+#' with \code{\link[QCA-minimize]{QCA::minimize()}} from \pkg{QCA}
 #' package
 #'
 #' @param nsets Specifies number of sets to be plotted. Argument

@@ -7,7 +7,7 @@
 List of hypothetical solutions}
 \format{
 A list with 10 solutions produced with \code{minimize} from the
-\code{\link{QCA}} package.
+\pkg{QCA} package.
 }
 \usage{
 solutions_example

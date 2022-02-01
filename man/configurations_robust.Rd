@@ -8,7 +8,7 @@ configurations_robust(ls, nsets = 5)
 }
 \arguments{
 \item{ls}{List of QCA models as produced
-with \code{\link[QCA]{minimize}} from \code{\link{QCA}}
+with \code{\link[QCA-minimize]{QCA::minimize()}} from \pkg{QCA}
 package}
 
 \item{nsets}{Specifies number of sets to be plotted. Argument
@@ -24,14 +24,12 @@ sufficient terms (conditions or conjunctions/configurations) of models.
 Aggregates over sufficient terms by calculating
 their frequencies and the frequencies of terms co-occurring
 in a model. The frequencies are plotted using Upset plots from
-\code{\link{UpSetR}}.
+\pkg{UpSetR}.
 }
 \examples{
 data("solutions_example")
 # analysis without any consistency threshold
 configurations_robust(solutions_example)
 
-# analysis with consistency >= .75
-configurations_robust(KCP_example, const = 0.75)
 
 }
