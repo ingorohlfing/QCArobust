@@ -11,6 +11,9 @@ detection(ls, x)
 derived from multiple truth table analyses performed
 with \code{\link[QCA]{minimize}} from \code{\link{QCA}}
 package}
+
+\item{x}{a vector of all unique values derived from the
+list of QCA solutions}
 }
 \value{
 A list counting the individual solutions
