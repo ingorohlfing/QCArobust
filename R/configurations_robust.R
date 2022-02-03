@@ -24,7 +24,6 @@
 #'
 #' @examples
 #' data("solutions_example")
-#' # analysis without any consistency threshold
 #' configurations_robust(solutions_example)
 #'
 #'

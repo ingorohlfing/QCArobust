@@ -28,7 +28,6 @@ in a model. The frequencies are plotted using Upset plots from
 }
 \examples{
 data("solutions_example")
-# analysis without any consistency threshold
 configurations_robust(solutions_example)
 
 
