@@ -14,12 +14,14 @@ condition or conjunction otherwise.
 (such as *A* and *C* if a conjunction in a model is *AC*). 
 
 
-## Installing the package 
-As of now, the package has to be installed from Github.
+## Installation
+As of now, the development version of the package has to be installed from 
+Github.
 
 ``` r
 devtools::install_github("AyjerenR/QCArobust")
 ```
 
-## Using QCArobust
--- to be added -- 
+For instructions on how to use the package, please the vignettes and short
+examples in the documentation of the functions.
+
