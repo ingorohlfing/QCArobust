@@ -67,6 +67,13 @@ sols_list <- list(sol1$solution, sol2$solution)
 sols_list
 ```
 
+If the solution type is the *intermediate solution*, one has to subset the
+`QCA_min` object (such as `sol1`) with `sol1$i.sol$C1P1` if there only was one
+conservative and one parsimonious solution sandwiching the intermediate 
+solution. If either the conservative or the parsimonious solution features
+*model ambiguity*, or both together, one has to include each model separately
+in the list (`$C1P1`, `$C1P2` etc.).
+
 When all solutions have been included in the list, one can use it with each of
 the three functions for aggregating the results.
 
