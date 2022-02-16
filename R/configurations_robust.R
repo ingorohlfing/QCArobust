@@ -26,16 +26,22 @@
 #' data("solutions_example")
 #' configurations_robust(solutions_example)
 #'
-#'
 #' @export
 configurations_robust <- function(ls, nsets = 5) {
-
-  temp1 <- unlist(ls)
-  temp1 <- purrr::map(temp1, function(x) stringi::stri_trim(x))
-  all_values <- stringi::stri_unique(unlist(temp1))
-  all_values
-
-  finl <- detection(temp1, all_values)
-  colnames(finl) <- all_values
-  UpSetR::upset(finl, order.by = "freq", nsets = nsets)
+  if (class(ls) != "list") {
+    stop('The object is not a list. Function only processes lists.')
+  }
+  if (length(ls) == 1) {
+    stop('One needs at least two QCA models to use the function.')
+  }
+  else {
+    temp1 <- unlist(ls)
+    temp1 <- purrr::map(temp1, function(x) stringi::stri_trim(x))
+    all_values <- stringi::stri_unique(unlist(temp1))
+    all_values
+    finl <- detection(temp1, all_values)
+    colnames(finl) <- all_values
+    UpSetR::upset(finl, order.by = "freq", nsets = nsets)
+  }
 }
+

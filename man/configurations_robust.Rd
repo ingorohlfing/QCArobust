@@ -30,5 +30,4 @@ in a model. The frequencies are plotted using Upset plots from
 data("solutions_example")
 configurations_robust(solutions_example)
 
-
 }
