@@ -28,14 +28,23 @@
 #'
 #' @export
 conditions_robust <- function(ls, nsets = 5) {
-  temp1 <- purrr::map(unlist(ls), function(x)
-    stringi::stri_split_fixed(x, "*") %>% unlist())
-  temp1 <- purrr::map(temp1, function(x)
-    stringi::stri_split_fixed(x, "+") %>% unlist())
-  all_values <- stringi::stri_unique(unlist(temp1))
-  final_matrix <- plyr::ldply(temp1, function(y)
-    comparison(x = all_values, y = y, num = T))
-  final_matrix$.id <- NULL
-  colnames(final_matrix) <- all_values
-  UpSetR::upset(final_matrix, order.by = "freq", nsets = nsets)
+  if (class(ls) != "list") {
+    stop('The object is not a list. Function only processes lists.')
+  }
+  if (length(ls) == 1) {
+    stop('One needs at least two QCA models to use the function.')
+  }
+  else {
+    temp1 <- purrr::map(unlist(ls), function(x)
+      stringi::stri_split_fixed(x, "*") %>% unlist())
+    temp1 <- purrr::map(temp1, function(x)
+      stringi::stri_split_fixed(x, "+") %>% unlist())
+    all_values <- stringi::stri_unique(unlist(temp1))
+    final_matrix <- plyr::ldply(temp1, function(y)
+      comparison(x = all_values, y = y, num = T))
+    final_matrix$.id <- NULL
+    colnames(final_matrix) <- all_values
+    UpSetR::upset(final_matrix, order.by = "freq", nsets = nsets)
+  }
 }
+
