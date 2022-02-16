@@ -19,9 +19,9 @@ As of now, the development version of the package has to be installed from
 Github.
 
 ``` r
-devtools::install_github("AyjerenR/QCArobust")
+devtools::install_github("ingorohlfing/QCArobust")
 ```
 
-For instructions on how to use the package, please the vignettes and short
+For instructions on how to use the package, please see the vignettes and short
 examples in the documentation of the functions.
 
